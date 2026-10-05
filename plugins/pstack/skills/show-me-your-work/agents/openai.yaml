@@ -1,5 +1,5 @@
 interface:
-  display_name: "show-me-your-work"
+  display_name: "pstack-show-me-your-work"
   short_description: "Run this pstack workflow only when explicitly invoked."
 policy:
   allow_implicit_invocation: false

@@ -1,0 +1,3 @@
+interface:
+  display_name: "pstack-setup"
+  short_description: "Configure pstack models and reasoning efforts."

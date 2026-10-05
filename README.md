@@ -23,6 +23,8 @@ cd pstack-codex
 
 The script validates the package, registers this checkout as the `pstack-codex` marketplace, and installs `pstack@pstack-codex`. It does not edit your Codex configuration by hand or overwrite personal agent definitions. Start a new Codex task after installation and invoke `$setup-pstack`. Most pstack skills are intentionally explicit-only; invoke them with `$<skill-name>`, such as `$interrogate`. Ask to use `$poteto-mode` as a standing instruction for the current task when you want the orchestration workflow. Repository-local skills belong under `.agents/skills`, not `.codex/skills`.
 
+To find the pstack skills in the skill picker, type `$pstack`. Their display labels start with `pstack-`, including `pstack-poteto-mode`, `pstack-how`, and `pstack-setup`. Selecting an entry invokes its corresponding skill.
+
 Alternatively, install the published marketplace without cloning:
 
 ```sh
