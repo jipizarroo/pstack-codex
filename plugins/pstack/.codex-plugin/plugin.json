@@ -1,13 +1,13 @@
 {
   "name": "pstack",
-  "version": "0.15.5+codex.202610020001",
+  "version": "0.15.5+codex.202610050001",
   "description": "Rigorous engineering workflows for writing less, higher-quality code, ported from Lauren Tan's Cursor pstack plugin.",
   "author": {
     "name": "Lauren Tan",
     "url": "https://github.com/cursor/plugins/tree/main/pstack"
   },
-  "homepage": "https://github.com/ScriptedAlchemy/pstack-codex",
-  "repository": "https://github.com/ScriptedAlchemy/pstack-codex",
+  "homepage": "https://github.com/jipizarroo/pstack-codex",
+  "repository": "https://github.com/jipizarroo/pstack-codex",
   "license": "MIT",
   "keywords": [
     "pstack",
@@ -32,7 +32,7 @@
       "Workflows",
       "Code Review"
     ],
-    "websiteURL": "https://github.com/ScriptedAlchemy/pstack-codex",
+    "websiteURL": "https://github.com/jipizarroo/pstack-codex",
     "defaultPrompt": [
       "Use poteto-mode for this engineering task.",
       "Configure pstack's Codex model roles.",

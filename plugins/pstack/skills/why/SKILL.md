@@ -82,7 +82,7 @@ Launch all matching investigators in a single message so they run concurrently. 
 
 Subagent config (each):
 - use the default agent only if the current spawn schema exposes an agent selector
-- `model`: the `why investigators` line (default `gpt-5.6-terra @ medium`)
+- `model`: the `why investigators` line (default `gpt-6.1-sol @ medium`)
 - Read-only investigation: forbid writes and mutating tools in the prompt. MCP access follows the host permissions; do not pass a readonly parameter.
 
 Each investigator gets:
@@ -126,7 +126,7 @@ If your scope assessment suggests a single-commit trivial target where the PR de
 Spawn one synthesizer subagent:
 
 - use the default agent only if the current spawn schema exposes an agent selector
-- `model`: the `why synthesizer` line (default `gpt-6-astra @ high`)
+- `model`: the `why synthesizer` line (default `gpt-6.1-sol @ high`)
 - Read-only investigation: forbid writes and mutating tools in the prompt. MCP access follows the host permissions; do not pass a readonly parameter.
 
 The synthesizer gets:

@@ -34,7 +34,7 @@ One message, three `spawn_agent` calls using the `default` agent, the named role
 | Lens | `model` | Prompt template |
 |---|---|---|
 | Judgment | `reflect judgment, divergent, synthesizer` (default `gpt-6-astra @ high`) | `references/judgment-reviewer.md` |
-| Tooling | `reflect tooling` (default `gpt-5.6-sol @ high`) | `references/tooling-reviewer.md` |
+| Tooling | `reflect tooling` (default `gpt-6.1-sol @ high`) | `references/tooling-reviewer.md` |
 | Divergent | `reflect judgment, divergent, synthesizer` (default `gpt-6-astra @ high`) | `references/divergent-reviewer.md` |
 
 Pass each template verbatim, substituting the transcript path or digest where marked. Reviewers return findings in their final response.

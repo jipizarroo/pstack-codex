@@ -9,6 +9,8 @@ Before following this workflow, read [the Codex runtime contract](../../CODEX.md
 
 Write `~/.codex/pstack-models.md`, the override file every delegating pstack skill reads before it spawns subagents. Missing roles keep the defaults below. This file is configuration for pstack, not a Codex model-provider configuration file.
 
+Defaults use GPT-6.1 Sol for implementation, exploration, explanation, prose, and routine review; GPT-6 Astra handles deep reflection and the hardest reasoning. Design and review panels use one agent on each model. Users can choose any available model and change panel size through the role lists.
+
 ## 1. Load current state
 
 Read the existing override file when present, preserving its budget and configured role values. Otherwise start from the defaults in step 4. Drop retired roles absent from step 4 (for example `how critics`) and list each dropped line when showing the proposed configuration. Determine which Codex models the current host exposes from the current tool metadata or official local model picker. Never invent a model slug. `inherit-parent` and `auto` are always valid and both mean to omit the model override.
@@ -36,23 +38,23 @@ Overwrite `~/.codex/pstack-models.md` atomically so reruns are idempotent. Use t
 # pstack model configuration for Codex. Delete a role line to use its skill default.
 # `inherit-parent` or `auto` omits explicit model and reasoning overrides.
 # budget: unlimited
-feature, refactoring: gpt-5.6-luna @ medium
-bug-fix: gpt-5.6-luna @ high
-perf-issue: gpt-5.6-luna @ high
-hillclimb: gpt-5.6-luna @ high
-judgment and prose: gpt-6-astra @ high
+feature, refactoring: gpt-6.1-sol @ medium
+bug-fix: gpt-6.1-sol @ high
+perf-issue: gpt-6.1-sol @ high
+hillclimb: gpt-6.1-sol @ high
+judgment and prose: gpt-6.1-sol @ high
 hardest tasks: gpt-6-astra @ xhigh
-how explorer: gpt-5.6-terra @ medium
-how explainer: gpt-6-astra @ high
-why investigators: gpt-5.6-terra @ medium
-why synthesizer: gpt-6-astra @ high
-reflect tooling: gpt-5.6-sol @ high
+how explorer: gpt-6.1-sol @ medium
+how explainer: gpt-6.1-sol @ high
+why investigators: gpt-6.1-sol @ medium
+why synthesizer: gpt-6.1-sol @ high
+reflect tooling: gpt-6.1-sol @ high
 reflect judgment, divergent, synthesizer: gpt-6-astra @ high
-arena runners: gpt-6-astra @ high, gpt-5.6-sol @ high, gpt-5.6-terra @ medium, gpt-5.6-luna @ medium
-arena cross-judge pool: gpt-6-astra @ high, gpt-5.6-sol @ high, gpt-5.6-terra @ medium, gpt-5.6-luna @ medium
-swarm workers: gpt-5.6-luna @ medium
-architect runners: gpt-6-astra @ high, gpt-5.6-sol @ high, gpt-5.6-terra @ medium, gpt-5.6-luna @ medium
-interrogate reviewers: gpt-6-astra @ high, gpt-5.6-sol @ high, gpt-5.6-terra @ medium, gpt-5.6-luna @ medium
+arena runners: gpt-6.1-sol @ high, gpt-6-astra @ high
+arena cross-judge pool: gpt-6.1-sol @ high, gpt-6-astra @ high
+swarm workers: gpt-6.1-sol @ medium
+architect runners: gpt-6.1-sol @ high, gpt-6-astra @ high
+interrogate reviewers: gpt-6.1-sol @ high, gpt-6-astra @ high
 ```
 
 Apply the budget cap to the effort tokens before writing. Validate every real model against the host's available-model list. Stop for a replacement choice if a requested slug is unavailable.

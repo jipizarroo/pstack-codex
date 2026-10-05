@@ -2,6 +2,8 @@
 
 A Codex-native adaptation of [Lauren Tan's pstack](https://github.com/cursor/plugins/tree/main/pstack), preserving its workflows, playbooks, principles, and agent personas while adapting host-specific execution to Codex. This is an independent port, not an official Cursor or OpenAI plugin.
 
+This fork builds on [ScriptedAlchemy's Codex port](https://github.com/ScriptedAlchemy/pstack-codex). It uses GPT-6.1 Sol for routine work and GPT-6 Astra for deep reflection and the hardest reasoning, with one of each in default design and review panels. Configure role overrides with `$setup-pstack`.
+
 The plugin lives in `plugins/pstack`; `.agents/plugins/marketplace.json` makes this repository a native Codex marketplace. Read the [runtime contract](plugins/pstack/CODEX.md), [port coverage and runtime boundaries](PARITY.md), and [per-file source coverage](FILE-COVERAGE.md). Tool availability depends on the Codex host, permissions, and connected integrations. No credentials are bundled.
 
 ## Install
@@ -14,7 +16,7 @@ executable when running the installer (for example,
 Homebrew installation).
 
 ```sh
-git clone https://github.com/ScriptedAlchemy/pstack-codex.git
+git clone https://github.com/jipizarroo/pstack-codex.git
 cd pstack-codex
 ./scripts/install.sh
 ```
@@ -24,7 +26,7 @@ The script validates the package, registers this checkout as the `pstack-codex` 
 Alternatively, install the published marketplace without cloning:
 
 ```sh
-codex plugin marketplace add ScriptedAlchemy/pstack-codex
+codex plugin marketplace add jipizarroo/pstack-codex
 codex plugin add pstack@pstack-codex
 ```
 
