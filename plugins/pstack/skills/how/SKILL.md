@@ -25,7 +25,7 @@ When in doubt, take the simple path.
 Decompose the question into 2 to 4 exploration angles, each a distinct slice of the subsystem. Spawn all explorers in a single message:
 
 - use the default agent only if the current spawn schema exposes an agent selector
-- `model`: the `how explorer` line (default `gpt-5.6-terra @ medium`)
+- `model`: the `how explorer` line (default `gpt-6.1-sol @ medium`)
 - read-only by instruction: forbid writes and mutating commands in the prompt
 
 Each explorer gets the prompt in `references/explorer-prompt.md` with its angle filled in. Then go to Step 3.
@@ -35,7 +35,7 @@ Each explorer gets the prompt in `references/explorer-prompt.md` with its angle 
 Spawn one Codex subagent that explores and explains in one pass:
 
 - use the default agent only if the current spawn schema exposes an agent selector
-- `model`: the `how explainer` line (default `gpt-6-astra @ high`)
+- `model`: the `how explainer` line (default `gpt-6.1-sol @ high`)
 - read-only by instruction: forbid writes and mutating commands in the prompt
 
 Build its prompt from `references/explainer-prompt.md` without the explorer-findings section. Go to Step 4.
@@ -45,7 +45,7 @@ Build its prompt from `references/explainer-prompt.md` without the explorer-find
 Once all explorers have returned, spawn one Codex subagent to synthesize their findings into one explanation:
 
 - use the default agent only if the current spawn schema exposes an agent selector
-- `model`: the `how explainer` line (default `gpt-6-astra @ high`)
+- `model`: the `how explainer` line (default `gpt-6.1-sol @ high`)
 - read-only by instruction: forbid writes and mutating commands in the prompt
 
 Build its prompt from `references/explainer-prompt.md` with every explorer's findings filled in.

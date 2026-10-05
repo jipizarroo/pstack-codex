@@ -34,18 +34,16 @@ Write one clear paragraph. If you're unsure about the intent, ask the user befor
 
 ## Step 3, Spawn Reviewers
 
-Launch all reviewers in a single message using Codex collaboration tools. Use the `interrogate reviewers` list from `~/.codex/pstack-models.md` when present, one reviewer per entry, extending or shrinking the Reviewer A/B/C/D labels below to the configured entry count. Otherwise use the table defaults.
+Launch all reviewers in a single message using Codex collaboration tools. Use the `interrogate reviewers` list from `~/.codex/pstack-models.md` when present, one reviewer per entry, extending or shrinking the Reviewer A/B labels below to the configured entry count. Otherwise use the table defaults.
 
-| Subagent | Default model |
-|----------|---------------|
-| Reviewer A | `gpt-6-astra` |
-| Reviewer B | `gpt-5.6-sol` |
-| Reviewer C | `gpt-5.6-luna` |
-| Reviewer D | `gpt-5.6-terra` |
+| Subagent | Default model and effort |
+|----------|--------------------------|
+| Reviewer A | `gpt-6.1-sol @ high` |
+| Reviewer B | `gpt-6-astra @ high` |
 
 For each reviewer:
 - use the default agent only if the current spawn schema exposes an agent selector
-- `model`: the configured `interrogate reviewers` entry, or the table default with no configured line. For an `auto` or `inherit-parent` entry, omit `model` so that reviewer runs on the parent model.
+- model and reasoning effort: split the configured `interrogate reviewers` entry into the host's separate fields, or use the table default with no configured line. For an `auto` or `inherit-parent` entry, omit both overrides so that reviewer runs on the parent model.
 - read-only by instruction: forbid writes and mutating commands in the prompt
 
 If a configured model is unavailable, report it and follow CODEX.md's inheritance fallback. Do not invent a replacement slug or open an unrelated configuration PR. Offer a configuration repair in the report. If the configured value is `inherit-parent` or `auto`, omit both model and reasoning overrides. Never treat those aliases as broken slugs.

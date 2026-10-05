@@ -30,7 +30,7 @@ two steps:
 
 new here? the [pstack guide](./docs/guide/README.md) walks you through a first real task, from setup and prompting through verification and overnight runs.
 
-that's it. the other skills are situational; the mode skill uses them as needed. out of the box, fast code goes to gpt-5.6-luna, exploration to gpt-5.6-terra, tooling review to gpt-5.6-sol, and the hardest judgment to gpt-6-astra. [`$setup-pstack`](./skills/setup-pstack/SKILL.md) changes any role.
+that's it. the other skills are situational; the mode skill uses them as needed. out of the box, implementation, exploration, explanation, and tooling review use gpt-6.1-sol. deep reflection and the hardest judgment use gpt-6-astra. design and review panels default to one agent on each model. [`$setup-pstack`](./skills/setup-pstack/SKILL.md) changes any role and panel size.
 
 ## usage
 
