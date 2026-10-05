@@ -1,5 +1,5 @@
 interface:
-  display_name: "make-bot-ui"
+  display_name: "pstack-make-bot-ui"
   short_description: "Run this pstack workflow only when explicitly invoked."
 policy:
   allow_implicit_invocation: false
