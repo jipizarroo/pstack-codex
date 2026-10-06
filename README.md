@@ -25,6 +25,8 @@ The script validates the package, registers this checkout as the `pstack-codex` 
 
 To find the pstack skills in the skill picker, type `$pstack`. Their display labels start with `pstack-`, including `pstack-poteto-mode`, `pstack-how`, and `pstack-setup`. Selecting an entry invokes its corresponding skill.
 
+Use `$automate-maintainer sokra, alex for owner/repo` to draft conventions from named GitHub users. Use `$automate-team owner/repo` to discover active core contributors and mine their code, reviews, and design discussions into a team mode. Both workflows keep evidence and ownership explicit; they create skills without posting or acting as the people studied.
+
 Alternatively, install the published marketplace without cloning:
 
 ```sh
@@ -77,4 +79,4 @@ The audit fetches upstream Git objects and prints pstack-only changes since the 
 
 ## License and attribution
 
-MIT. Original pstack copyright © 2026 Lauren Tan; original license is retained in [LICENSE](LICENSE) and the plugin. Codex adaptation changes are distributed under the same license. Upstream version: 0.15.5, source commit `7022c81efb48d8b5eb15498ce6043a3bd74b694c`.
+MIT. Original pstack copyright © 2026 Lauren Tan; original license is retained in [LICENSE](LICENSE) and the plugin. Codex adaptation changes are distributed under the same license. Upstream version: 0.15.13, source commit `e5a8186d7b43be8d6ac4452440fbead5f1a51c70`.

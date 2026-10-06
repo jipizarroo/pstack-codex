@@ -83,14 +83,20 @@ test('an interaction review gate without operator evidence is rejected', () => {
 
 for (const configured of ['gpt-5.6-terra', 'inherit-parent']) {
   test(`configured worker choice ${configured} is accepted`, () => {
-    const plan = populatedPlan().replaceAll('`gpt-5.6-luna`', `\`${configured}\``);
+    const plan = populatedPlan().replaceAll('`gpt-6.1-sol`', `\`${configured}\``);
     const result = check(plan);
     assert.equal(result.status, 0, result.stderr);
   });
 }
 
 test('an unfilled worker model placeholder is rejected', () => {
-  const result = check(populatedPlan().replaceAll('`gpt-5.6-luna`', '`<swarm workers model>`'));
+  const result = check(populatedPlan().replaceAll('`gpt-6.1-sol`', '`<swarm workers model>`'));
   assert.equal(result.status, 1);
   assert.match(result.stderr, /must name ten lanes/);
+});
+
+test('a plan without the hourly audit cadence is rejected', () => {
+  const result = check(populatedPlan().replace('hourly audit tick', 'audit tick when remembered'));
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /Program checklist lacks "hourly audit tick"/u);
 });
