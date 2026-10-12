@@ -59,8 +59,7 @@ node --test check-plan.test.mjs worktree-audit.test.mjs
 Before reinstalling a modified local plugin, use Codex's `plugin-creator` skill cachebuster/reinstall flow; then run `./scripts/install.sh` and start a new task. Keep the published version updated when shipping changes so existing installations do not reuse stale caches.
 
 Move test-only `node_modules` outside the plugin directory before installation;
-the installer refuses to package it. Keep your dependency copy for subsequent
-test runs rather than committing or distributing it.
+the installer refuses to package it. Remove temporary test dependencies after validation; do not commit or distribute them.
 
 ## Track upstream safely
 
@@ -75,4 +74,4 @@ The audit fetches upstream Git objects and prints pstack-only changes since the 
 
 ## License and attribution
 
-MIT. Original pstack copyright © 2026 Lauren Tan; original license is retained in [LICENSE](LICENSE) and the plugin. Codex adaptation changes are distributed under the same license. Upstream version: 0.15.13, source commit `e5a8186d7b43be8d6ac4452440fbead5f1a51c70`.
+MIT. Original pstack copyright © 2026 Lauren Tan; original license is retained in [LICENSE](LICENSE) and the plugin. Codex adaptation changes are distributed under the same license. Upstream version: 0.15.17, source commit `11713c683fe4add4fd403ea880580abbc9e0875f`.

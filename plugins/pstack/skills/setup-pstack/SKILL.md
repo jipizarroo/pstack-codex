@@ -15,14 +15,14 @@ Read the existing override file when present, preserving its budget and configur
 
 ## 2. Choose a budget
 
-Use `request_user_input` when it is available. Otherwise ask one concise question. Offer:
+Use the available user-input tool, or ask one concise question. Preserve the current budget on a rerun unless the user changes it. With no configuration, `large` matches the skill defaults. Offer:
 
-- `unlimited` uses each role's listed effort.
-- `large` caps explicit role efforts at `xhigh`.
-- `medium` caps them at `high`.
-- `small` caps them at `medium`.
+- `unlimited — max reasoning`: each model's highest host-supported effort, up to `max`.
+- `large — xhigh reasoning`: `xhigh`.
+- `medium — high reasoning`: `high`.
+- `small — medium reasoning`: `medium`.
 
-Preserve the current choice on a rerun unless the user changes it. A model must support its selected effort. Fall back to the nearest supported effort at or below the requested cap.
+Apply the selected effort to every real model, including panel entries. Preserve existing model choices, list order, and inheritance aliases; aliases keep both overrides unset. Model and effort are separate fields in Codex. Use the highest supported effort at or below the requested target. If none is available, mark the role as needing a choice. Never change the model to satisfy a budget.
 
 ## 3. Confirm role assignments
 
@@ -35,27 +35,27 @@ Overwrite `~/.codex/pstack-models.md` atomically so reruns are idempotent. Use t
 ```text
 # pstack model configuration for Codex. Delete a role line to use its skill default.
 # `inherit-parent` or `auto` omits explicit model and reasoning overrides.
-# budget: unlimited
-feature, refactoring: gpt-5.6-luna @ medium
-bug-fix: gpt-5.6-luna @ high
-perf-issue: gpt-5.6-luna @ high
-hillclimb: gpt-5.6-luna @ high
-judgment and prose: gpt-6-astra @ high
+# budget: large (xhigh)
+feature, refactoring: gpt-6-luna @ xhigh
+bug-fix: gpt-6-luna @ xhigh
+perf-issue: gpt-6-luna @ xhigh
+hillclimb: gpt-6-luna @ xhigh
+judgment and prose: gpt-6-astra @ xhigh
 hardest tasks: gpt-6-astra @ xhigh
-how explorer: gpt-5.6-terra @ medium
-how explainer: gpt-6-astra @ high
-why investigators: gpt-5.6-terra @ medium
-why synthesizer: gpt-6-astra @ high
-reflect tooling: gpt-5.6-sol @ high
-reflect judgment, divergent, synthesizer: gpt-6-astra @ high
-arena runners: gpt-6-astra @ high, gpt-5.6-sol @ high, gpt-5.6-terra @ medium, gpt-5.6-luna @ medium
-arena cross-judge pool: gpt-6-astra @ high, gpt-5.6-sol @ high, gpt-5.6-terra @ medium, gpt-5.6-luna @ medium
-swarm workers: gpt-5.6-luna @ medium
-architect runners: gpt-6-astra @ high, gpt-5.6-sol @ high, gpt-5.6-terra @ medium, gpt-5.6-luna @ medium
-interrogate reviewers: gpt-6-astra @ high, gpt-5.6-sol @ high, gpt-5.6-terra @ medium, gpt-5.6-luna @ medium
+how explorer: gpt-6.1-sol @ xhigh
+how explainer: gpt-6-astra @ xhigh
+why investigators: gpt-6.1-sol @ xhigh
+why synthesizer: gpt-6-astra @ xhigh
+reflect tooling: gpt-6.1-sol @ xhigh
+reflect judgment, divergent, synthesizer: gpt-6-astra @ xhigh
+arena runners: gpt-6-astra @ xhigh, gpt-6-luna @ xhigh
+arena cross-judge pool: gpt-6-astra @ xhigh, gpt-6-luna @ xhigh
+swarm workers: gpt-6-luna @ xhigh
+architect runners: gpt-6-astra @ xhigh, gpt-6-luna @ xhigh
+interrogate reviewers: gpt-6-astra @ xhigh, gpt-6-luna @ xhigh
 ```
 
-Apply the budget cap to the effort tokens before writing. Validate every real model against the host's available-model list. Stop for a replacement choice if a requested slug is unavailable.
+Apply the budget to the separate effort values before writing. Validate every real model against the host's available-model list. Stop for a replacement choice if a requested slug is unavailable.
 
 ## 5. Install or refresh custom agents
 

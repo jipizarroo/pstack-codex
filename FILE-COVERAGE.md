@@ -1,6 +1,6 @@
 # Upstream file coverage
 
-Pinned source: `e5a8186d7b43be8d6ac4452440fbead5f1a51c70`.
+Pinned source: `11713c683fe4add4fd403ea880580abbc9e0875f`.
 
 Every source file is checked; content adaptation is not a claim of tested runtime equivalence.
 
@@ -63,8 +63,9 @@ Every source file is checked; content adaptation is not a claim of tested runtim
 | `skills/interrogate/SKILL.md` | `plugins/pstack/skills/interrogate/SKILL.md` | adapted |
 | `skills/interrogate/references/code-quality-review.md` | `plugins/pstack/skills/interrogate/references/code-quality-review.md` | retained verbatim |
 | `skills/interrogate/references/lead-judgment.md` | `plugins/pstack/skills/interrogate/references/lead-judgment.md` | retained verbatim |
-| `skills/interrogate/references/reviewer-prompt.md` | `plugins/pstack/skills/interrogate/references/reviewer-prompt.md` | adapted |
+| `skills/interrogate/references/reviewer-prompt.md` | `plugins/pstack/skills/interrogate/references/reviewer-prompt.md` | retained verbatim |
 | `skills/interrogate/references/rubric.md` | `plugins/pstack/skills/interrogate/references/rubric.md` | retained verbatim |
+| `skills/ketchup/SKILL.md` | `plugins/pstack/skills/ketchup/SKILL.md` | adapted |
 | `skills/maintain-verification-skill/SKILL.md` | `plugins/pstack/skills/maintain-verification-skill/SKILL.md` | adapted |
 | `skills/make-bot-ui/SKILL.md` | `plugins/pstack/skills/make-bot-ui/SKILL.md` | adapted |
 | `skills/no-comments/SKILL.md` | `plugins/pstack/skills/no-comments/SKILL.md` | adapted |

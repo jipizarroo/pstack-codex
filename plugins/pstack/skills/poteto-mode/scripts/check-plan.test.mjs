@@ -81,16 +81,16 @@ test('an interaction review gate without operator evidence is rejected', () => {
   assert.match(result.stderr, /Review gate lacks "operator"/u);
 });
 
-for (const configured of ['gpt-5.6-terra', 'inherit-parent']) {
+for (const configured of ['gpt-6.1-sol', 'inherit-parent']) {
   test(`configured worker choice ${configured} is accepted`, () => {
-    const plan = populatedPlan().replaceAll('`gpt-5.6-luna`', `\`${configured}\``);
+    const plan = populatedPlan().replaceAll('`gpt-6-luna`', `\`${configured}\``);
     const result = check(plan);
     assert.equal(result.status, 0, result.stderr);
   });
 }
 
 test('an unfilled worker model placeholder is rejected', () => {
-  const result = check(populatedPlan().replaceAll('`gpt-5.6-luna`', '`<swarm workers model>`'));
+  const result = check(populatedPlan().replaceAll('`gpt-6-luna`', '`<swarm workers model>`'));
   assert.equal(result.status, 1);
   assert.match(result.stderr, /must name ten lanes/);
 });

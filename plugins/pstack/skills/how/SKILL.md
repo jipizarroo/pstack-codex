@@ -11,49 +11,29 @@ Explore the codebase to answer "how does X work?" questions. Produce architectur
 
 Resolve the named role line in `~/.codex/pstack-models.md` before each spawn, following `CODEX.md`: missing lines use the default, `auto` and `inherit-parent` omit both overrides, and unavailable choices are reported with inheritance as the explicit fallback. Split `model @ effort` into separate host fields.
 
-## Step 1. Assess Complexity
+Explorers use `how explorer` (default `gpt-6.1-sol @ xhigh`); every explainer uses `how explainer` (default `gpt-6-astra @ xhigh`). Forbid writes and mutating commands in their prompts. Run parallel explorers in waves when host capacity is smaller than the panel.
+
+## 1. Assess complexity
 
 If the scope is ambiguous, state your interpretation and explore. The user can redirect.
 
-- **Simple** (a single module, a small utility, a narrow question such as "how does function X work"): no explorers. One explainer explores and explains in a single pass. Go to Step 2b.
-- **Complex** (a subsystem spanning multiple files or services, a cross-cutting feature, a full architectural overview): spawn parallel explorers first, then hand off to the explainer. Go to Step 2a.
+- **Simple** (a single module, a small utility, a narrow question such as "how does function X work"): no explorers. Spawn one explainer that explores and explains in one pass, built from `references/explainer-prompt.md` without the explorer-findings section. Go to step 4.
+- **Complex** (a subsystem spanning multiple files or services, a cross-cutting feature, a full architectural overview): go to step 2.
 
 When in doubt, take the simple path.
 
-## Step 2a. Explore (complex questions only)
+## 2. Explore (complex only)
 
-Decompose the question into 2 to 4 exploration angles, each a distinct slice of the subsystem. Spawn all explorers in a single message:
+Decompose the question into 2 to 4 angles, each a distinct slice of the subsystem. Spawn explorers asynchronously within available capacity, each with `references/explorer-prompt.md` and its angle filled in.
 
-- use the default agent only if the current spawn schema exposes an agent selector
-- `model`: the `how explorer` line (default `gpt-5.6-terra @ medium`)
-- read-only by instruction: forbid writes and mutating commands in the prompt
+## 3. Synthesize (complex only)
 
-Each explorer gets the prompt in `references/explorer-prompt.md` with its angle filled in. Then go to Step 3.
+Once all explorers have returned, spawn one explainer with `references/explainer-prompt.md` and every explorer's findings filled in.
 
-## Step 2b. Direct Explain (simple questions)
+## 4. Present
 
-Spawn one Codex subagent that explores and explains in one pass:
+Present the explainer's output. Light edits for clarity or context from the conversation are fine. Do not substantially rewrite it.
 
-- use the default agent only if the current spawn schema exposes an agent selector
-- `model`: the `how explainer` line (default `gpt-6-astra @ high`)
-- read-only by instruction: forbid writes and mutating commands in the prompt
-
-Build its prompt from `references/explainer-prompt.md` without the explorer-findings section. Go to Step 4.
-
-## Step 3. Synthesize (complex questions only)
-
-Once all explorers have returned, spawn one Codex subagent to synthesize their findings into one explanation:
-
-- use the default agent only if the current spawn schema exposes an agent selector
-- `model`: the `how explainer` line (default `gpt-6-astra @ high`)
-- read-only by instruction: forbid writes and mutating commands in the prompt
-
-Build its prompt from `references/explainer-prompt.md` with every explorer's findings filled in.
-
-## Step 4. Present
-
-Present the explainer's output to the user. Light edits for clarity or context from the conversation are fine. Do not substantially rewrite it.
-
-## Output Format
+## Output format
 
 The explanation uses the sections defined in `references/explainer-prompt.md`, dropping any that do not apply: Overview, Key Concepts, How It Works, Where Things Live, Gotchas.

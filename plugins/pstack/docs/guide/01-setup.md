@@ -23,6 +23,8 @@ $setup-pstack
 
 [`$setup-pstack`](../../skills/setup-pstack/SKILL.md) reads the models exposed by the current Codex host, asks for a reasoning budget, shows each role, and writes `~/.codex/pstack-models.md`.
 
+Defaults use `xhigh`, matching the `large` budget. `unlimited` raises each real model to its highest host-supported effort, up to `max`; `medium` and `small` choose `high` and `medium`. Unsupported tiers use the highest supported effort at or below the target. Existing model choices and inheritance aliases stay intact.
+
 You only override what you care about. A role with no line in the rule keeps the skill's default. To restore a default, delete that role's line. A rerun of `$setup-pstack` preserves configured role values, including lists and inheritance aliases, unless you choose a replacement. An existing file can pin earlier defaults; delete the corresponding role lines to adopt the current Codex defaults. Setup drops retired role lines and reports them before writing.
 
 You might be wondering what happens if you use Auto. Set a role to `inherit-parent` or `auto` and pstack omits the subagent `model` field, so the subagent inherits your parent chat model. Both values mean the same thing, and neither is a model slug. For a panel role the value is a list, and one subagent runs per entry, so the list length sets the panel size. Setup also configures `swarm workers`, the default model for every `$swarm` worker unless a race names a model for each arm.

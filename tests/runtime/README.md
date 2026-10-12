@@ -2,7 +2,7 @@
 
 The fixtures are disposable local Git repositories. No test modifies the user's
 agent definitions, projects, automation schedules, or external services. Temporary
-fixture directories are retained for inspection. The worktree test removes only
+fixture directories should be removed after validation. The worktree test removes only
 its clean, test-created worker worktree.
 
 Run the deterministic source and worktree checks with Node 22 or newer and Git.
