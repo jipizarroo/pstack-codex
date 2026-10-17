@@ -1,5 +1,7 @@
 # Updating from Cursor pstack
 
+This fork uses three remotes: `origin` is `jipizarroo/pstack-codex`, `scripted` is `ScriptedAlchemy/pstack-codex`, and `upstream` is the original `cursor/plugins`. Synchronize the Codex port from `scripted` first, retaining this fork's marketplace URLs and `pstack-` display labels. Then follow the original-source porting procedure below. Model role bindings come from the Codex port; original host-specific model strings are not portable configuration.
+
 `UPSTREAM.json` records the exact source last reviewed. Keeping an `upstream` remote enables a deliberate port; it does not mean Git can safely merge two different layouts.
 
 1. Begin with a clean working tree or preserve your work on a separate branch.

@@ -1,0 +1,5 @@
+interface:
+  display_name: "pstack-sharpen"
+  short_description: "Approach your task with expert framing and judgment."
+policy:
+  allow_implicit_invocation: false

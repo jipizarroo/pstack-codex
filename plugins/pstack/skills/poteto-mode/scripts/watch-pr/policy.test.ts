@@ -106,7 +106,7 @@ describe("snapshot query planning", () => {
     expect(snapshot.ci.kind).toBe("ci-pending");
     expect(reader.calls).toEqual([
       "pullRequest",
-      "reviewThreads",
+      "reviewThreadPage:null",
       "checksFastPath",
     ]);
   });
@@ -417,4 +417,36 @@ it("uses the specified retry floor and cap", () => {
   expect(queryBackoffSeconds(1, 1)).toBe(60);
   expect(queryBackoffSeconds(1, 2)).toBe(120);
   expect(queryBackoffSeconds(60, 4)).toBe(300);
+});
+
+
+it("blocks a pull request with an unresolved thread after the first 100", async () => {
+  const lateThread = {
+    id: "late-thread",
+    firstComment: { authorLogin: "reviewer", body: "fix this", path: "a.ts", line: 1, createdAt: "now" },
+    resolved: false,
+  };
+  const reader = fakeReader({
+    threadPages: [
+      {
+        threads: Array.from({ length: 100 }, (_, i) => ({
+          ...lateThread,
+          id: `resolved-${i}`,
+          resolved: true,
+        })),
+        endCursor: "page-two",
+      },
+      { threads: [lateThread], endCursor: null },
+    ],
+  });
+  const snapshot = await readSnapshot({
+    reader,
+    context: context(42),
+    pendingHistory: "include",
+    allowDraft: false,
+  });
+  expect(classifyPr(snapshot)).toMatchObject({
+    kind: "blocker",
+    blocker: { kind: "review-threads", threads: [{ id: "late-thread" }] },
+  });
 });

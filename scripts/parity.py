@@ -10,6 +10,7 @@ PLUGIN = ROOT / "plugins/pstack"
 inventory = json.loads((ROOT / "upstream-inventory.json").read_text())
 replacements = {
     ".cursor-plugin/plugin.json": PLUGIN / ".codex-plugin/plugin.json",
+    "plugin.json": PLUGIN / ".codex-plugin/plugin.json",
     ".gitignore": ROOT / ".gitignore",
 }
 rows = []

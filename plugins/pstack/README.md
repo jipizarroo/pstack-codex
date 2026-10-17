@@ -21,6 +21,8 @@ codex plugin add pstack@pstack-codex
 
 Clone the pstack-codex repository first, or run its `scripts/install.sh`. Start a new Codex task after installation. Personas are loaded from bundled instructions; optional custom-agent templates are not automatically registered by the plugin manifest. See [the runtime contract](CODEX.md) for host prerequisites and behavioral differences.
 
+This fork labels skills `pstack-…` in the picker: type `$pstack` to find them. Skill IDs and references below retain their upstream names. The original also supports Claude Code through a separate generated tree; the [Claude Code adapter](./docs/harness/claude-code.md) is retained as a source reference, not an installed Codex integration.
+
 ## get started
 
 two steps:
@@ -30,7 +32,7 @@ two steps:
 
 new here? the [pstack guide](./docs/guide/README.md) walks you through a first real task, from setup and prompting through verification and overnight runs. stuck, or unsure which skill fits? ask [`$poteto-help`](./skills/poteto-help/SKILL.md).
 
-that's it. the other skills are situational; the mode skill uses them as needed. out of the box, implementation, exploration, explanation, and tooling review use gpt-6.1-sol. deep reflection and the hardest judgment use gpt-6-astra. design and review panels default to one agent on each model. [`$setup-pstack`](./skills/setup-pstack/SKILL.md) changes any role and panel size.
+that's it. the other skills are situational; the mode skill uses them as needed. out of the box, fast code goes to gpt-6-luna, exploration to gpt-6.1-sol, tooling review to gpt-6.1-sol, and the hardest judgment to gpt-6-astra. [`$setup-pstack`](./skills/setup-pstack/SKILL.md) changes any role. Reasoning levels start at the configured budget and adapt to each job through the execution tool's supported fields, preserving the configured model family. Speed changes require a real tool field; unavailable adjustments fall back to the valid configuration and are reported.
 
 ## usage
 
@@ -113,17 +115,20 @@ $interrogate review this pr.
 | skill | use it when |
 |---|---|
 | [`$poteto-help`](./skills/poteto-help/SKILL.md) | you want setup help, a skill choice, or a prompt for your task. |
+| [`$in-your-own-words`](./skills/in-your-own-words/SKILL.md) | you want the agent to play back your goal and the problem before it starts. runs only when explicitly invoked. |
+| [`$sharpen`](./skills/sharpen/SKILL.md) | you want a task approached as a top expert would, aimed at your actual goal without deciding your choices for you. |
 | [`$correct`](./skills/correct/SKILL.md) | you want repeated agent mistakes prevented through architecture, types, checks, or tests. |
 | [`$benchmark-checklist`](./skills/benchmark-checklist/SKILL.md) | you need to vet a measured performance number before acting on it. |
 | [`$poteto-mode`](./skills/poteto-mode/SKILL.md) | default entry point for any non-trivial task. |
 | [`$how`](./skills/how/SKILL.md) | you want a walkthrough of how a subsystem works. |
 | [`$why`](./skills/why/SKILL.md) | you want to know why something was built this way. discovers available MCPs at run time and queries each evidence category in parallel (source control, issue tracker, long-form docs, real-time chat, infra observability, error tracking, analytics warehouse). |
 | [`$recall`](./skills/recall/SKILL.md) | you're starting or resuming work and want your recent context on a topic rebuilt from your own chat history and the shared record, handed back as a tight current-state brief. |
+| [`$ketchup`](./skills/ketchup/SKILL.md) | you want what changed since your last message, in a few plain sentences and small factual visuals, with enough context for pending decisions. |
 | [`$blast-radius`](./skills/blast-radius/SKILL.md) | you have a small-looking change and want to know what else it could break, with the one fact it's safe because of proven by running code, not asserted. |
 | [`$architect`](./skills/architect/SKILL.md) | you're about to write code that crosses a function boundary and want the caller's usage, types, and module shape settled first. |
 | [`$arena`](./skills/arena/SKILL.md) | you want N parallel attempts at the same thing, then to grab the best parts of each. |
 | [`$swarm`](./skills/swarm/SKILL.md) | you want N parallel workers across different slices or races, then one aggregated report. |
-| [`$interrogate`](./skills/interrogate/SKILL.md) | you have a diff and want several different models to try to break it, including a strict code-quality lens. |
+| [`$interrogate`](./skills/interrogate/SKILL.md) | you have a diff and want different models to try to break it, including a strict code-quality lens. |
 | [`$automate-me`](./skills/automate-me/SKILL.md) | you want your own `-mode` skill, drafted from how you've actually worked. |
 | [`$automate-maintainer`](./skills/automate-maintainer/SKILL.md) | you want modes based on one or more named GitHub maintainers' code and review conventions. |
 | [`$automate-team`](./skills/automate-team/SKILL.md) | you want to discover a repository's core contributors and capture their shared conventions and differences. |
@@ -195,7 +200,9 @@ automate-me:       $automate-me
 
 ## the `poteto-agent` and Comment Sicko subagents
 
-pstack ships a `poteto-agent` custom agent that runs the style end to end. it reads `poteto-mode` in full, including the inline principles index, before doing work.
+[`$poteto-mode`](./skills/poteto-mode/SKILL.md) runs in the chat that receives it. that chat owns the playbook, todo list, and subagent delegation.
+
+pstack ships a `poteto-agent` persona for delegates spawned during a run. it reads `poteto-mode` in full, including the inline principles index, before doing work. do not delegate the parent playbook itself to this agent. use the optional named-agent registration or a generic worker loaded with the same bundled instructions, as described in [CODEX.md](CODEX.md).
 
 [`$poteto-mode`](./skills/poteto-mode/SKILL.md) and the [`poteto-agent`](./agents/poteto-agent.md) route through the same wrapper.
 
@@ -213,7 +220,7 @@ twenty-four short skills, one principle each. `poteto-mode` indexes them inline 
 | [laziness-protocol](./skills/principle-laziness-protocol/SKILL.md) | core | Bias toward deletion and the smallest change that solves the problem. |
 | [foundational-thinking](./skills/principle-foundational-thinking/SKILL.md) | core | Apply before writing logic: choosing core types and data structures, sequencing scaffold-vs-feature work, asking what concurrent actors share. Get the data structures right so downstream code becomes obvious. |
 | [redesign-from-first-principles](./skills/principle-redesign-from-first-principles/SKILL.md) | core | Redesign as if the requirement had been a foundational assumption from day one, instead of bolting it on. |
-| [attack-the-premise](./skills/principle-attack-the-premise/SKILL.md) | core | Apply when two or more fixes that share one premise have failed the same gate. Take a census of which actors hold the imbalance before the next fix, then question the premise instead of writing another fix that assumes it. |
+| [attack-the-premise](./skills/principle-attack-the-premise/SKILL.md) | core | Apply when two or more fixes that share one premise have failed the same gate. Write the premise down and test it directly before you write another fix that assumes it. |
 | [subtract-before-you-add](./skills/principle-subtract-before-you-add/SKILL.md) | core | Remove dead weight, redundant validators, and stub references first, then build on the simpler base. |
 | [minimize-reader-load](./skills/principle-minimize-reader-load/SKILL.md) | core | Count layers between question and answer, and hidden state in the reader's head; collapse one-caller wrappers and shrink mutable scope. |
 | [outcome-oriented-execution](./skills/principle-outcome-oriented-execution/SKILL.md) | core | Apply during planned rewrites and migrations with explicit phase boundaries. Converge on the target architecture; don't preserve smooth intermediate states with throwaway compatibility code. |
@@ -222,14 +229,14 @@ twenty-four short skills, one principle each. `poteto-mode` indexes them inline 
 | [build-the-lever](./skills/principle-build-the-lever/SKILL.md) | core | Apply to any non-trivial work, not just bulk work: edits, migrations, analyses, checks. Build the tool that does it or proves it (codemod, script, generator, or a skill your subagents follow) instead of working by hand. The tool is the artifact a reviewer can rerun. |
 | [model-the-domain](./skills/principle-model-the-domain/SKILL.md) | architecture | Encode the domain in a structure instead of scattered conditionals. |
 | [boundary-discipline](./skills/principle-boundary-discipline/SKILL.md) | architecture | Concentrate guards at system boundaries (CLI, config, network, external APIs); trust internal types and keep business logic in pure functions. |
-| [type-system-discipline](./skills/principle-type-system-discipline/SKILL.md) | architecture | Make illegal states unrepresentable, brand semantic primitives, parse external data at boundaries, refuse to lie to the compiler, exhaust variants, derive from authoritative schemas. |
+| [type-system-discipline](./skills/principle-type-system-discipline/SKILL.md) | architecture | Make illegal states unrepresentable, brand semantic primitives, parse external data at boundaries, exhaust variants, derive from authoritative schemas. |
 | [make-operations-idempotent](./skills/principle-make-operations-idempotent/SKILL.md) | architecture | Converge to the same end state regardless of partial prior runs. |
 | [migrate-callers-then-delete-legacy-apis](./skills/principle-migrate-callers-then-delete-legacy-apis/SKILL.md) | architecture | Migrate callers and delete the old API in the same wave instead of preserving compatibility layers. |
 | [separate-before-serializing-shared-state](./skills/principle-separate-before-serializing-shared-state/SKILL.md) | architecture | Eliminate the sharing first; serialize structurally only when one shared writer is a real invariant. |
 | [prove-it-works](./skills/principle-prove-it-works/SKILL.md) | verification | Apply after completing a task, before declaring done. Verify against the real artifact (run the feature, read the actual value, inspect the diff), not a proxy, self-report, or 'it compiles.'. |
-| [fix-root-causes](./skills/principle-fix-root-causes/SKILL.md) | verification | Trace each symptom to its root cause and fix it there; reproduce first, ask why until you reach it, resist nil-check guards that silence crashes. |
+| [fix-root-causes](./skills/principle-fix-root-causes/SKILL.md) | verification | Trace each symptom back to the first place the system went wrong and fix it there. A guard is a fix only when the state it handles is legitimate. |
 | [sequence-verifiable-units](./skills/principle-sequence-verifiable-units/SKILL.md) | verification | Apply to multi-step work (sweeps, migrations, runs of similar edits) and to how you stack commits and PRs. Break work into small units that each end in a verifiable state, check each before the next, and order delivery so the sequence proves itself to a reviewer. |
-| [test-behavior-not-implementation](./skills/principle-test-behavior-not-implementation/SKILL.md) | verification | Apply when you write, change, or keep a test. Call the code the way its users do and assert the result they observe against a literal expected value. If the test would still pass when every imported function returns undefined, rewrite the assertion or delete the test. |
+| [test-behavior-not-implementation](./skills/principle-test-behavior-not-implementation/SKILL.md) | verification | Apply when you write, change, or keep a test. Assert what the code's users can observe, so the test fails when that behavior breaks and keeps passing when only the internals change. |
 | [explain-the-number](./skills/principle-explain-the-number/SKILL.md) | verification | Apply before you trust, report, or act on a number you measured: a speedup, a regression, a throughput, a latency, or an eval result. Find what limits it, and rule out that it measured something other than the work you think. |
 | [guard-the-context-window](./skills/principle-guard-the-context-window/SKILL.md) | delegation | Route bulk to subagents; keep summaries in the main thread, not raw payloads. |
 | [never-block-on-the-human](./skills/principle-never-block-on-the-human/SKILL.md) | delegation | Proceed, present the result, let the human course-correct after the fact; reserve confirmation for irreversible actions. |
@@ -252,6 +259,8 @@ codex plan mode works with pstack. if you want a plan, [`$poteto-mode`](./skills
 type [`$automate-me`](./skills/automate-me/SKILL.md). it mines your recent transcripts, drafts a `<your-name>-mode` skill from how you've actually worked, and routes through pstack underneath. you keep pstack as the base and end up with your own routing skill alongside `poteto-mode`.
 
 models are configurable too. type [`$setup-pstack`](./skills/setup-pstack/SKILL.md). it writes `~/.codex/pstack-models.md`, which delegating skills read before spawning agents. absent roles keep their defaults.
+
+when a default changes, a rule written before the change still pins the old default. delete those role lines, or delete the file, then run `$setup-pstack` again. a rerun preserves configured models, lists, and inheritance aliases unless you choose a replacement.
 
 ## automations
 
