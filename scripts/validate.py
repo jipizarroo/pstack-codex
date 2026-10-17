@@ -40,7 +40,12 @@ for key in ("logo", "logoDark", "composerIcon"):
     if path:
         check((PLUGIN / path).is_file(), f"Missing interface asset: {path}")
 skills = sorted((PLUGIN / "skills").glob("*/SKILL.md"))
-check(len(skills) == 53, f"Expected 53 reviewed skills, including two Codex additions, got {len(skills)}; reconcile upstream inventory before changing this check")
+inventory = json.loads((ROOT / "upstream-inventory.json").read_text())
+source_skills = {item["path"].split("/")[1] for item in inventory
+                 if re.fullmatch(r"skills/[^/]+/SKILL\.md", item["path"])}
+expected_skills = source_skills | {"automate-maintainer", "automate-team"}
+check({skill.parent.name for skill in skills} == expected_skills,
+      "Skill directories must match the reviewed upstream inventory and Codex additions")
 for skill in skills:
     content = skill.read_text()
     check(content.startswith("---\n"), f"Missing frontmatter: {skill}")
@@ -48,6 +53,7 @@ for skill in skills:
     frontmatter = content.split("---", 2)[1] if content.startswith("---") else ""
     check(not re.search(r"^(mode|reminder|disable-model-invocation):", frontmatter, re.M), f"Cursor frontmatter: {skill}")
     metadata = skill.parent / "agents/openai.yaml"
+    check(metadata.is_file() and re.search(r'(?m)^\s*display_name:\s*[\'"]?pstack-[a-z0-9-]+[\'"]?\s*$', metadata.read_text()), f"Missing pstack display label: {skill}")
     if skill.parent.name != "setup-pstack":
         check(metadata.is_file() and "allow_implicit_invocation: false" in metadata.read_text(), f"Missing explicit invocation policy: {skill}")
 for agent in (PLUGIN / "codex-agents").glob("*.toml"):

@@ -6,7 +6,11 @@ Read this file before using a pstack workflow. Resolve the plugin root from the 
 
 Read `~/.codex/pstack-models.md` before delegating. Each entry is `model @ effort`; split those into the host's separate model and reasoning fields. A missing role uses its skill default. `auto` and `inherit-parent` omit both overrides. Validate against the active host's tool schema. Unavailable model choices must be reported; use inheritance as the explicit fallback rather than fabricate a model.
 
+Availability is specific to the execution tool: a model shown in a picker or another harness is not necessarily accepted by `spawn_agent`. Use only the model and effort values exposed by the tool that will run the child. Another harness requires an explicitly available delegation tool; changing a model string does not select that harness.
+
 Use the exposed collaboration tools to spawn, message, follow up, and wait. Spawns are asynchronous. Do not pass Cursor parameters such as environment, cloud_base_branch, readonly, or run_in_background. With a model override, use a fresh or bounded context fork if the host requires it. Pass an absolute instruction-file path and a bounded task. Panels larger than available capacity run in waves; preserve every requested panel entry. Use separate git worktrees for concurrent writers and pass each worker its exact working directory and branch. A Codex child does not automatically get a cloud VM or isolated checkout.
+
+When `fork_turns: "all"` forbids model or effort overrides, use `fork_turns: "none"` with the configured overrides and put the required context and findings in the task prompt. This is a context constraint, not an unavailable model; do not silently inherit the parent model to retain full history.
 
 For the poteto-agent persona, pass the absolute path to `agents/poteto-agent.md`. For Comment Sicko, pass `agents/comment-sicko.md`. Use named custom agents only if the current spawn schema exposes them. Read-only reviewers receive explicit no-write instructions; permissions and available MCP tools come from the host. Custom agent files omit model settings so role choices can take effect.
 

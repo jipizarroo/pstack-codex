@@ -3,6 +3,16 @@
 These results distinguish real host/service tests from local fixture coverage.
 They do not certify arbitrary production repositories or connected services.
 
+## Observed on 2026-10-11 (America/Los_Angeles)
+
+Validated the source checkout at upstream 0.15.17 with `codex-cli 0.162.1`.
+
+- Package validation found 54 skills and counterparts for all 165 upstream files. All 28 touched skill entrypoints passed skill-creator validation; bundled Markdown links resolved.
+- The combined suite passed 25 Node fixture checks and 52 Bun tests, plus TypeScript validation. The native sandbox test remained opt-in and was not rerun.
+- Two fresh read-only Codex sessions loaded the scoped instruction marker. The persona review identified the exact narrating comment and routed the read-only question to Investigation; fixture files remained unchanged.
+- A bounded offline Codex evaluation exercised `$ketchup` and the maintainer/team workflow against synthetic chat and roster data. It kept an earlier release hold and toolbar decision visible, excluded agent-owned documentation work from action items, retained a specialized active owner, excluded the bot and inactive maintainer, and withheld private conventions and unsupported consensus. This is a workflow smoke check, not validation against real maintainer history.
+- Temporary test dependencies and disposable fixture directories were removed after validation. This run did not install the updated plugin or mutate external services.
+
 ## Observed on 2026-09-17 (America/Los_Angeles)
 
 | Area | Evidence | Result / remaining boundary |

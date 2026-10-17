@@ -2,7 +2,7 @@
 
 A Codex-native adaptation of [Lauren Tan's pstack](https://github.com/cursor/plugins/tree/main/pstack), preserving its workflows, playbooks, principles, and agent personas while adapting host-specific execution to Codex. This is an independent port, not an official Cursor or OpenAI plugin.
 
-This fork builds on [ScriptedAlchemy's Codex port](https://github.com/ScriptedAlchemy/pstack-codex). It uses GPT-6.1 Sol for routine work and GPT-6 Astra for deep reflection and the hardest reasoning, with one of each in default design and review panels. Configure role overrides with `$setup-pstack`.
+This fork tracks [ScriptedAlchemy's Codex port](https://github.com/ScriptedAlchemy/pstack-codex), retains its model defaults, and labels every skill `pstack-…` in the skill picker. Type `$pstack` to browse them.
 
 The plugin lives in `plugins/pstack`; `.agents/plugins/marketplace.json` makes this repository a native Codex marketplace. Read the [runtime contract](plugins/pstack/CODEX.md), [port coverage and runtime boundaries](PARITY.md), and [per-file source coverage](FILE-COVERAGE.md). Tool availability depends on the Codex host, permissions, and connected integrations. No credentials are bundled.
 
@@ -22,8 +22,6 @@ cd pstack-codex
 ```
 
 The script validates the package, registers this checkout as the `pstack-codex` marketplace, and installs `pstack@pstack-codex`. It does not edit your Codex configuration by hand or overwrite personal agent definitions. Start a new Codex task after installation and invoke `$setup-pstack`. Most pstack skills are intentionally explicit-only; invoke them with `$<skill-name>`, such as `$interrogate`. Ask to use `$poteto-mode` as a standing instruction for the current task when you want the orchestration workflow. Repository-local skills belong under `.agents/skills`, not `.codex/skills`.
-
-To find the pstack skills in the skill picker, type `$pstack`. Their display labels start with `pstack-`, including `pstack-poteto-mode`, `pstack-how`, and `pstack-setup`. Selecting an entry invokes its corresponding skill.
 
 Use `$automate-maintainer sokra, alex for owner/repo` to draft conventions from named GitHub users. Use `$automate-team owner/repo` to discover active core contributors and mine their code, reviews, and design discussions into a team mode. Both workflows keep evidence and ownership explicit; they create skills without posting or acting as the people studied.
 
@@ -63,8 +61,7 @@ node --test check-plan.test.mjs worktree-audit.test.mjs
 Before reinstalling a modified local plugin, use Codex's `plugin-creator` skill cachebuster/reinstall flow; then run `./scripts/install.sh` and start a new task. Keep the published version updated when shipping changes so existing installations do not reuse stale caches.
 
 Move test-only `node_modules` outside the plugin directory before installation;
-the installer refuses to package it. Keep your dependency copy for subsequent
-test runs rather than committing or distributing it.
+the installer refuses to package it. Remove temporary test dependencies after validation; do not commit or distribute them.
 
 ## Track upstream safely
 
@@ -75,8 +72,8 @@ git remote add upstream https://github.com/cursor/plugins.git # once, if absent
 ./scripts/check-upstream.sh
 ```
 
-The audit fetches upstream Git objects and prints pstack-only changes since the pinned source. It never replaces translated files or advances the pin. See [UPDATING.md](UPDATING.md) for the review-and-port procedure. `origin` is this port; `upstream` remains the original repository.
+The audit fetches upstream Git objects and prints pstack-only changes since the pinned source. It never replaces translated files or advances the pin. See [UPDATING.md](UPDATING.md) for the review-and-port procedure. `origin` is this fork, `scripted` is ScriptedAlchemy's Codex port, and `upstream` remains the original repository. Add the Codex port with `git remote add scripted https://github.com/ScriptedAlchemy/pstack-codex.git` and synchronize it before porting newer original workflows.
 
 ## License and attribution
 
-MIT. Original pstack copyright © 2026 Lauren Tan; original license is retained in [LICENSE](LICENSE) and the plugin. Codex adaptation changes are distributed under the same license. Upstream version: 0.15.13, source commit `e5a8186d7b43be8d6ac4452440fbead5f1a51c70`.
+MIT. Original pstack copyright © 2026 Lauren Tan; original license is retained in [LICENSE](LICENSE) and the plugin. Codex adaptation changes are distributed under the same license. Upstream version: 0.15.17, source commit `11713c683fe4add4fd403ea880580abbc9e0875f`.

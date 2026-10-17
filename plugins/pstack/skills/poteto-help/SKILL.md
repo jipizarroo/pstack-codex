@@ -29,9 +29,14 @@ Check the state that changes the answer, and mention it only when it does:
 - No `~/.codex/pstack-models.md` means `$setup-pstack` hasn't run for this user, so every role uses its default model.
 - No `verify-*` skill or other app harness in the project means agents have no scripted way to drive the app. Mention `$create-verification-skill` when the question is about proving a change works.
 
+When the model rule is missing and it matters, ask whether the user wants to pick a model for each role and a reasoning budget now. It matters when the user is new, the question is about setup or cost, or the answer depends on which models run. Ask at most once per chat. If the need is also unclear, ask both questions together. Offer two choices:
+
+- Now: give them `$setup-pstack` to type, and answer their question too.
+- Later: answer their question, and add one line saying every role keeps its default model until they run `$setup-pstack`.
+
 ## Get set up
 
-1. Install with `codex plugin marketplace add jipizarroo/pstack-codex`, then `codex plugin add pstack@pstack-codex`. Start a new Codex task. In the skill picker, type `$pstack` to find this fork's `pstack-` display labels.
+1. Install with `codex plugin marketplace add jipizarroo/pstack-codex`, then `codex plugin add pstack@pstack-codex`. Start a new Codex task.
 2. Run [`$setup-pstack`](../setup-pstack/SKILL.md). It asks for a reasoning budget, maps a model to each role, and writes `~/.codex/pstack-models.md`. Delegated roles read that file.
 3. Start a real task with `$poteto-mode`, a goal, and a check that can pass or fail.
 
@@ -60,6 +65,7 @@ The default answer is `$poteto-mode`, which runs most of the others when its ste
 | Know why code is shaped this way, or where a number came from | [`$why`](../why/SKILL.md) |
 | Understand a change or subsystem, explained plainly | [`$teach`](../teach/SKILL.md) |
 | Catch up on their own recent work on a topic | [`$recall`](../recall/SKILL.md) |
+| Catch up on this chat and pending decisions | [`$ketchup`](../ketchup/SKILL.md) |
 | Know what a small diff could break outside itself | [`$blast-radius`](../blast-radius/SKILL.md) |
 | Settle types and module shape before code that crosses a function boundary | [`$architect`](../architect/SKILL.md) |
 | Get several attempts at one brief, merged into the best one | [`$arena`](../arena/SKILL.md) |
@@ -91,7 +97,7 @@ Close calls:
 - `$arena` gives every worker the same brief and merges the best parts. `$swarm` splits work into slices or a race and returns one report.
 - `$architect` implements right after it settles the design. Add "with checkpoint" to review the design before it writes code.
 - `$interrogate` reviews the diff. `$blast-radius` looks for breakage outside the diff and proves the one fact that makes the change safe.
-- `$recall` rebuilds context across recent chats. Resuming one specific chat or branch is the Session pickup playbook.
+- `$recall` rebuilds context across recent chats. `$ketchup` covers only this chat since the user's last message. Resuming one specific chat or branch is the Session pickup playbook.
 - `$figure-it-out` designs one rigorous run. The Orchestrate playbook runs a program that spans days and many PRs. The Autonomous run playbook drives one task to a finish condition.
 
 Host capabilities:
@@ -126,7 +132,7 @@ Principles are one-rule skills that `$poteto-mode` reads and cites in its replie
 | A new model choice had no effect | Check `~/.codex/pstack-models.md` and the active host model schema before the next delegation. |
 | Runs cost more than expected | See the cost paragraph under Get set up. |
 | A skill didn't load on its own | Only `$setup-pstack` loads from the user's words. The others load when the user types them or when `$poteto-mode` runs them, and it doesn't run every skill. |
-| Parallel agents overwrote each other | Local subagents share the checkout. Assign separate file ownership or serialize overlapping edits. Use separate worktrees only when the user authorizes them; spawning a subagent alone provides no isolation. |
+| Parallel agents overwrote each other | Give each agent its own worktree, or run them run sequentially. Codex subagents share the host workspace. |
 | An overnight run moved but finished nothing | A heartbeat or bounded monitor needs a check that can pass or fail, not a duration. See [guide page 7](../../docs/guide/07-overnight.md). |
 | The reply claims success from a green build | Ask for the real command, flow, stored value, or profile. That's the prove-it-works principle. |
 

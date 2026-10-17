@@ -30,7 +30,7 @@ two steps:
 
 new here? the [pstack guide](./docs/guide/README.md) walks you through a first real task, from setup and prompting through verification and overnight runs. stuck, or unsure which skill fits? ask [`$poteto-help`](./skills/poteto-help/SKILL.md).
 
-that's it. the other skills are situational; the mode skill uses them as needed. out of the box, implementation, exploration, explanation, and tooling review use gpt-6.1-sol. deep reflection and the hardest judgment use gpt-6-astra. design and review panels default to one agent on each model. [`$setup-pstack`](./skills/setup-pstack/SKILL.md) changes any role and panel size.
+that's it. the other skills are situational; the mode skill uses them as needed. out of the box, fast code goes to gpt-6-luna, exploration to gpt-6.1-sol, tooling review to gpt-6.1-sol, and the hardest judgment to gpt-6-astra. [`$setup-pstack`](./skills/setup-pstack/SKILL.md) changes any role.
 
 ## usage
 
@@ -119,11 +119,12 @@ $interrogate review this pr.
 | [`$how`](./skills/how/SKILL.md) | you want a walkthrough of how a subsystem works. |
 | [`$why`](./skills/why/SKILL.md) | you want to know why something was built this way. discovers available MCPs at run time and queries each evidence category in parallel (source control, issue tracker, long-form docs, real-time chat, infra observability, error tracking, analytics warehouse). |
 | [`$recall`](./skills/recall/SKILL.md) | you're starting or resuming work and want your recent context on a topic rebuilt from your own chat history and the shared record, handed back as a tight current-state brief. |
+| [`$ketchup`](./skills/ketchup/SKILL.md) | Catch up on this chat since your last message, with context for each pending decision. |
 | [`$blast-radius`](./skills/blast-radius/SKILL.md) | you have a small-looking change and want to know what else it could break, with the one fact it's safe because of proven by running code, not asserted. |
 | [`$architect`](./skills/architect/SKILL.md) | you're about to write code that crosses a function boundary and want the caller's usage, types, and module shape settled first. |
 | [`$arena`](./skills/arena/SKILL.md) | you want N parallel attempts at the same thing, then to grab the best parts of each. |
 | [`$swarm`](./skills/swarm/SKILL.md) | you want N parallel workers across different slices or races, then one aggregated report. |
-| [`$interrogate`](./skills/interrogate/SKILL.md) | you have a diff and want several different models to try to break it, including a strict code-quality lens. |
+| [`$interrogate`](./skills/interrogate/SKILL.md) | you have a diff and want different models to try to break it, including a strict code-quality lens. |
 | [`$automate-me`](./skills/automate-me/SKILL.md) | you want your own `-mode` skill, drafted from how you've actually worked. |
 | [`$automate-maintainer`](./skills/automate-maintainer/SKILL.md) | you want modes based on one or more named GitHub maintainers' code and review conventions. |
 | [`$automate-team`](./skills/automate-team/SKILL.md) | you want to discover a repository's core contributors and capture their shared conventions and differences. |
@@ -252,6 +253,8 @@ codex plan mode works with pstack. if you want a plan, [`$poteto-mode`](./skills
 type [`$automate-me`](./skills/automate-me/SKILL.md). it mines your recent transcripts, drafts a `<your-name>-mode` skill from how you've actually worked, and routes through pstack underneath. you keep pstack as the base and end up with your own routing skill alongside `poteto-mode`.
 
 models are configurable too. type [`$setup-pstack`](./skills/setup-pstack/SKILL.md). it writes `~/.codex/pstack-models.md`, which delegating skills read before spawning agents. absent roles keep their defaults.
+
+when a default changes, a rule written before the change still pins the old default. delete those role lines, or delete the file, then run `$setup-pstack` again. a rerun preserves configured models, lists, and inheritance aliases unless you choose a replacement.
 
 ## automations
 
