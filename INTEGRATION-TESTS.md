@@ -3,7 +3,13 @@
 These results distinguish real host/service tests from local fixture coverage.
 They do not certify arbitrary production repositories or connected services.
 
-## Observed on 2026-10-17 (America/Santiago)
+## Observed on 2026-10-17 (America/Santiago), Codex revision 202610170003
+
+- Restored the original Pstack PR-query default by removing our explicit 1000-row override and its row-count guard. The query function matches the pinned source byte for byte; the separate unique-open-PR correction is retained.
+- The 75 Bun helper tests and strict TypeScript checks passed. Package validation found 56 skills and 170 source counterparts. Four checks that required the removed override were retired; the gh/Origin tests for reused branches and multiple active PRs remain.
+- This follow-up accepts the original CLI query behavior; it does not claim complete traversal beyond the CLI's default result window.
+
+## Observed on 2026-10-17 (America/Santiago), Codex revision 202610170002
 
 - Imported original helper regressions before production changes: they exposed failures in Markdown fences, orchestration frontiers, review-thread pagination, Code Review Gate handling, and audit base selection.
 - The final helper suite passed 79 Bun tests and strict TypeScript checking for both PR-watcher and orchestration code. The combined suite passed 31 Node fixture checks; two optional native-host checks were skipped.
@@ -44,7 +50,7 @@ or persistent test server was created. The paused scheduler fixture was removed.
 Install Bun and Python 3.11+, install the helper dependencies with
 `bun install --frozen-lockfile` in `plugins/pstack/skills/poteto-mode/scripts`, then
 run `bash scripts/test.sh`. `PSTACK_PYTHON` can select a non-default Python.
-The 2026-10-17 helper and fixture suites passed 110 checks. Two additional opt-in host
+The initial 2026-10-17 revision (202610170002) passed 110 helper and fixture checks. Two additional opt-in host
 checks (live persona/scoped instructions and native sandbox enforcement) passed
 in the earlier host run, not during this update. Tests under `tests/runtime` document the opt-in live Codex test; it consumes
 account usage and does not run as part of an ordinary fixture-only pass.

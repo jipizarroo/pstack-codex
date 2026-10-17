@@ -164,13 +164,11 @@ async function withFakeForge<T>({
   forge,
   operation,
   currentRows,
-  baseRows,
 }: {
   directory: string;
   forge: Forge;
   operation: () => Promise<T>;
   currentRows?: string;
-  baseRows?: string;
 }): Promise<T> {
   const bin = join(directory, "bin");
   const outputPath = join(directory, "forge-output.txt");
@@ -190,14 +188,6 @@ async function withFakeForge<T>({
     }\n`
   );
   const { fields } = FORGE_FIXTURES[forge];
-  const baseOutputPath = join(directory, "forge-base-output.txt");
-  const defaultBaseOutputPath = join(directory, "forge-base-default-output.txt");
-  const children = baseRows ?? forgeRows(forge, [
-    { number: 14, state: "draft", head: "stack/draft", base: "stack/open" },
-    { number: 15, state: "closed", head: "stack/abandoned", base: "stack/open" },
-  ]);
-  await writeFile(baseOutputPath, children);
-  await writeFile(defaultBaseOutputPath, JSON.stringify(JSON.parse(children).slice(0, 30)));
   const list = (filter: string, branch: string): string =>
     `pr list ${filter} ${branch} --state all --json ${fields}`;
   const fake = join(bin, forge);
@@ -209,8 +199,7 @@ if [ "$(pwd -P)" != "${realpathSync(join(directory, "repo"))}" ]; then
   printf '${forge} ran outside the fixture repo: %s\\n' "$(pwd -P)" >&2
   exit 2
 fi
-forge_args="$*"
-case "\${forge_args% --limit 1000}" in
+case "$*" in
   "${list("--head", "stack/open")}")
     cat "${outputPath}"
     ;;
@@ -221,11 +210,15 @@ case "\${forge_args% --limit 1000}" in
     printf '%s\\n' '${forgeRows(forge, [{ number: 10, state: "merged", head: "stack/merged", base: "main" }])}'
     ;;
   "${list("--base", "stack/open")}")
-    if [[ "$*" == *" --limit 1000" ]]; then
-      cat "${baseOutputPath}"
-    else
-      cat "${defaultBaseOutputPath}"
-    fi
+    printf '%s\\n' '${forgeRows(forge, [
+      { number: 14, state: "draft", head: "stack/draft", base: "stack/open" },
+      {
+        number: 15,
+        state: "closed",
+        head: "stack/abandoned",
+        base: "stack/open",
+      },
+    ])}'
     ;;
   "${list("--base", "stack/draft")}")
     printf '[]\\n'
@@ -513,44 +506,6 @@ describe("Store", () => {
         operation: async () => {
           const frontier = await store.frontier.set({ repo: stack.repo, forge });
           expect(frontier.prs.map((pr) => pr.pr)).toEqual([10, 13, 11, 14]);
-        },
-      });
-    });
-
-    it(`includes the open ${forge} descendant after 30 historical PRs`, async () => {
-      const { directory, store } = await initializedStore();
-      const stack = await makeGitStack(directory);
-      await withFakeForge({
-        directory, forge,
-        baseRows: forgeRows(forge, [
-          ...Array.from({ length: 30 }, (_, index) => ({
-            number: 100 + index, state: "closed" as const,
-            head: `old/${index}`, base: "stack/open",
-          })),
-          { number: 14, state: "draft", head: "stack/draft", base: "stack/open" },
-        ]),
-        operation: async () => {
-          const frontier = await store.frontier.set({ repo: stack.repo, forge });
-          expect(frontier.prs.map((pr) => pr.pr)).toEqual([10, 13, 11, 14]);
-        },
-      });
-    });
-
-    it(`does not save a potentially truncated ${forge} frontier`, async () => {
-      const { directory, store } = await initializedStore();
-      const stack = await makeGitStack(directory);
-      const before = await store.frontier.show();
-      await withFakeForge({
-        directory, forge,
-        baseRows: forgeRows(forge, Array.from({ length: 1000 }, (_, index) => ({
-          number: 100 + index, state: "closed" as const,
-          head: `old/${index}`, base: "stack/open",
-        }))),
-        operation: async () => {
-          await expect(store.frontier.set({ repo: stack.repo, forge })).rejects.toThrow(
-            "refusing a potentially incomplete frontier"
-          );
-          expect(await store.frontier.show()).toEqual(before);
         },
       });
     });

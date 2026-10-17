@@ -970,8 +970,6 @@ function countLine(value: Counts): string {
 
 export type Forge = "gh" | "origin";
 
-const PULL_REQUEST_LIST_LIMIT = 1000;
-
 interface ForgePullRequestQuery {
   readonly stateField: string;
   readonly headField: string;
@@ -1070,8 +1068,6 @@ function listPullRequests({
       ["number", query.stateField, query.headField, query.baseField].join(
         ","
       ),
-      "--limit",
-      String(PULL_REQUEST_LIST_LIMIT),
     ],
     repo,
   });
@@ -1083,11 +1079,6 @@ function listPullRequests({
   }
   if (!isUnknownArray(value)) {
     throw new UserError(`${command} output is not a JSON array`);
-  }
-  if (value.length >= PULL_REQUEST_LIST_LIMIT) {
-    throw new UserError(
-      `${command} reached the ${PULL_REQUEST_LIST_LIMIT} PR query limit; refusing a potentially incomplete frontier`
-    );
   }
   return value.map((row) => {
     const status = isRecord(row) ? row[query.stateField] : undefined;

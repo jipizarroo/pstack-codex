@@ -77,3 +77,5 @@ Files: changed skill entrypoints/references, personas, root guide, source invent
 - Corrected a literal Slack PR URL fragment (`/pull/<number>`), without adding a test for prose.
 
 - Final: fixed both P2 frontier findings — gh/Origin regressions RED→GREEN; final combined suite 31 Node +79 Bun passed, two optional host tests skipped, strict PR-watcher and orchestrator TypeScript passed. Node_modules symlink removed before packaging. Publish/install evidence follows in the PR body after the source commit.
+
+- Follow-up: the user chose the original query default. The 1000-row override and guard described above are superseded and removed in Codex revision 202610170003. The unique-open-PR fix remains.
