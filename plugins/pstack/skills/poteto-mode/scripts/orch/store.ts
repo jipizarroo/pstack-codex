@@ -970,6 +970,8 @@ function countLine(value: Counts): string {
 
 export type Forge = "gh" | "origin";
 
+const PULL_REQUEST_LIST_LIMIT = 1000;
+
 interface ForgePullRequestQuery {
   readonly stateField: string;
   readonly headField: string;
@@ -1068,6 +1070,8 @@ function listPullRequests({
       ["number", query.stateField, query.headField, query.baseField].join(
         ","
       ),
+      "--limit",
+      String(PULL_REQUEST_LIST_LIMIT),
     ],
     repo,
   });
@@ -1079,6 +1083,11 @@ function listPullRequests({
   }
   if (!isUnknownArray(value)) {
     throw new UserError(`${command} output is not a JSON array`);
+  }
+  if (value.length >= PULL_REQUEST_LIST_LIMIT) {
+    throw new UserError(
+      `${command} reached the ${PULL_REQUEST_LIST_LIMIT} PR query limit; refusing a potentially incomplete frontier`
+    );
   }
   return value.map((row) => {
     const status = isRecord(row) ? row[query.stateField] : undefined;
@@ -1113,15 +1122,17 @@ function branchPullRequest({
   repo: string;
 }): ForgePullRequest {
   const rows = listPullRequests({ filter: "--head", branch, forge, repo });
-  const row = rows[0];
+  const open = rows.filter((item) => item.state === "OPEN");
+  const candidates = open.length > 0 ? open : rows;
+  const row = candidates[0];
   if (row === undefined) {
     throw new UserError(
       `branch ${branch} has no pull request; open one with ${forge} pr create, or resolve the frontier from a branch whose chain is fully submitted`
     );
   }
-  if (rows.length > 1) {
+  if (candidates.length > 1) {
     throw new UserError(
-      `branch ${branch} has multiple pull requests (${rows.map((item) => `#${item.pr}`).join(", ")}); close the stale ones first`
+      `branch ${branch} has multiple ${open.length > 0 ? "open" : "historical"} pull requests (${candidates.map((item) => `#${item.pr}`).join(", ")}); cannot resolve the chain unambiguously`
     );
   }
   return row;

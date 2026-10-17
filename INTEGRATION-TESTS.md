@@ -6,8 +6,9 @@ They do not certify arbitrary production repositories or connected services.
 ## Observed on 2026-10-17 (America/Santiago)
 
 - Imported original helper regressions before production changes: they exposed failures in Markdown fences, orchestration frontiers, review-thread pagination, Code Review Gate handling, and audit base selection.
-- The helper suite passed 71 Bun tests and strict TypeScript checking. The combined suite passed 31 Node fixture checks; two optional native-host checks were skipped.
+- The final helper suite passed 79 Bun tests and strict TypeScript checking for both PR-watcher and orchestration code. The combined suite passed 31 Node fixture checks; two optional native-host checks were skipped.
 - Added a pagination regression beyond the imported source cases: a continuation page without a valid cursor fails closed instead of silently omitting later review threads. A failed second page remains a read error.
+- Independent review exposed frontier truncation and reused-branch ambiguity. Regression fixtures for both gh and Origin now cover an open descendant after 30 historical PRs, preservation of the ledger at the 1000-row query boundary, the unique active PR on a reused branch, and rejection of multiple active PRs.
 - Kept Commander 15 and the Codex dependency lock, scoped transcript ownership, WIP protection, and audit reads without fetching. These are local/fixture checks, not production PR monitoring or a live Claude Code integration test.
 
 ## Observed on 2026-10-11 (America/Los_Angeles)
@@ -43,7 +44,7 @@ or persistent test server was created. The paused scheduler fixture was removed.
 Install Bun and Python 3.11+, install the helper dependencies with
 `bun install --frozen-lockfile` in `plugins/pstack/skills/poteto-mode/scripts`, then
 run `bash scripts/test.sh`. `PSTACK_PYTHON` can select a non-default Python.
-The 2026-10-17 helper and fixture suites passed 102 checks. Two additional opt-in host
+The 2026-10-17 helper and fixture suites passed 110 checks. Two additional opt-in host
 checks (live persona/scoped instructions and native sandbox enforcement) passed
 in the earlier host run, not during this update. Tests under `tests/runtime` document the opt-in live Codex test; it consumes
 account usage and does not run as part of an ordinary fixture-only pass.

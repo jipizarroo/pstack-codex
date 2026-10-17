@@ -57,8 +57,8 @@ Files: changed skill entrypoints/references, personas, root guide, source invent
 
 ## Task 4: review, publish and install
 
-- [ ] Run the combined suite, strict type checking and diff checks; remove temporary dependencies.
-- [ ] Obtain an independent semantic review of the complete change and resolve substantive findings.
+- [x] Run the combined suite, strict type checking and diff checks; remove temporary dependencies.
+- [x] Obtain an independent semantic review of the complete change and resolve substantive findings.
 - [ ] Use `writing-prs` to publish a reviewable PR against the personal fork; register it with T3.
 - [ ] Merge the verified PR, switch the marketplace to the personal fork and install it natively.
 - [ ] Verify one installed version, unique enabled labels, effective model configuration and fresh-session routing.
@@ -71,3 +71,9 @@ Files: changed skill entrypoints/references, personas, root guide, source invent
 
 - Workflows: 59 original Markdown paths reconciled, 57 adapted. Babysit preserves explicit merge authorization; Comment Sicko already matches. All 76 changed source paths reconciled; 170 source counterparts and 56 unique prefixed labels validated. New skill metadata remains explicit-only.
 - Model configuration: existing local role assignments exactly match ScriptedAlchemy defaults; preserved without edits.
+
+- Independent Astra review of the complete branch found two P2 frontier defects and no P0/P1: CLI default truncation and reused branches with historical PRs. Both reproduced before fixes. The focused orchestrator suite passed 25/25 after the fix; multiple-open ambiguity and unchanged state on truncation are covered for gh and Origin.
+- Final: Ruling: frontier queries request 1000 rows and reject a response at that boundary, preserving the previous ledger instead of accepting a potentially truncated chain. A unique OPEN row wins over historical PRs; historical ambiguity still fails explicitly. This bounds reads without guessing unsupported pagination APIs.
+- Corrected a literal Slack PR URL fragment (`/pull/<number>`), without adding a test for prose.
+
+- Final: fixed both P2 frontier findings — gh/Origin regressions RED→GREEN; final combined suite 31 Node +79 Bun passed, two optional host tests skipped, strict PR-watcher and orchestrator TypeScript passed. Node_modules symlink removed before packaging. Publish/install evidence follows in the PR body after the source commit.

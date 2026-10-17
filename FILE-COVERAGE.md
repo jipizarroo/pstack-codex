@@ -104,9 +104,9 @@ Every source file is checked; content adaptation is not a claim of tested runtim
 | `skills/poteto-mode/scripts/bun.lock` | `plugins/pstack/skills/poteto-mode/scripts/bun.lock` | adapted |
 | `skills/poteto-mode/scripts/check-plan.mjs` | `plugins/pstack/skills/poteto-mode/scripts/check-plan.mjs` | adapted |
 | `skills/poteto-mode/scripts/check-plan.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/check-plan.test.ts` | adapted |
-| `skills/poteto-mode/scripts/orch/orch.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/orch/orch.test.ts` | retained verbatim |
+| `skills/poteto-mode/scripts/orch/orch.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/orch/orch.test.ts` | adapted |
 | `skills/poteto-mode/scripts/orch/orch.ts` | `plugins/pstack/skills/poteto-mode/scripts/orch/orch.ts` | retained verbatim |
-| `skills/poteto-mode/scripts/orch/store.ts` | `plugins/pstack/skills/poteto-mode/scripts/orch/store.ts` | retained verbatim |
+| `skills/poteto-mode/scripts/orch/store.ts` | `plugins/pstack/skills/poteto-mode/scripts/orch/store.ts` | adapted |
 | `skills/poteto-mode/scripts/package.json` | `plugins/pstack/skills/poteto-mode/scripts/package.json` | adapted |
 | `skills/poteto-mode/scripts/watch-pr/cli.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/cli.test.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/watch-pr/cli.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/cli.ts` | retained verbatim |
@@ -116,7 +116,7 @@ Every source file is checked; content adaptation is not a claim of tested runtim
 | `skills/poteto-mode/scripts/watch-pr/policy.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/policy.test.ts` | adapted |
 | `skills/poteto-mode/scripts/watch-pr/policy.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/policy.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/watch-pr/render.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/render.ts` | retained verbatim |
-| `skills/poteto-mode/scripts/watch-pr/tsconfig.json` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/tsconfig.json` | retained verbatim |
+| `skills/poteto-mode/scripts/watch-pr/tsconfig.json` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/tsconfig.json` | adapted |
 | `skills/poteto-mode/scripts/watch-pr/types.compile.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/types.compile.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/watch-pr/types.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/types.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/watch-pr/watch-pr` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/watch-pr` | retained verbatim |
@@ -174,5 +174,5 @@ Every source file is checked; content adaptation is not a claim of tested runtim
 | `skills/why/references/sources/linear.md` | `plugins/pstack/skills/why/references/sources/linear.md` | retained verbatim |
 | `skills/why/references/sources/notion.md` | `plugins/pstack/skills/why/references/sources/notion.md` | retained verbatim |
 | `skills/why/references/sources/sentry.md` | `plugins/pstack/skills/why/references/sources/sentry.md` | retained verbatim |
-| `skills/why/references/sources/slack.md` | `plugins/pstack/skills/why/references/sources/slack.md` | adapted |
+| `skills/why/references/sources/slack.md` | `plugins/pstack/skills/why/references/sources/slack.md` | retained verbatim |
 | `skills/why/references/synthesizer-prompt.md` | `plugins/pstack/skills/why/references/synthesizer-prompt.md` | retained verbatim |
