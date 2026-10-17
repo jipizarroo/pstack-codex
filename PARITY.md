@@ -1,17 +1,17 @@
 # Port coverage and runtime boundaries
 
-This is a workflow port, not an emulation of Cursor's runtime. All 165 files in
+This is a workflow port, not an emulation of Cursor's runtime. All 170 files in
 the pinned upstream snapshot have a retained, adapted, or explicitly replaced
 counterpart. Run `python3 scripts/parity.py --report` for the per-file inventory.
 File coverage alone does not prove behavioral equivalence.
 
 | Upstream feature | Codex implementation | Boundary |
 |---|---|---|
-| 52 upstream skills, 2 Codex additions, and 23 playbooks | Native skills, relative resources, shared `CODEX.md` runtime contract | Invocation uses `$skill-name`; routed explicit-only skills are read directly |
+| 54 upstream skills, 2 Codex additions, and 23 playbooks | Native skills, relative resources, shared `CODEX.md` runtime contract | Invocation uses `$skill-name`; routed explicit-only skills are read directly |
 | Engineering principles | All 24 principle skills retained | Applied when the routing workflow calls for them |
 | poteto-agent and Comment Sicko | Bundled persona instructions; optional custom-agent TOML | Named-agent registration is optional, not automatic plugin discovery |
 | Role-based models and panels | Host-validated model/effort preferences; inheritance fallback | Model availability and concurrent capacity depend on the host; panels run in waves |
-| Parallel workers | Explicit worktrees and bounded Codex subagents | No automatic cloud VM, branch isolation, or durable worker ID |
+| Parallel workers | Bounded Codex subagents with separate file ownership; authorized isolated checkouts where needed | No automatic cloud VM, branch isolation, or durable worker ID |
 | Sticky mode/reminders | Standing task instruction; optional scoped `AGENTS.md` for cross-task persistence | Opt-in per repository, not a Cursor UI-mode switch; see [method](plugins/pstack/docs/standing-mode.md) |
 | Long-running goals and loops | Explicitly requested goals, supported heartbeat/project automations, durable ledgers | Requires scheduler availability; detached sleepers are not persistence |
 | PR watching, orchestration, decision logs | Retained executable helpers with Codex paths and safety fixes | Authenticated GitHub and target repository permissions are required |
@@ -45,4 +45,8 @@ equivalent-looking commands.
 
 Codex additions: `automate-maintainer` restores the generator from [ScriptedAlchemy/plugins PR #1](https://github.com/ScriptedAlchemy/plugins/pull/1) and supports named groups. `automate-team` discovers active core contributors before invoking that workflow. These additions do not change the pinned upstream inventory.
 
-The 0.15.17 port adds `$ketchup`, distills prompts and evidence frameworks, and uses two-entry default panels at `xhigh`. Codex defaults map judgment to `gpt-6-astra`, fast code to `gpt-6-luna`, and exploration/tooling to `gpt-6.1-sol`. Host validation and inheritance fallback still apply; configured panel lists and model overrides are preserved. These Codex variants do not provide upstream's cross-provider model diversity. The maintainer/team additions use concise entrypoints with linked scope, mining, synthesis, roster, and held-out evaluation procedures.
+Codex defaults map judgment to `gpt-6-astra`, fast code to `gpt-6-luna`, and exploration/tooling to `gpt-6.1-sol`, retaining ScriptedAlchemy's role bindings and two-entry panels. Host validation and inheritance fallback still apply; configured panel lists and model overrides are preserved. These Codex variants do not provide upstream's cross-provider model diversity. The maintainer/team additions use concise entrypoints with linked scope, mining, synthesis, roster, and held-out evaluation procedures.
+
+The 0.15.25 workflows add `$sharpen` and `$in-your-own-words`, shorter visual `$ketchup` briefs, per-job effort policy, and updated verification and autopilot guidance. Model efforts use separate supported execution-tool fields; speed requires an actual exposed field, never a fabricated model suffix. Helper updates include review-thread pagination, Markdown fence parsing, orchestration frontier fixes, and configurable audit bases. Audit reads cached refs without fetching and retains Codex session scoping and preservation checks.
+
+The original's Agent Plugins v1 manifest and Cursor manifest both map to the single native Codex manifest. Its new [Claude Code adapter](plugins/pstack/docs/harness/claude-code.md) is retained as a source reference; the generated Claude tree is not distributed or activated by this marketplace.

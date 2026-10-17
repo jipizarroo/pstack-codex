@@ -40,20 +40,20 @@ Files: existing plugin, validators, README and updating guide.
 
 Files: `plugins/pstack/skills/poteto-mode/scripts/` and `scripts/test.sh`.
 
-- [ ] Import relevant upstream regression cases and observe failures before fixes.
-- [ ] Port pagination, Markdown-fence handling, orchestration fixes and base-branch audit improvements while preserving native adapters.
-- [ ] Retain Commander 15 and the port's dependency lock; integrate new test commands where needed.
-- [ ] Run focused regressions and the helper/type checks.
+- [x] Import relevant upstream regression cases and observe failures before fixes.
+- [x] Port pagination, Markdown-fence handling, orchestration fixes and base-branch audit improvements while preserving native adapters.
+- [x] Retain Commander 15 and the port's dependency lock; integrate new test commands where needed.
+- [x] Run focused regressions and the helper/type checks.
 
 ## Task 3: port workflows and packaging
 
 Files: changed skill entrypoints/references, personas, root guide, source inventory and native manifest.
 
-- [ ] Adapt the original's changed workflow text and add `sharpen` and `in-your-own-words` with explicit invocation metadata.
-- [ ] Preserve Codex role bindings and execution-tool rules; adapt per-job effort and speed handling to supported fields.
-- [ ] Preserve native PR/automation boundaries; document Claude-specific material as a source reference.
-- [ ] Reconcile every source file, then advance the reviewed source pin and publish version 0.15.25 with a new Codex revision.
-- [ ] Regenerate coverage and run structural/link checks.
+- [x] Adapt the original's changed workflow text and add `sharpen` and `in-your-own-words` with explicit invocation metadata.
+- [x] Preserve Codex role bindings and execution-tool rules; adapt per-job effort and speed handling to supported fields.
+- [x] Preserve native PR/automation boundaries; document Claude-specific material as a source reference.
+- [x] Reconcile every source file, then advance the reviewed source pin and publish version 0.15.25 with a new Codex revision.
+- [x] Regenerate coverage and run structural/link checks.
 
 ## Task 4: review, publish and install
 
@@ -66,3 +66,8 @@ Files: changed skill entrypoints/references, personas, root guide, source invent
 ## Execution evidence
 
 - ScriptedAlchemy synchronization: package/parity 54 skills and 165 source files; 25 Node checks passed, two optional native checks skipped; 52 Bun tests passed; strict TypeScript passed.
+
+- Original helper regressions: RED observed before fixes; final focused suite 71 Bun tests passed, strict TypeScript passed. Combined suite: 31 Node tests passed, two optional native checks skipped. Pagination rejects missing continuation cursors instead of silently truncating.
+
+- Workflows: 59 original Markdown paths reconciled, 57 adapted. Babysit preserves explicit merge authorization; Comment Sicko already matches. All 76 changed source paths reconciled; 170 source counterparts and 56 unique prefixed labels validated. New skill metadata remains explicit-only.
+- Model configuration: existing local role assignments exactly match ScriptedAlchemy defaults; preserved without edits.

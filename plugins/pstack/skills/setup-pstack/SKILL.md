@@ -24,7 +24,7 @@ Use the available user-input tool, or ask one concise question. Preserve the cur
 - `medium — high reasoning`: `high`.
 - `small — medium reasoning`: `medium`.
 
-Apply the selected effort to every real model, including panel entries. Preserve existing model choices, list order, and inheritance aliases; aliases keep both overrides unset. Model and effort are separate fields in Codex. Use the highest supported effort at or below the requested target. If none is available, mark the role as needing a choice. Never change the model to satisfy a budget.
+Write the selected effort as each real model's starting level, including panel entries. The routing workflow adjusts effort to the job through the execution tool's supported fields, as described in `CODEX.md`; it preserves the configured model family. Preserve existing model choices, list order, and inheritance aliases; aliases keep both overrides unset. Model and effort are separate fields in Codex. Use the highest supported effort at or below the requested target. If none is available, mark the role as needing a choice. Never change the model to satisfy a budget.
 
 ## 3. Confirm role assignments
 

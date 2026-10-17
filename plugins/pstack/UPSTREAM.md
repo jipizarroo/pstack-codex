@@ -3,8 +3,8 @@
 This Codex port tracks Lauren Tan's MIT-licensed `pstack` plugin from the official
 [`cursor/plugins`](https://github.com/cursor/plugins/tree/main/pstack) repository.
 
-- Upstream version: `0.15.17`
-- Upstream commit: `11713c683fe4add4fd403ea880580abbc9e0875f`
+- Upstream version: `0.15.25`
+- Upstream commit: `0317eb8b858c991c57721358daaee19dbe8c814d`
 - Upstream subtree: `pstack/`
 - Port target: Codex skills, subagent collaboration tools, local session records,
   Codex goals/automations, and Codex-native browser/computer-use verification.

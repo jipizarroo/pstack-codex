@@ -19,5 +19,5 @@ if [[ ! -d node_modules ]]; then
   echo 'Run bun install --frozen-lockfile in plugins/pstack/skills/poteto-mode/scripts first.' >&2
   exit 1
 fi
-bun test orch watch-pr
+bun test orch watch-pr check-plan.test.ts
 bun run typecheck

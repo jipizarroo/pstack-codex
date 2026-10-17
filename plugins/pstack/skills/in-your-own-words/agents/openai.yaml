@@ -1,0 +1,5 @@
+interface:
+  display_name: "pstack-in-your-own-words"
+  short_description: "Restate your goal and the problem before starting."
+policy:
+  allow_implicit_invocation: false

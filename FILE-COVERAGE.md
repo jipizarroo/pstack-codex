@@ -1,6 +1,6 @@
 # Upstream file coverage
 
-Pinned source: `11713c683fe4add4fd403ea880580abbc9e0875f`.
+Pinned source: `0317eb8b858c991c57721358daaee19dbe8c814d`.
 
 Every source file is checked; content adaptation is not a claim of tested runtime equivalence.
 
@@ -42,6 +42,8 @@ Every source file is checked; content adaptation is not a claim of tested runtim
 | `docs/guide/images/router.jpg` | `plugins/pstack/docs/guide/images/router.jpg` | retained verbatim |
 | `docs/guide/images/understanding.jpg` | `plugins/pstack/docs/guide/images/understanding.jpg` | retained verbatim |
 | `docs/guide/images/verification.jpg` | `plugins/pstack/docs/guide/images/verification.jpg` | retained verbatim |
+| `docs/harness/claude-code.md` | `plugins/pstack/docs/harness/claude-code.md` | adapted |
+| `plugin.json` | `plugins/pstack/.codex-plugin/plugin.json` | replaced (host packaging) |
 | `skills/architect/SKILL.md` | `plugins/pstack/skills/architect/SKILL.md` | adapted |
 | `skills/architect/references/design-red-flags.md` | `plugins/pstack/skills/architect/references/design-red-flags.md` | retained verbatim |
 | `skills/architect/references/rationale-template.md` | `plugins/pstack/skills/architect/references/rationale-template.md` | retained verbatim |
@@ -60,6 +62,7 @@ Every source file is checked; content adaptation is not a claim of tested runtim
 | `skills/how/SKILL.md` | `plugins/pstack/skills/how/SKILL.md` | adapted |
 | `skills/how/references/explainer-prompt.md` | `plugins/pstack/skills/how/references/explainer-prompt.md` | retained verbatim |
 | `skills/how/references/explorer-prompt.md` | `plugins/pstack/skills/how/references/explorer-prompt.md` | retained verbatim |
+| `skills/in-your-own-words/SKILL.md` | `plugins/pstack/skills/in-your-own-words/SKILL.md` | adapted |
 | `skills/interrogate/SKILL.md` | `plugins/pstack/skills/interrogate/SKILL.md` | adapted |
 | `skills/interrogate/references/code-quality-review.md` | `plugins/pstack/skills/interrogate/references/code-quality-review.md` | retained verbatim |
 | `skills/interrogate/references/lead-judgment.md` | `plugins/pstack/skills/interrogate/references/lead-judgment.md` | retained verbatim |
@@ -93,13 +96,14 @@ Every source file is checked; content adaptation is not a claim of tested runtim
 | `skills/poteto-mode/playbooks/runtime-forensics.md` | `plugins/pstack/skills/poteto-mode/playbooks/runtime-forensics.md` | adapted |
 | `skills/poteto-mode/playbooks/session-pickup.md` | `plugins/pstack/skills/poteto-mode/playbooks/session-pickup.md` | adapted |
 | `skills/poteto-mode/playbooks/shipping.md` | `plugins/pstack/skills/poteto-mode/playbooks/shipping.md` | adapted |
-| `skills/poteto-mode/playbooks/trace-forensics.md` | `plugins/pstack/skills/poteto-mode/playbooks/trace-forensics.md` | retained verbatim |
+| `skills/poteto-mode/playbooks/trace-forensics.md` | `plugins/pstack/skills/poteto-mode/playbooks/trace-forensics.md` | adapted |
 | `skills/poteto-mode/playbooks/visual-parity.md` | `plugins/pstack/skills/poteto-mode/playbooks/visual-parity.md` | adapted |
 | `skills/poteto-mode/playbooks/worktree-cleanup.md` | `plugins/pstack/skills/poteto-mode/playbooks/worktree-cleanup.md` | adapted |
 | `skills/poteto-mode/references/bugbot-triage.md` | `plugins/pstack/skills/poteto-mode/references/bugbot-triage.md` | retained verbatim |
 | `skills/poteto-mode/scripts/bootstrap.ts` | `plugins/pstack/skills/poteto-mode/scripts/bootstrap.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/bun.lock` | `plugins/pstack/skills/poteto-mode/scripts/bun.lock` | adapted |
 | `skills/poteto-mode/scripts/check-plan.mjs` | `plugins/pstack/skills/poteto-mode/scripts/check-plan.mjs` | adapted |
+| `skills/poteto-mode/scripts/check-plan.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/check-plan.test.ts` | adapted |
 | `skills/poteto-mode/scripts/orch/orch.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/orch/orch.test.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/orch/orch.ts` | `plugins/pstack/skills/poteto-mode/scripts/orch/orch.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/orch/store.ts` | `plugins/pstack/skills/poteto-mode/scripts/orch/store.ts` | retained verbatim |
@@ -107,9 +111,9 @@ Every source file is checked; content adaptation is not a claim of tested runtim
 | `skills/poteto-mode/scripts/watch-pr/cli.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/cli.test.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/watch-pr/cli.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/cli.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/watch-pr/fakes.test-helper.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/fakes.test-helper.ts` | retained verbatim |
-| `skills/poteto-mode/scripts/watch-pr/github.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/github.test.ts` | retained verbatim |
-| `skills/poteto-mode/scripts/watch-pr/github.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/github.ts` | retained verbatim |
-| `skills/poteto-mode/scripts/watch-pr/policy.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/policy.test.ts` | retained verbatim |
+| `skills/poteto-mode/scripts/watch-pr/github.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/github.test.ts` | adapted |
+| `skills/poteto-mode/scripts/watch-pr/github.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/github.ts` | adapted |
+| `skills/poteto-mode/scripts/watch-pr/policy.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/policy.test.ts` | adapted |
 | `skills/poteto-mode/scripts/watch-pr/policy.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/policy.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/watch-pr/render.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/render.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/watch-pr/tsconfig.json` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/tsconfig.json` | retained verbatim |
@@ -148,6 +152,7 @@ Every source file is checked; content adaptation is not a claim of tested runtim
 | `skills/reflect/references/synthesizer.md` | `plugins/pstack/skills/reflect/references/synthesizer.md` | adapted |
 | `skills/reflect/references/tooling-reviewer.md` | `plugins/pstack/skills/reflect/references/tooling-reviewer.md` | adapted |
 | `skills/setup-pstack/SKILL.md` | `plugins/pstack/skills/setup-pstack/SKILL.md` | adapted |
+| `skills/sharpen/SKILL.md` | `plugins/pstack/skills/sharpen/SKILL.md` | adapted |
 | `skills/show-me-your-work/SKILL.md` | `plugins/pstack/skills/show-me-your-work/SKILL.md` | adapted |
 | `skills/show-me-your-work/references/decision-log-template.tsv` | `plugins/pstack/skills/show-me-your-work/references/decision-log-template.tsv` | retained verbatim |
 | `skills/show-me-your-work/scripts/log.sh` | `plugins/pstack/skills/show-me-your-work/scripts/log.sh` | retained verbatim |
@@ -169,5 +174,5 @@ Every source file is checked; content adaptation is not a claim of tested runtim
 | `skills/why/references/sources/linear.md` | `plugins/pstack/skills/why/references/sources/linear.md` | retained verbatim |
 | `skills/why/references/sources/notion.md` | `plugins/pstack/skills/why/references/sources/notion.md` | retained verbatim |
 | `skills/why/references/sources/sentry.md` | `plugins/pstack/skills/why/references/sources/sentry.md` | retained verbatim |
-| `skills/why/references/sources/slack.md` | `plugins/pstack/skills/why/references/sources/slack.md` | retained verbatim |
+| `skills/why/references/sources/slack.md` | `plugins/pstack/skills/why/references/sources/slack.md` | adapted |
 | `skills/why/references/synthesizer-prompt.md` | `plugins/pstack/skills/why/references/synthesizer-prompt.md` | retained verbatim |

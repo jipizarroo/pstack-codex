@@ -3,6 +3,13 @@
 These results distinguish real host/service tests from local fixture coverage.
 They do not certify arbitrary production repositories or connected services.
 
+## Observed on 2026-10-17 (America/Santiago)
+
+- Imported original helper regressions before production changes: they exposed failures in Markdown fences, orchestration frontiers, review-thread pagination, Code Review Gate handling, and audit base selection.
+- The helper suite passed 71 Bun tests and strict TypeScript checking. The combined suite passed 31 Node fixture checks; two optional native-host checks were skipped.
+- Added a pagination regression beyond the imported source cases: a continuation page without a valid cursor fails closed instead of silently omitting later review threads. A failed second page remains a read error.
+- Kept Commander 15 and the Codex dependency lock, scoped transcript ownership, WIP protection, and audit reads without fetching. These are local/fixture checks, not production PR monitoring or a live Claude Code integration test.
+
 ## Observed on 2026-10-11 (America/Los_Angeles)
 
 Validated the source checkout at upstream 0.15.17 with `codex-cli 0.162.1`.
@@ -36,9 +43,9 @@ or persistent test server was created. The paused scheduler fixture was removed.
 Install Bun and Python 3.11+, install the helper dependencies with
 `bun install --frozen-lockfile` in `plugins/pstack/skills/poteto-mode/scripts`, then
 run `bash scripts/test.sh`. `PSTACK_PYTHON` can select a non-default Python.
-The combined suite passed 73 local/fixture checks. Two additional opt-in host
+The 2026-10-17 helper and fixture suites passed 102 checks. Two additional opt-in host
 checks (live persona/scoped instructions and native sandbox enforcement) passed
-separately. Tests under `tests/runtime` document the opt-in live Codex test; it consumes
+in the earlier host run, not during this update. Tests under `tests/runtime` document the opt-in live Codex test; it consumes
 account usage and does not run as part of an ordinary fixture-only pass.
 
 Do not package `node_modules` into a plugin release or commit runtime state.
