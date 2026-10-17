@@ -13,6 +13,8 @@ Write `~/.codex/pstack-models.md`, the override file every delegating pstack ski
 
 Read the existing override file when present, preserving its budget and configured role values. Otherwise start from the defaults in step 4. Drop retired roles absent from step 4 (for example `how critics`) and list each dropped line when showing the proposed configuration. Determine which Codex models the current host exposes from the current tool metadata or official local model picker. Never invent a model slug. `inherit-parent` and `auto` are always valid and both mean to omit the model override.
 
+For roles executed through `spawn_agent`, its model and effort choices are authoritative. A picker entry or a model available through another harness does not establish that it can be spawned here. Follow `CODEX.md` when an explicit model requires a fresh context fork.
+
 ## 2. Choose a budget
 
 Use the available user-input tool, or ask one concise question. Preserve the current budget on a rerun unless the user changes it. With no configuration, `large` matches the skill defaults. Offer:
@@ -27,6 +29,8 @@ Apply the selected effort to every real model, including panel entries. Preserve
 ## 3. Confirm role assignments
 
 Show every role, model, and reasoning effort. Allow `inherit-parent` or `auto` for any role. Panel roles are ordered lists; one subagent runs per list entry. List length controls panel size. Keep a user's existing override unless it is unavailable.
+
+If the user asks to repair unavailable assignments, choose replacements from the execution tool's available models using their advertised strengths and the role's purpose. Preserve valid assignments, the budget, and panel order and size; report each replacement. That request authorizes updating the file without another confirmation. Otherwise ask about unavailable choices before writing.
 
 ## 4. Write the override
 
@@ -55,7 +59,7 @@ architect runners: gpt-6-astra @ xhigh, gpt-6-luna @ xhigh
 interrogate reviewers: gpt-6-astra @ xhigh, gpt-6-luna @ xhigh
 ```
 
-Apply the budget to the separate effort values before writing. Validate every real model against the host's available-model list. Stop for a replacement choice if a requested slug is unavailable.
+Apply the budget to the separate effort values before writing. Validate every real model and its effort against the execution tool's available choices. Resolve unavailable assignments as described in step 3; do not write a slug the tool cannot accept.
 
 ## 5. Install or refresh custom agents
 
