@@ -28,6 +28,7 @@ Check the state that changes the answer, and mention it only when it does:
 
 - No `~/.codex/pstack-models.md` means `$setup-pstack` hasn't run for this user, so every role uses its default model.
 - No `verify-*` skill or other app harness in the project means agents have no scripted way to drive the app. Mention `$create-verification-skill` when the question is about proving a change works.
+- No formal verification skill in the project means no property is checked past what tests reach. Mention `$create-formal-verification-skill` when the question is about a race, an invariant, or another case tests rarely hit. When one exists and the code it covers changed after the commit it records as last in sync, mention `$maintain-formal-verification-skill` if the question touches that code.
 
 When the model rule is missing and it matters, ask whether the user wants to pick a model for each role and a reasoning budget now. It matters when the user is new, the question is about setup or cost, or the answer depends on which models run. Ask at most once per chat. If the need is also unclear, ask both questions together. Offer two choices:
 
@@ -37,7 +38,7 @@ When the model rule is missing and it matters, ask whether the user wants to pic
 ## Get set up
 
 1. Install with `codex plugin marketplace add ScriptedAlchemy/pstack-codex`, then `codex plugin add pstack@pstack-codex`. Start a new Codex task.
-2. Run [`$setup-pstack`](../setup-pstack/SKILL.md). It asks for a reasoning budget, maps a model to each role, and writes `~/.codex/pstack-models.md`. Delegated roles read that file.
+2. Run [`$setup-pstack`](../setup-pstack/SKILL.md). It asks for a reasoning budget, maps a model to each role, and writes `~/.codex/pstack-models.md`. Delegated roles read that file. It then offers to generate an app verification skill and a formal verification skill when the project lacks them.
 3. Start a real task with `$poteto-mode`, a goal, and a check that can pass or fail.
 
 Installing changes nothing until the user invokes a skill. Only `$setup-pstack` loads from the user's words. The [README](../../README.md) and [guide page 1](../../docs/guide/01-setup.md) have the details. Offer to word their first prompt with them, per [`references/prompting.md`](references/prompting.md).
@@ -88,6 +89,10 @@ The default answer is `$poteto-mode`, which runs most of the others when its ste
 | Stop agents from repeating the same mistakes in this repo | [`$correct`](../correct/SKILL.md) |
 | Build a page over an existing Codex endpoint or the bundled loopback bridge | [`$make-bot-ui`](../make-bot-ui/SKILL.md) |
 | Find their way around pstack | `$poteto-help` |
+| Check that the agent understood their goal and the problem before it starts | [`$in-your-own-words`](../in-your-own-words/SKILL.md) |
+| Aim a task higher before starting: more expert, more outcome-focused, not overspecified | [`$sharpen`](../sharpen/SKILL.md) |
+| Formally verify a race, invariant, or other property that tests rarely reach | [`$create-formal-verification-skill`](../create-formal-verification-skill/SKILL.md) |
+| Bring a formal verification back in line after the code it covers changed, and learn whether a failure is drift or a bug | [`$maintain-formal-verification-skill`](../maintain-formal-verification-skill/SKILL.md) |
 
 If a skill directory next to this one is missing from the table, read its frontmatter and route by its description. The `principle-*` directories are covered under principles below.
 

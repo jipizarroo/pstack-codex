@@ -1,5 +1,7 @@
 ### Feature
 
+Pick reasoning effort for the job under the Subagents section of **poteto-mode**, using only the active execution tool’s supported values.
+
 **You own the design. Plan, review, verify.** Delegate implementation. Stay in the lead.
 
 1. `how` over the affected subsystem.

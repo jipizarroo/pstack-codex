@@ -1,5 +1,7 @@
 ### Perf issue
 
+Pick reasoning effort for the job under the Subagents section of **poteto-mode**, using only the active execution tool’s supported values.
+
 **You own the measurement story. Plan, review, verify the numbers.** Tie every fix to a measurement, don't read source instead of measuring.
 
 1. Capture a baseline trace via the applicable Codex browser, computer-use, terminal, or project verification skill. Vet this baseline and every later measurement with the **benchmark-checklist** skill.

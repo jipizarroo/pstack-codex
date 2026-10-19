@@ -16,8 +16,8 @@ Track Frame, Fan out, Cross-judge, Pick, Graft, and Verify before launching.
 Every candidate gets the same prompt, so the prompt is the contract.
 
 1. State the artifact each candidate is producing.
-2. Derive the rubric. State what success looks like for *this* task, then turn it into 3-6 concrete gradeable criteria. The rubric is the picker's tool in Phase D. Candidates only see the task.
-3. Pick the runners. Use `arena runners` from `~/.codex/pstack-models.md` when present. Otherwise default to one each on `gpt-6-astra @ xhigh` and `gpt-6-luna @ xhigh`. Spawn more when the arena covers multiple design directions. Same model N times when the work is generation-bound rather than judgment-sensitive.
+2. Derive the rubric. Derive 3-6 concrete gradeable criteria for success. The rubric is the picker's tool in Phase D. Candidates only see the task.
+3. Pick the runners. Use `arena runners` from `~/.codex/pstack-models.md` when present. Otherwise default to one each on `gpt-6-astra @ xhigh` and `gpt-6-luna @ xhigh`. Spawn more when the arena covers multiple design directions. Same model N times when the work is generation-bound rather than judgment-sensitive. Pick reasoning effort for the job under the Subagents section of **poteto-mode**, using only the active execution tool’s supported values.
 4. Assign output paths. Each candidate writes to its own location (a git worktree where possible, otherwise `/tmp/arena-<slug>/candidate-<n>/`), per the **separate-before-serializing-shared-state** principle skill.
 
 ## Phase B: Fan out

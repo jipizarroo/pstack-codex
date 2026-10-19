@@ -1,5 +1,7 @@
 ### Opening a PR
 
+Pick reasoning effort for the job under the Subagents section of **poteto-mode**, using only the active execution tool’s supported values.
+
 Invoked at the end of every other playbook.
 
 **Worktree.** Inspect the current branch and dirty state first. Codex subagents share the host workspace; spawning does not create isolation. Give each concurrent writer an explicitly created worktree and distinct branch at the intended base, and pass the exact absolute directory in its brief. Preserve unrelated edits in place. If the task needs current uncommitted changes, keep one writer in that checkout or copy only the authorized patch into an isolated worktree after inspecting it. Do not reset, discard, stash, or rewrite user work merely to obtain a clean tree. Reconcile tangled state from evidence, and ask when preserving it conflicts with the requested change.

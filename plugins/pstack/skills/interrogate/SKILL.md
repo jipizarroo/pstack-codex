@@ -29,7 +29,7 @@ Launch one reviewer per configured `interrogate reviewers` entry, labeled Review
 
 Forbid writes and mutating commands in every reviewer prompt. Resolve model and effort through `CODEX.md`; aliases omit both overrides, and unavailable choices use the reported inheritance fallback. Offer a configuration repair in the report without blocking the review.
 
-Read `references/reviewer-prompt.md` and fill the same template for every reviewer with the stated intent, diff or files, `references/rubric.md`, and `references/code-quality-review.md`.
+Read `references/reviewer-prompt.md` and fill the same template for every reviewer with the stated intent, diff or files, `references/rubric.md`, and `references/code-quality-review.md`. Pick reasoning effort for the job under the Subagents section of **poteto-mode**, using only the active execution tool’s supported values.
 
 ## Step 4, Synthesize
 

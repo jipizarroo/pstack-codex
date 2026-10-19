@@ -1,5 +1,7 @@
 ### Session pickup
 
+Pick reasoning effort for the job under the Subagents section of **poteto-mode**, using only the active execution tool’s supported values.
+
 **You own the resume point. Read the prior trail, don't redo it.**
 
 1. Locate the prior trail. Search `~/.codex/sessions/YYYY/MM/DD/*.jsonl`, but keep only files whose first `session_meta.payload.cwd` exactly matches the active workspace. A Codex task URL or pushed branch is also a valid trail. Read metadata and the last messages first, then scan back for decision points. Parse a long transcript in a subagent and keep the reduced timeline in the main thread (the **principle-guard-the-context-window** skill).

@@ -69,7 +69,7 @@ Locate this installed plugin's root. Copy `codex-agents/poteto-agent.toml` and `
 
 Report the chosen budget, overrides, config path, and installed agent files. Re-running this skill updates the same files.
 
-Optionally offer to create a project-local verification skill when the repository has no real-surface test harness.
+Optionally offer `$create-verification-skill` when the repository has no real-surface test harness. Also offer `$create-formal-verification-skill` once when the project has no formal verification skill: it checks a key property with a model checker, proof, or code-level verifier under explicit bounds. If the user declines either offer, move on.
 
 If the user wants poteto-mode to persist across tasks in this repository, use the
 optional [scoped AGENTS.md method](../../docs/standing-mode.md). Do not alter

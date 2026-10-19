@@ -7,6 +7,8 @@ Before following this workflow, read [the Codex runtime contract](../../CODEX.md
 
 # Poteto mode
 
+Bundled skills live at `../<name>/SKILL.md` from this file, so put this file's absolute path in every `poteto-agent` prompt.
+
 ## Non-negotiables
 
 The Principles section below grounds every trigger. In your reply, name each principle that shaped a decision and the specific choice it changed. Cite only principles whose leaf SKILL.md you read this session.
@@ -41,7 +43,7 @@ Read the leaf skill in full for any principle you apply. Each entry names when i
 - **Laziness Protocol.** Refactoring, sizing a diff, or tempted to add abstractions, layers, or signal threading. Bias to deletion and the smallest change that solves the problem.
 - **Foundational Thinking.** Before writing logic: core types and data structures, scaffold-vs-feature sequencing, what concurrent actors share.
 - **Redesign from First Principles.** Integrating a new requirement into an existing design. Redesign as if it had been foundational from day one.
-- **Attack the Premise.** Two or more fixes that share one premise have failed the same gate. Take a census of which actors hold the imbalance before the next fix, then question the premise instead of writing another fix that assumes it.
+- **Attack the Premise.** Two or more fixes that share one premise have failed the same gate. Write the premise down and test it directly before you write another fix that assumes it.
 - **Subtract Before You Add.** Sequencing an addition, refactor, or rewrite. Remove dead weight first, then build on the simpler base.
 - **Minimize Reader Load.** Reviewing or shaping code that's hard to trace. Count layers and hidden state, collapse one-caller wrappers, shrink mutable scope.
 - **Outcome-Oriented Execution.** Planned rewrites and migrations with explicit phase boundaries. Converge on the target architecture, don't preserve throwaway compatibility states.
@@ -61,9 +63,9 @@ Read the leaf skill in full for any principle you apply. Each entry names when i
 **Verification**
 
 - **Prove It Works.** After a task, before declaring done. Verify against the real artifact, not a proxy or "it compiles".
-- **Fix Root Causes.** Debugging. Trace each symptom to its root cause, reproduce first, ask why until you reach it.
+- **Fix Root Causes.** Debugging. Trace each symptom back to the first place the system went wrong and fix it there. A guard is a fix only when the state it handles is legitimate.
 - **Sequence Work into Verifiable Units** (**principle-sequence-verifiable-units**). Multi-step work (sweeps, migrations, runs of similar edits) and how you stack commits and PRs. Break work into small units that each end in a check, verify each before the next, and order delivery so the sequence proves itself.
-- **Test Behavior, Not Implementation.** Writing, changing, or keeping a test. Call the code the way its users do and assert the result against a literal expected value. If the test would still pass when every imported function returns `undefined`, rewrite the assertion or delete the test.
+- **Test Behavior, Not Implementation.** Writing, changing, or keeping a test. Assert what the code's users can observe, so the test fails when that behavior breaks and keeps passing when only the internals change.
 - **Explain the Number.** Before you trust, report, or act on a number you measured (a speedup, a regression, a throughput, a latency, or an eval result). Find what limits it, and rule out that it measured something other than the work you think.
 
 **Delegation**
@@ -87,9 +89,11 @@ Read the leaf skill in full for any principle you apply. Each entry names when i
 
 ## Subagents
 
-**Use the installed `poteto-agent` Codex custom agent for subagents inside a playbook step when selectable.** Otherwise spawn a default subagent and tell it to read `agents/poteto-agent.md` from this plugin before working. `$poteto-mode` and `poteto-agent` route through the same wrapper. Routed workflow skills (`how`, `why`, `interrogate`, `reflect`, `swarm`) choose their own agents for diverse-model review. Respect what the skill prescribes.
+**Use the installed `poteto-agent` Codex custom agent for subagents inside a playbook step when selectable.** Otherwise spawn a default subagent and tell it to read `agents/poteto-agent.md` from this plugin before working. The chat that receives `$poteto-mode` owns and runs the playbook. Never spawn a `poteto-agent` to run the playbook itself. Routed workflow skills (`how`, `why`, `interrogate`, `reflect`, `swarm`) choose their own agents for diverse-model review. Respect what the skill prescribes.
 
 **Defaults for every `spawn_agent` call.** Spawn in the background, pass file pointers instead of inlining large context, and set an explicit model and reasoning effort per role from `~/.codex/pstack-models.md`. Defaults are `gpt-6-luna @ xhigh` for code and `gpt-6-astra @ xhigh` for prose and judgment. The hardest changes (cross-cutting design, concurrency, or subtle algorithms) use `hardest tasks`, default `gpt-6-astra @ xhigh`, even when the execution steps are precisely specified. Code playbooks read their corresponding `feature, refactoring`, `bug-fix`, `perf-issue`, or `hillclimb` role; prose and judgment read `judgment and prose`. Trivial mechanical edits go to the fast code role. A missing role keeps its default. `inherit-parent` or `auto` omits both overrides.
+
+**Match effort to the job.** Start from the role's configured model and effort, or its default. Use the effort levels that the active execution tool accepts for that model: raise one level, up to `max`, for the hardest work; lower one level for judgment and two or more for routine work. Verification keeps the configured `swarm workers` model and effort. Preserve the configured model and panel entries. `auto` and `inherit-parent` keep both overrides unset. Speed is a separate host capability: request faster execution only for urgent work and only when the tool exposes it; never append `-fast` or change a model slug to invent a speed option. If an adjusted effort is rejected, report it and retry the original validated role assignment once. If that assignment is unavailable, follow CODEX.md's inheritance fallback.
 
 You own every subagent's work. Review the diff and write your own summary, don't pass through what it said. A second opinion is the same prompt against a different model. Agreement is high-signal.
 

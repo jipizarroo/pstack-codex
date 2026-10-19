@@ -3,6 +3,16 @@
 These results distinguish real host/service tests from local fixture coverage.
 They do not certify arbitrary production repositories or connected services.
 
+## Observed on 2026-10-19 (America/Los_Angeles)
+
+Ported upstream 0.15.28 at `d457567` into the Codex source checkout.
+
+- Package checks found 58 skills and mapped all 172 upstream files. The docs checker resolved 254 relative links and found all 34 commands in the guide. Its fixture rejects missing links, unknown skills, and undocumented model defaults.
+- 27 Node fixture tests and 68 Bun tests passed; two optional host tests stayed skipped. The watcher, orchestration helpers, and fenced-plan tests passed TypeScript checks.
+- Worktree audit fixtures cover `origin/HEAD`, an explicit base, the `origin/master` fallback, an invalid base, and the no-fetch guarantee, alongside the existing untracked-work and session-ownership checks.
+- All nine custom maintainer/team files matched their pre-port hashes. Model preferences outside the plugin were not edited.
+- This validates the source package and local helpers. It does not test live forge mutations, scheduled delivery, or model-driven execution of the new formal verification workflows. No plugin installation or external-service mutation was part of this source update.
+
 ## Observed on 2026-10-11 (America/Los_Angeles)
 
 Validated the source checkout at upstream 0.15.17 with `codex-cli 0.162.1`.

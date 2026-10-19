@@ -38,6 +38,8 @@ Optional named custom agents are provided in `plugins/pstack/codex-agents`. Revi
 ./scripts/validate.sh
 ```
 
+The documentation checker in `scripts/test.sh` also checks skill names, relative links, anchors, and model defaults against the shipped tree.
+
 The portable validator checks the marketplace, manifest, all skill entry points, invocation policies, relative runtime links, agent TOML, and every file in the pinned upstream inventory. Run `python3 scripts/parity.py --report` for a per-file retained/adapted/replaced report. Runtime-dependent integrations still need an authenticated end-to-end test in the target host; structural checks do not prove external-service delivery.
 
 The [integration test report](INTEGRATION-TESTS.md) separates live host/service
@@ -51,7 +53,7 @@ Helper-script tests require Bun:
 ```sh
 cd plugins/pstack/skills/poteto-mode/scripts
 bun install --frozen-lockfile
-bun test orch watch-pr
+bun test orch watch-pr check-plan.test.ts
 bun run typecheck
 node --test check-plan.test.mjs worktree-audit.test.mjs
 ```
@@ -74,4 +76,4 @@ The audit fetches upstream Git objects and prints pstack-only changes since the 
 
 ## License and attribution
 
-MIT. Original pstack copyright © 2026 Lauren Tan; original license is retained in [LICENSE](LICENSE) and the plugin. Codex adaptation changes are distributed under the same license. Upstream version: 0.15.17, source commit `11713c683fe4add4fd403ea880580abbc9e0875f`.
+MIT. Original pstack copyright © 2026 Lauren Tan; original license is retained in [LICENSE](LICENSE) and the plugin. Codex adaptation changes are distributed under the same license. Upstream version: 0.15.28, source commit `d457567332aa6989e753ea289f30ea2bfbc80bc0`.

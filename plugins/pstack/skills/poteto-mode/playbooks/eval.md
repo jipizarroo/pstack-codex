@@ -1,5 +1,7 @@
 ### Eval
 
+Pick reasoning effort for the job under the Subagents section of **poteto-mode**, using only the active execution tool’s supported values.
+
 **You own the experiment design. Plan, blind, run, synthesize.**
 
 **Non-negotiables for blinding:**

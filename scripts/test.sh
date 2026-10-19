@@ -3,7 +3,9 @@ set -euo pipefail
 repo_root=$(CDPATH='' cd -- "$(dirname -- "$0")/.." && pwd)
 cd "$repo_root"
 "$repo_root/scripts/validate.sh"
+node scripts/check-pstack-docs.mjs
 node --test \
+  tests/docs.test.mjs \
   plugins/pstack/skills/poteto-mode/scripts/check-plan.test.mjs \
   plugins/pstack/skills/poteto-mode/scripts/worktree-audit.test.mjs \
   plugins/pstack/skills/make-bot-ui/scripts/bridge.test.mjs \
@@ -19,5 +21,5 @@ if [[ ! -d node_modules ]]; then
   echo 'Run bun install --frozen-lockfile in plugins/pstack/skills/poteto-mode/scripts first.' >&2
   exit 1
 fi
-bun test orch watch-pr
+bun test orch watch-pr check-plan.test.ts
 bun run typecheck

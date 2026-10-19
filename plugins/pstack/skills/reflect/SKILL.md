@@ -23,7 +23,7 @@ If the active path cannot be established, pass a tight digest of this conversati
 
 ## 2. Spawn three reviewers in parallel
 
-Three asynchronous `spawn_agent` calls in capacity-bounded waves using the `default` agent, the named role line and default on each, and normal write-capable mode. Reviewers need MCP access for context lookups referenced in the transcript. Subagents inherit the parent's available MCP tools.
+Three asynchronous `spawn_agent` calls in capacity-bounded waves using the `default` agent, the named role line and default on each, and normal write-capable mode. Reviewers need MCP access for context lookups referenced in the transcript. Subagents inherit the parent's available MCP tools. Pick reasoning effort for the job under the Subagents section of **poteto-mode**, using only the active execution tool’s supported values.
 
 | Lens | `model` | Prompt template |
 |---|---|---|

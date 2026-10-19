@@ -1,5 +1,7 @@
 ### Runtime forensics
 
+Pick reasoning effort for the job under the Subagents section of **poteto-mode**, using only the active execution tool’s supported values.
+
 **You own the diagnosis. Instrument the live process, don't theorize from source.** The deliverable is a cited diagnosis, not a fix.
 
 1. Capture the live signal on the matching surface through the applicable Codex browser, computer-use, terminal, or project verification skill: a CPU profile for a spinning process, a heap snapshot for a leak, a CDP trace for a visual glitch. A real artifact, not a guess.
