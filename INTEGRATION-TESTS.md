@@ -10,6 +10,7 @@ They do not certify arbitrary production repositories or connected services.
 - This is a bounded instruction-interpretation smoke check. It did not launch real panels or generate work on Astra/Luna, and it does not establish universal model-selection reliability.
 - The local model file remained byte-identical, and all configured role assignments match the bundled defaults. Helpers and their PR-query default are unchanged, so their earlier Bun/Node suites were not repeated for this Markdown/metadata update.
 - The new formal-verification workflows were validated as packaged skills. No application property was formally proved and no verifier or external integration was activated during this update.
+- Independent review caught that a sync-commit diff omits uncommitted covered code. Maintenance now blocks affected checks before running or updating them, including staged, unstaged, untracked and moved code; it leaves the user's changes and the sync commit intact. Architect's runner prompt also permits distinct designs on the same assigned model.
 
 ## Observed on 2026-10-17 (America/Santiago), Codex revision 202610170003
 
