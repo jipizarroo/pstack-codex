@@ -85,7 +85,7 @@ If your scope assessment suggests a single-commit trivial target where the PR de
 Spawn one synthesizer subagent:
 
 - use the default agent only if the current spawn schema exposes an agent selector
-- `model`: the `why synthesizer` line (default `gpt-6-astra @ xhigh`)
+- `model`: the `why synthesizer` line (default `gpt-6.1-sol @ xhigh`)
 - Read-only investigation: forbid writes and mutating tools in the prompt. MCP access follows the host permissions; do not pass a readonly parameter.
 
 The synthesizer gets:

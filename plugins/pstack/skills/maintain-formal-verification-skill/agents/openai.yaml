@@ -1,0 +1,5 @@
+interface:
+  display_name: "pstack-maintain-formal-verification-skill"
+  short_description: "Update formal checks after the covered code changes."
+policy:
+  allow_implicit_invocation: false

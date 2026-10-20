@@ -1,0 +1,5 @@
+interface:
+  display_name: "pstack-create-formal-verification-skill"
+  short_description: "Create a repeatable formal check for a code property."
+policy:
+  allow_implicit_invocation: false
