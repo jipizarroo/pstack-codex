@@ -1,8 +1,8 @@
 # Design before you write code
 
-One attempt at a hard design locks in the first shape the model thought of. `$architect` settles types and boundaries before implementation. `$arena` runs several attempts at the same brief and merges the best parts. `$interrogate` has other models try to break the result. When the job is coverage rather than design synthesis, `$swarm` fans out slices or races and aggregates their results.
+One attempt at a hard design locks in the first shape the model thought of. `$architect` settles types and boundaries before implementation. `$arena` runs several attempts at the same brief and merges the best parts. `$interrogate` has an independent reviewer try to break the result. When the job is coverage rather than design synthesis, `$swarm` fans out slices or races and aggregates their results.
 
-The two most common design mistakes are taking the agent's first design and polishing a plan that no code has tested. This page fixes both. You plan through code: prototypes answer the open questions, a README or tutorial sets the target, and the written plan comes last.
+The two most common design mistakes are taking the agent's first design and polishing a plan that no code has tested. This page fixes both. You plan through code. Prototypes answer the open questions, a README or tutorial sets the target, and the written plan comes last.
 
 ![Three robots draft competing bridge models at their own tables under $architect, $arena, and $interrogate panels, while a judge robot with a clipboard inspects skeptically.](./images/design.jpg)
 
@@ -12,7 +12,7 @@ The two most common design mistakes are taking the agent's first design and poli
 $architect design the import pipeline before writing any code. i care most about how callers use it.
 ```
 
-[`$architect`](../../skills/architect/SKILL.md) grounds itself first, running `$how` over the code the design touches and `$why` when it moves ownership or layers. Then it runs `$arena` to produce competing design sketches, with the caller's usage written first in each, followed by types, signatures, and a module map.
+[`$architect`](../../skills/architect/SKILL.md) grounds itself first, running `$how` over the code the design touches and `$why` when it moves ownership or layers. It uses the Arena comparison process with Architect's own runner pool: Astra 6 only, with at least two structurally distinct candidates on that model. Each sketch starts with the caller's usage, followed by types, signatures, and a module map.
 
 By default it proceeds straight from the synthesized design into implementation. If you want to see the design first, say so:
 
@@ -28,7 +28,7 @@ The design isn't sacred once code starts. If implementation shows the same worka
 $arena take my prompt to the arena verbatim. i want to compare their proposals with yours.
 ```
 
-[`$arena`](../../skills/arena/SKILL.md) is the general tool underneath. N subagents attempt the same design or code brief in parallel, each writing to its own worktree or directory. A read-only judge, on a different model family when your configuration allows one, scores every candidate against a rubric. The coordinator reads each candidate end to end, picks a base, grafts in the best ideas from the losers, and verifies the result.
+[`$arena`](../../skills/arena/SKILL.md) is the general tool underneath. Its default candidate pool runs both Astra 6 and Sol 6.1 against the same design or code brief. Concurrent writers get separate file ownership or an authorized isolated checkout. One read-only judge scores every candidate against a rubric: Sol 6.1 for routine judgment, or Astra 6 when the concrete difficulty warrants it. [The runtime contract](../../CODEX.md#model-selection) defines selection and effort. The coordinator reads each candidate end to end, picks a base, grafts in the best ideas from the losers, and verifies the result.
 
 ```mermaid
 flowchart LR
@@ -44,7 +44,7 @@ flowchart LR
     H --> I[Verify]
 ```
 
-The panel comes from your [`$setup-pstack`](../../skills/setup-pstack/SKILL.md) configuration, and you can adjust it per task. Ask for more candidates when the decision matters, fewer when it doesn't:
+The candidate pool comes from your [`$setup-pstack`](../../skills/setup-pstack/SKILL.md) configuration, and you can adjust it per task. Request additional candidates for concrete alternatives worth comparing, rather than for model diversity alone:
 
 ```text
 $arena this, 5 candidates. the cache key format is expensive to change later.
@@ -66,7 +66,7 @@ Reach for it when parallelism buys coverage or lets independent checks race. `$a
 $interrogate the whole branch, but skeptically. no nitpicks unless it's an actual bug or regression.
 ```
 
-[`$interrogate`](../../skills/interrogate/SKILL.md) sends the same diff, intent, and rubric to reviewers on different model families. Model diversity is the point. Different models have different blind spots, so a finding two models raise independently is high-confidence signal. The lead sorts everything into `Act on`, `Consider`, `Noted`, and `Dismissed`, with a reason for each dismissal, and applies nothing automatically.
+[`$interrogate`](../../skills/interrogate/SKILL.md) sends the diff, intent, and rubric to one independent reviewer. It selects Sol 6.1 for routine reviews or Astra 6 for a concrete difficulty such as concurrency or a subtle algorithm. A review alone does not warrant escalation, and model diversity does not add reviewers. The lead sorts findings into `Act on`, `Consider`, `Noted`, and `Dismissed`, with a reason for each dismissal, and applies nothing automatically.
 
 Read the dismissals too. The lead is a pragmatic senior engineer, not an oracle, and you can override it.
 

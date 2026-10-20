@@ -1,6 +1,6 @@
 # Upstream file coverage
 
-Pinned source: `0317eb8b858c991c57721358daaee19dbe8c814d`.
+Pinned source: `ddf824aff1e55ba14bd666b30bce3fc69962abe6`.
 
 Every source file is checked; content adaptation is not a claim of tested runtime equivalence.
 
@@ -54,6 +54,7 @@ Every source file is checked; content adaptation is not a claim of tested runtim
 | `skills/blast-radius/SKILL.md` | `plugins/pstack/skills/blast-radius/SKILL.md` | adapted |
 | `skills/bro/SKILL.md` | `plugins/pstack/skills/bro/SKILL.md` | adapted |
 | `skills/correct/SKILL.md` | `plugins/pstack/skills/correct/SKILL.md` | adapted |
+| `skills/create-formal-verification-skill/SKILL.md` | `plugins/pstack/skills/create-formal-verification-skill/SKILL.md` | adapted |
 | `skills/create-verification-skill/SKILL.md` | `plugins/pstack/skills/create-verification-skill/SKILL.md` | adapted |
 | `skills/create-verification-skill/references/feature-map-example/README.md` | `plugins/pstack/skills/create-verification-skill/references/feature-map-example/README.md` | retained verbatim |
 | `skills/create-verification-skill/references/feature-map-example/create-note.md` | `plugins/pstack/skills/create-verification-skill/references/feature-map-example/create-note.md` | retained verbatim |
@@ -69,6 +70,7 @@ Every source file is checked; content adaptation is not a claim of tested runtim
 | `skills/interrogate/references/reviewer-prompt.md` | `plugins/pstack/skills/interrogate/references/reviewer-prompt.md` | retained verbatim |
 | `skills/interrogate/references/rubric.md` | `plugins/pstack/skills/interrogate/references/rubric.md` | retained verbatim |
 | `skills/ketchup/SKILL.md` | `plugins/pstack/skills/ketchup/SKILL.md` | adapted |
+| `skills/maintain-formal-verification-skill/SKILL.md` | `plugins/pstack/skills/maintain-formal-verification-skill/SKILL.md` | adapted |
 | `skills/maintain-verification-skill/SKILL.md` | `plugins/pstack/skills/maintain-verification-skill/SKILL.md` | adapted |
 | `skills/make-bot-ui/SKILL.md` | `plugins/pstack/skills/make-bot-ui/SKILL.md` | adapted |
 | `skills/no-comments/SKILL.md` | `plugins/pstack/skills/no-comments/SKILL.md` | adapted |

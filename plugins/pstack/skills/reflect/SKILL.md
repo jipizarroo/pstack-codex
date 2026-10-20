@@ -11,6 +11,8 @@ Mine the current conversation for durable learnings, then route them into skill 
 
 Resolve the named role line in `~/.codex/pstack-models.md` before each spawn, following `CODEX.md`: missing lines use the default, `auto` and `inherit-parent` omit both overrides, and unavailable choices are reported with inheritance as the explicit fallback. Split `model @ effort` into separate host fields. Choose each subagent's reasoning effort and any supported speed setting for the job, per the Subagents section of the **poteto-mode** skill.
 
+For the judgment, divergent and synthesizer role, apply `CODEX.md`'s conditional selection: one Sol 6.1 assignment for ordinary work, or the `hardest tasks` assignment for concretely difficult work. Keep its configured effort. The existing lenses remain separate tasks; do not duplicate a lens across Sol and Astra for diversity.
+
 ## When to invoke
 
 Invoke when the user says "reflect" or "$reflect". Skip when the conversation is trivial, off-topic, or already covered by an existing skill the parent followed correctly. One-offs are not learnings.
@@ -27,15 +29,15 @@ Three asynchronous `spawn_agent` calls in capacity-bounded waves using the `defa
 
 | Lens | `model` | Prompt template |
 |---|---|---|
-| Judgment | `reflect judgment, divergent, synthesizer` (default `gpt-6-astra @ xhigh`) | `references/judgment-reviewer.md` |
+| Judgment | `reflect judgment, divergent, synthesizer` (default `gpt-6.1-sol @ xhigh`) | `references/judgment-reviewer.md` |
 | Tooling | `reflect tooling` (default `gpt-6.1-sol @ xhigh`) | `references/tooling-reviewer.md` |
-| Divergent | `reflect judgment, divergent, synthesizer` (default `gpt-6-astra @ xhigh`) | `references/divergent-reviewer.md` |
+| Divergent | `reflect judgment, divergent, synthesizer` (default `gpt-6.1-sol @ xhigh`) | `references/divergent-reviewer.md` |
 
 Pass each template verbatim, substituting the transcript path or digest where marked. Reviewers return findings in their final response.
 
 ## 3. Synthesize
 
-One `spawn_agent` call using the `default` agent and `reflect judgment, divergent, synthesizer` line (default `gpt-6-astra @ xhigh`) in normal write-capable mode. The synthesizer spot-verifies citations and may need inherited MCP tools. Use `references/synthesizer.md` verbatim, with each reviewer's full output inlined where marked. The synthesizer returns a structured Accepted / Rejected / Backlog list.
+One `spawn_agent` call using the `default` agent and `reflect judgment, divergent, synthesizer` line (default `gpt-6.1-sol @ xhigh`) in normal write-capable mode, with the same conditional selection described above. The synthesizer spot-verifies citations and may need inherited MCP tools. Use `references/synthesizer.md` verbatim, with each reviewer's full output inlined where marked. The synthesizer returns a structured Accepted / Rejected / Backlog list.
 
 ## 4. Structural enforcement check
 

@@ -3,6 +3,15 @@
 These results distinguish real host/service tests from local fixture coverage.
 They do not certify arbitrary production repositories or connected services.
 
+## Observed on 2026-10-19 (America/Santiago), Pstack 0.15.28
+
+- Structural validation found 58 skills and counterparts for all 172 reviewed source files. Skill IDs, unique `pstack-` labels, explicit invocation metadata and relative links passed their checks.
+- A fresh read-only Codex session on Sol 6.1 evaluated seven routing scenarios from the bundled defaults, ignoring local overrides. It selected one Sol reviewer for routine work and one Astra reviewer for a concrete concurrency problem, kept both Astra/Sol Arena candidates, used Astra for both Architect alternatives, kept Reflect's existing lenses on Sol, omitted model/effort for effective-role inheritance, and honored an explicit per-task Sol choice.
+- This is a bounded instruction-interpretation smoke check. It did not launch real panels or generate work on Astra/Luna, and it does not establish universal model-selection reliability.
+- The local model file remained byte-identical, and all configured role assignments match the bundled defaults. Helpers and their PR-query default are unchanged, so their earlier Bun/Node suites were not repeated for this Markdown/metadata update.
+- The new formal-verification workflows were validated as packaged skills. No application property was formally proved and no verifier or external integration was activated during this update.
+- Independent review caught that a sync-commit diff omits uncommitted covered code. Maintenance now blocks affected checks before running or updating them, including staged, unstaged, untracked and moved code; it leaves the user's changes and the sync commit intact. Architect's runner prompt also permits distinct designs on the same assigned model.
+
 ## Observed on 2026-10-17 (America/Santiago), Codex revision 202610170003
 
 - Restored the original Pstack PR-query default by removing our explicit 1000-row override and its row-count guard. The query function matches the pinned source byte for byte; the separate unique-open-PR correction is retained.

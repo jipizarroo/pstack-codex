@@ -25,7 +25,7 @@ flowchart TD
     J --> K
 ```
 
-The diagram shows the common routes. There are also playbooks for hillclimbing a metric, diagnosing runtime symptoms and captured traces, prototypes, visual parity, authoring and evaluating skills, autonomous runs, babysitting a PR or stack to merge-ready, shipping a verified stack, running a PR queue on autopilot, orchestrating project-scale programs, session pickup, pausing safely, multi-phase plans, and worktree cleanup. The [playbook directory](../../skills/poteto-mode/playbooks/) has the full set.
+The diagram shows the common routes. There are also playbooks for hillclimbing a metric, diagnosing runtime symptoms and captured traces, prototypes, visual parity, authoring and evaluating skills, autonomous runs, opening a PR, babysitting a PR or stack to merge-ready, shipping a verified stack, running a PR queue or a stack on autopilot, orchestrating project-scale programs, session pickup, pausing safely, multi-phase plans, and worktree cleanup. The [playbook directory](../../skills/poteto-mode/playbooks/) has the full set.
 
 ## Say the goal, not the ceremony
 
@@ -64,7 +64,15 @@ For a noisy report, such as a long thread or a vague bug, make the restatement t
 $poteto-mode read this thread. restate the underlying issue in your own words, in plain english. don't change any code yet.
 ```
 
-A misreading shows up in the restatement, before any code exists. Correct it there, and it costs you one message instead of one wrong fix.
+A misreading shows up in the restatement, before any code exists. Correct it there, and it costs you one message instead of one wrong fix. For the restatement alone, with no playbook, run [`$in-your-own-words`](../../skills/in-your-own-words/SKILL.md). It restates what the agent thinks your goals are and what problem you're trying to solve.
+
+When you're unsure whether a task is aimed right, put [`$sharpen`](../../skills/sharpen/SKILL.md) in front of it:
+
+```text
+$sharpen write a migration guide for the v2 config format.
+```
+
+Before it starts, the agent asks how a top expert would do the task, what you're really after, and whether the ask is over- or underspecified. It drops constraints that don't serve the goal as readily as it adds ones that do, leaves your choices open, and keeps one outside check that the result is right. Then it does the work.
 
 ## Follow up short
 
@@ -94,9 +102,9 @@ $poteto-mode new task. figure out why the cache entry survives logout. don't cha
 
 "new task" tells `$poteto-mode` to re-match rather than continue the prior playbook. "don't change any code yet" pins this one to Investigation. Without those two phrases, a mode mid-Feature tends to treat your question as the next feature step.
 
-## Give parallel writers their own worktrees
+## Give parallel writers separate scopes
 
-Codex subagents share the host workspace. Create a separate branch and worktree for each concurrent writer, and give it the exact directory. Also isolate ports and build output where the project requires it. Spawning alone does not create an isolated machine.
+Codex subagents share the host workspace. Give concurrent writers separate file ownership and serialize overlapping edits. Use a separate checkout or worktree only when authorized, and give the agent its exact directory. Also isolate ports and build output where the project requires it. Spawning alone does not create an isolated machine.
 
 Ask for a worktree up front:
 
@@ -104,7 +112,7 @@ Ask for a worktree up front:
 $poteto-mode new task. branch off <base> in a fresh worktree, then port the parser change there.
 ```
 
-Each task in its own branch and worktree means no agent stomps another's files. Worktrees cost disk and machine resources, so a laptop runs only a handful at once. The [Opening a PR playbook](../../skills/poteto-mode/playbooks/opening-a-pr.md) already works from a worktree for code changes, so mostly you only say this when a specific base or location matters.
+Separate scopes keep agents from overwriting one another. An explicitly requested worktree also isolates the checkout, at a cost in disk and machine resources. The [Opening a PR playbook](../../skills/poteto-mode/playbooks/opening-a-pr.md) uses the current checkout unless an isolated one is authorized.
 
 Worktrees accumulate. When disk gets tight, ask:
 

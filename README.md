@@ -2,7 +2,9 @@
 
 A Codex-native adaptation of [Lauren Tan's pstack](https://github.com/cursor/plugins/tree/main/pstack), preserving its workflows, playbooks, principles, and agent personas while adapting host-specific execution to Codex. This is an independent port, not an official Cursor or OpenAI plugin.
 
-This fork tracks [ScriptedAlchemy's Codex port](https://github.com/ScriptedAlchemy/pstack-codex), retains its model defaults, and labels every skill `pstack-…` in the skill picker. Type `$pstack` to browse them.
+This fork tracks [ScriptedAlchemy's Codex port](https://github.com/ScriptedAlchemy/pstack-codex), maintains its own model-role defaults, and labels every skill `pstack-…` in the skill picker. Type `$pstack` to browse them.
+
+Code and Swarm use Luna 6. How, Why, tooling and ordinary judgment/review use Sol 6.1. Difficult judgment/review selects the `hardest tasks` assignment, Astra 6 by default, with one model per task and no added diversity reviewers. Arena candidates use Astra plus Sol; Architect candidates use Astra only. See [model selection](plugins/pstack/CODEX.md#model-selection) and [`setup-pstack`](plugins/pstack/skills/setup-pstack/SKILL.md) for the full role table and overrides.
 
 The plugin lives in `plugins/pstack`; `.agents/plugins/marketplace.json` makes this repository a native Codex marketplace. Read the [runtime contract](plugins/pstack/CODEX.md), [port coverage and runtime boundaries](PARITY.md), and [per-file source coverage](FILE-COVERAGE.md). Tool availability depends on the Codex host, permissions, and connected integrations. No credentials are bundled.
 
@@ -76,4 +78,4 @@ The audit fetches upstream Git objects and prints pstack-only changes since the 
 
 ## License and attribution
 
-MIT. Original pstack copyright © 2026 Lauren Tan; original license is retained in [LICENSE](LICENSE) and the plugin. Codex adaptation changes are distributed under the same license. Upstream version: 0.15.25, source commit `0317eb8b858c991c57721358daaee19dbe8c814d`.
+MIT. Original pstack copyright © 2026 Lauren Tan; original license is retained in [LICENSE](LICENSE) and the plugin. Codex adaptation changes are distributed under the same license. Upstream version: 0.15.28, source commit `ddf824aff1e55ba14bd666b30bce3fc69962abe6`.

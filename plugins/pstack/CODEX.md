@@ -8,7 +8,15 @@ Read `~/.codex/pstack-models.md` before delegating. Each entry is `model @ effor
 
 Availability is specific to the execution tool: a model shown in a picker or another harness is not necessarily accepted by `spawn_agent`. Use only the model and effort values exposed by the tool that will run the child. Another harness requires an explicitly available delegation tool; changing a model string does not select that harness.
 
-Role efforts are starting levels. Apply the routing skill's per-job effort policy through the execution tool's supported reasoning field, keeping the configured model family and panel entries. Speed changes require a real field exposed by that tool; never manufacture a `-fast` model name. If the requested adjustment is unavailable or rejected, retain the valid configured assignment and report the limitation.
+Role efforts are starting levels except where the selection policy below keeps the selected assignment. Apply per-job adjustments through the execution tool's supported reasoning field. Speed changes require a real field exposed by that tool; never manufacture a `-fast` model name. If a requested adjustment is unavailable or rejected, retain the valid configured assignment and report the limitation.
+
+### Model selection
+
+The conditional roles are `judgment and prose`, `reflect judgment, divergent, synthesizer`, `arena cross-judge pool`, and `interrogate reviewers`. Normally use the named role's assignment, default `gpt-6.1-sol @ xhigh`. For genuinely difficult work, use the `hardest tasks` assignment instead, default `gpt-6-astra @ xhigh`. State the concrete difficulty, such as cross-cutting design, concurrency, or a subtle algorithm; being a review is not enough. Select one model for each invocation of these roles, never both, and keep the selected assignment's effort. Existing Reflect lenses are separate tasks, not an excuse to add model copies.
+
+This conditional selection takes precedence over preserving the original model family or preferring a different family from the coordinator. Do not add reviewers for diversity. An explicit user selection or selection policy takes precedence over these defaults. Resolve the effective role before applying its configured value, inheritance alias and execution-tool validation; aliases still omit both overrides.
+
+Code and Swarm default to Luna 6. How, Why and tooling default to Sol 6.1. Arena runners default to Astra 6 plus Sol 6.1 and run both. Architect runners default to Astra 6 only; multiple structural candidates can use that same model. Other roles retain their configured families and list entries.
 
 Use the exposed collaboration tools to spawn, message, follow up, and wait. Spawns are asynchronous. Do not pass Cursor parameters such as environment, cloud_base_branch, readonly, or run_in_background. With a model override, use a fresh or bounded context fork if the host requires it. Pass an absolute instruction-file path and a bounded task. Panels larger than available capacity run in waves; preserve every requested panel entry. Give concurrent writers separate file ownership. Serialize overlapping edits or use an isolated checkout only when authorized, passing its exact working directory and branch. A Codex child does not automatically get a cloud VM or isolated checkout.
 
