@@ -17,14 +17,14 @@ For roles executed through `spawn_agent`, its model and effort choices are autho
 
 ## 2. Choose a budget
 
-Use the available user-input tool, or ask one concise question. Preserve the current budget on a rerun unless the user changes it. With no configuration, `large` matches the skill defaults. Offer:
+When a budget choice is missing, use the available user-input tool or ask one concise question. Preserve the current budget and per-role efforts on a rerun unless the user changes them. With no configuration, use the defaults below under `large`, including `medium` for code and Swarm. Offer:
 
 - `unlimited — max reasoning`: each model's highest host-supported effort, up to `max`.
 - `large — xhigh reasoning`: `xhigh`.
 - `medium — high reasoning`: `high`.
 - `small — medium reasoning`: `medium`.
 
-Write the selected effort for each real model, including runner entries. Routing follows `CODEX.md`: conditional judgment/review roles keep the selected assignment's effort; other roles may adjust effort through supported fields while preserving the configured family. Preserve existing model choices, list order, selection policy and inheritance aliases; aliases keep both overrides unset. Model and effort are separate fields in Codex. Use the highest supported effort at or below the requested target. If none is available, mark the role as needing a choice. Never change the model to satisfy a budget.
+When the user explicitly changes the budget, write its selected effort for each real model, including runner entries. Otherwise preserve existing per-role efforts or use the defaults below. An explicit per-role model or effort change updates only the requested roles. Routing follows `CODEX.md`: conditional judgment/review roles keep the selected assignment's effort; other roles may adjust effort through supported fields while preserving the configured family. Preserve existing model choices, list order, selection policy and inheritance aliases; aliases keep both overrides unset. Model and effort are separate fields in Codex. Use the highest supported effort at or below the requested target. If none is available, mark the role as needing a choice. Never change the model to satisfy a budget.
 
 ## 3. Confirm role assignments
 
@@ -40,13 +40,14 @@ Overwrite `~/.codex/pstack-models.md` atomically so reruns are idempotent. Use t
 # pstack model configuration for Codex. Delete a role line to use its skill default.
 # `inherit-parent` or `auto` omits explicit model and reasoning overrides.
 # budget: large (xhigh)
+# Code and Swarm use medium reasoning as explicit per-role defaults.
 # Conditional judgment/review roles use their assignment normally and `hardest tasks`
 # for concretely difficult work. Select one model, never both or extra diversity reviewers.
 # Arena runners run both entries; Architect candidates use only its assigned model.
-feature, refactoring: gpt-6-luna @ xhigh
-bug-fix: gpt-6-luna @ xhigh
-perf-issue: gpt-6-luna @ xhigh
-hillclimb: gpt-6-luna @ xhigh
+feature, refactoring: gpt-6.1-sol @ medium
+bug-fix: gpt-6.1-sol @ medium
+perf-issue: gpt-6.1-sol @ medium
+hillclimb: gpt-6.1-sol @ medium
 judgment and prose: gpt-6.1-sol @ xhigh
 hardest tasks: gpt-6-astra @ xhigh
 how explorer: gpt-6.1-sol @ xhigh
@@ -57,12 +58,12 @@ reflect tooling: gpt-6.1-sol @ xhigh
 reflect judgment, divergent, synthesizer: gpt-6.1-sol @ xhigh
 arena runners: gpt-6-astra @ xhigh, gpt-6.1-sol @ xhigh
 arena cross-judge pool: gpt-6.1-sol @ xhigh
-swarm workers: gpt-6-luna @ xhigh
+swarm workers: gpt-6.1-sol @ medium
 architect runners: gpt-6-astra @ xhigh
 interrogate reviewers: gpt-6.1-sol @ xhigh
 ```
 
-Apply the budget to the separate effort values before writing. Validate every real model and its effort against the execution tool's available choices. Resolve unavailable assignments as described in step 3; do not write a slug the tool cannot accept.
+Apply explicitly requested budget or role changes to the separate effort values before writing; otherwise preserve each role's current or default effort. Validate every real model and its effort against the execution tool's available choices. Resolve unavailable assignments as described in step 3; do not write a slug the tool cannot accept.
 
 ## 5. Install or refresh custom agents
 

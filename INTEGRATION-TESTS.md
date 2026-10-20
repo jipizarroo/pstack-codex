@@ -3,6 +3,13 @@
 These results distinguish real host/service tests from local fixture coverage.
 They do not certify arbitrary production repositories or connected services.
 
+## Observed on 2026-10-19 (America/Santiago), Codex revision 202610190002
+
+- Code/refactoring, bug-fix, performance, hillclimb and Swarm now default to `gpt-6.1-sol @ medium`. The local override and bundled table agree across all 17 roles; exactly those five assignments changed, preserving the other 12 roles and the user's selection policy.
+- Package preflight passed for 58 skills and 172 source counterparts. Skill frontmatter is unchanged. Active defaults, guides and templates contain no remaining Luna references.
+- All seven existing plan-validator checks passed with the updated shipped template, including an alternative worker model, inheritance and rejection of an unfilled worker placeholder. Production helpers were not changed and their other suites were not repeated.
+- Static review checked fallback without overrides, Swarm overrides, mixed efforts on a setup rerun and a single-role change. These checks do not establish task quality or cost relative to Grok, Luna or other reasoning settings.
+
 ## Observed on 2026-10-19 (America/Santiago), Pstack 0.15.28
 
 - Structural validation found 58 skills and counterparts for all 172 reviewed source files. Skill IDs, unique `pstack-` labels, explicit invocation metadata and relative links passed their checks.

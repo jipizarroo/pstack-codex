@@ -21,13 +21,13 @@ Run:
 $setup-pstack
 ```
 
-[`$setup-pstack`](../../skills/setup-pstack/SKILL.md) reads the models exposed by the current Codex host, asks for a reasoning budget, shows each role, and writes `~/.codex/pstack-models.md`.
+[`$setup-pstack`](../../skills/setup-pstack/SKILL.md) reads the models exposed by the current Codex host, keeps the current reasoning budget or asks when a choice is missing, shows each role, and writes `~/.codex/pstack-models.md`.
 
-Defaults use `xhigh`, matching the `large` budget. Setup maps your chosen budget to the host's supported efforts. [The Codex runtime contract](../../CODEX.md#model-selection) defines which roles select Sol 6.1 or Astra 6, which candidate roles run both, and how effort and inheritance apply.
+The default `large` profile uses Sol 6.1 at `medium` for code and Swarm; the other roles use `xhigh`. A rerun preserves these per-role efforts. Only an explicitly requested budget change applies its target effort to every real model; a per-role change affects only the requested roles. Setup maps requested efforts to the host's supported values. [The Codex runtime contract](../../CODEX.md#model-selection) defines which roles select Sol 6.1 or Astra 6, which candidate roles run both, and how effort and inheritance apply.
 
 You only override what you care about. A role with no line in the rule keeps the skill's default. To restore a default, delete that role's line. A rerun of `$setup-pstack` preserves configured role values, including lists and inheritance aliases, unless you choose a replacement. An existing file can pin earlier defaults; delete the corresponding role lines to adopt the current Codex defaults. Setup drops retired role lines and reports them before writing.
 
-Set a role to `inherit-parent` or `auto` and pstack omits model and reasoning overrides, so the subagent inherits your parent chat configuration. Both values mean the same thing, and neither is a model slug. Candidate panels run one subagent per configured entry. Conditional judgment and review roles select one effective assignment for the task. Setup also configures `swarm workers`, which default to Luna 6 unless a race names a model for each arm.
+Set a role to `inherit-parent` or `auto` and pstack omits model and reasoning overrides, so the subagent inherits your parent chat configuration. Both values mean the same thing, and neither is a model slug. Candidate panels run one subagent per configured entry. Conditional judgment and review roles select one effective assignment for the task. Setup also configures `swarm workers`, which default to Sol 6.1 at medium reasoning unless a race names a model for each arm.
 
 ## Accept the verification offers, or don't
 
