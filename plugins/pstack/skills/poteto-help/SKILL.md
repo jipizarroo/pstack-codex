@@ -90,7 +90,7 @@ The default answer is `$poteto-mode`, which runs most of the others when its ste
 | Build a page over an existing Codex endpoint or the bundled loopback bridge | [`$make-bot-ui`](../make-bot-ui/SKILL.md) |
 | Find their way around pstack | `$poteto-help` |
 | Check that the agent understood their goal and the problem before it starts | [`$in-your-own-words`](../in-your-own-words/SKILL.md) |
-| Aim a task higher before starting: more expert, more outcome-focused, not overspecified | [`$sharpen`](../sharpen/SKILL.md) |
+| Get a prompt rewritten deeper, not bigger, before sending it: what a top professional would add, their raw material and methods, and an outside check. It returns the prompt and doesn't do the task | [`$sharpen`](../sharpen/SKILL.md) |
 | Formally verify a race, invariant, or other property that tests rarely reach | [`$create-formal-verification-skill`](../create-formal-verification-skill/SKILL.md) |
 | Bring a formal verification back in line after the code it covers changed, and learn whether a failure is drift or a bug | [`$maintain-formal-verification-skill`](../maintain-formal-verification-skill/SKILL.md) |
 

@@ -1,7 +1,7 @@
 [
   {
     "path": ".cursor-plugin/plugin.json",
-    "blob": "7754f381a8845086604cc3d98f2a696619b4cd12"
+    "blob": "fe3321bdc728fe8dbd74c925e9913c4954450ecc"
   },
   {
     "path": ".gitignore",
@@ -13,7 +13,7 @@
   },
   {
     "path": "README.md",
-    "blob": "8d350cc17cde60942ecac373c8189c38169c77eb"
+    "blob": "9fde3a06f75245313b7e257de5603e2fbe721368"
   },
   {
     "path": "agents/comment-sicko.md",
@@ -81,7 +81,7 @@
   },
   {
     "path": "docs/guide/02-poteto-mode.md",
-    "blob": "db16b5e95bf505ffaf20863f1f50502e3919caec"
+    "blob": "89c594b3eb4fe53ef4a6b12a93e29dfde0bd337a"
   },
   {
     "path": "docs/guide/03-understand.md",
@@ -113,7 +113,7 @@
   },
   {
     "path": "docs/guide/10-recipes-and-pitfalls.md",
-    "blob": "fb4743c29011d9668cb1ba35249721a0dbed8443"
+    "blob": "4569129baf6acee770f11f57b94629d82a41c6bd"
   },
   {
     "path": "docs/guide/README.md",
@@ -149,7 +149,7 @@
   },
   {
     "path": "plugin.json",
-    "blob": "333c7394290e75e45109041b67d80c461465a80f"
+    "blob": "2b28f689ca144500269499dd0d4ca5ab01891bf4"
   },
   {
     "path": "skills/architect/SKILL.md",
@@ -273,7 +273,7 @@
   },
   {
     "path": "skills/poteto-help/SKILL.md",
-    "blob": "5ce3a74d89e71a4672f5b0ad27a4d47a74177989"
+    "blob": "3eb02a5bf3ff08e23cf2afc870faa7d674a46459"
   },
   {
     "path": "skills/poteto-help/references/prompting.md",
@@ -281,7 +281,7 @@
   },
   {
     "path": "skills/poteto-help/references/recipes.md",
-    "blob": "c4f60466ca6d022e403042c9458dde68e8a79f92"
+    "blob": "048e0750451aa801a4cf7ed59fa9ed4624c0f1ec"
   },
   {
     "path": "skills/poteto-mode/SKILL.md",
@@ -593,7 +593,7 @@
   },
   {
     "path": "skills/sharpen/SKILL.md",
-    "blob": "c1cfebe409b2e9d20ae96d14d71d8f2d9d360ecb"
+    "blob": "5b4a7b104e709f8cded1726541be42431c334164"
   },
   {
     "path": "skills/show-me-your-work/SKILL.md",

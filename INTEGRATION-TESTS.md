@@ -3,6 +3,15 @@
 These results distinguish real host/service tests from local fixture coverage.
 They do not certify arbitrary production repositories or connected services.
 
+## Observed on 2026-10-20 (America/Los_Angeles)
+
+Ported upstream 0.15.29: `$sharpen` now rewrites a prompt without executing the task, with matching help and guide text.
+
+- Package validation passed for 58 skills and all 172 upstream files; documentation checks passed.
+- 27 Node tests passed, with two optional host tests skipped. All 68 Bun tests and TypeScript checks passed. Three Bun tests timed out at the default five seconds on the first run; the complete Bun suite passed with a 30-second per-test limit.
+- The quality delta reported no regressions. The graph test gate identified only documentation headings without test links; documentation checks cover those links, not model behavior.
+- This run did not validate model-driven prompt rewriting in a fresh Codex task or live external integrations.
+
 ## Observed on 2026-10-19 (America/Los_Angeles)
 
 Ported upstream 0.15.28 at `d457567` into the Codex source checkout.
