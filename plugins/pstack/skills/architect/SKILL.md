@@ -29,7 +29,7 @@ Skip Phase A only when the work is genuinely greenfield with no surrounding syst
 
 Run the **arena** skill with the design-sketch task and the Phase A grounding artifacts. Pass `references/runner-prompt.md` as each runner's prompt.
 
-Take the `architect runners` line from `~/.codex/pstack-models.md` in place of Arena's `arena runners` line. Missing lines use `gpt-6-astra @ xhigh` only. Alias and unavailable entries follow the runner rules in Arena Phase A. With one configured model, use it for each structural candidate; do not add Sol or Luna to create model diversity.
+Take the `architect runners` line from `~/.codex/pstack-models.md` in place of Arena's `arena runners` line. Missing lines use `gpt-6-astra @ xhigh` only. Alias and unavailable entries follow the runner rules in Arena Phase A. With one configured model, use it for each structural candidate; do not add other models to create model diversity.
 
 Design it twice. Require at least two structurally distinct candidates before synthesis, even when the first looks sufficient. This is the **exhaust-the-design-space** principle skill made concrete. Whole-shape alternatives, not point fixes inside one shape.
 

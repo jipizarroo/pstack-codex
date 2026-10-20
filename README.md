@@ -4,7 +4,7 @@ A Codex-native adaptation of [Lauren Tan's pstack](https://github.com/cursor/plu
 
 This fork tracks [ScriptedAlchemy's Codex port](https://github.com/ScriptedAlchemy/pstack-codex), maintains its own model-role defaults, and labels every skill `pstack-…` in the skill picker. Type `$pstack` to browse them.
 
-Code and Swarm use Luna 6. How, Why, tooling and ordinary judgment/review use Sol 6.1. Difficult judgment/review selects the `hardest tasks` assignment, Astra 6 by default, with one model per task and no added diversity reviewers. Arena candidates use Astra plus Sol; Architect candidates use Astra only. See [model selection](plugins/pstack/CODEX.md#model-selection) and [`setup-pstack`](plugins/pstack/skills/setup-pstack/SKILL.md) for the full role table and overrides.
+Code and Swarm use Sol 6.1 at medium reasoning. How, Why, tooling and ordinary judgment/review use Sol 6.1. Difficult judgment/review selects the `hardest tasks` assignment, Astra 6 by default, with one model per task and no added diversity reviewers. Arena candidates use Astra plus Sol; Architect candidates use Astra only. See [model selection](plugins/pstack/CODEX.md#model-selection) and [`setup-pstack`](plugins/pstack/skills/setup-pstack/SKILL.md) for the full role table and overrides.
 
 The plugin lives in `plugins/pstack`; `.agents/plugins/marketplace.json` makes this repository a native Codex marketplace. Read the [runtime contract](plugins/pstack/CODEX.md), [port coverage and runtime boundaries](PARITY.md), and [per-file source coverage](FILE-COVERAGE.md). Tool availability depends on the Codex host, permissions, and connected integrations. No credentials are bundled.
 
