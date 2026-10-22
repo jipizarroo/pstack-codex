@@ -1,13 +1,13 @@
 # Port coverage and runtime boundaries
 
-This is a workflow port, not an emulation of Cursor's runtime. All 172 files in
+This is a workflow port, not an emulation of Cursor's runtime. All 184 files in
 the pinned upstream snapshot have a retained, adapted, or explicitly replaced
 counterpart. Run `python3 scripts/parity.py --report` for the per-file inventory.
 File coverage alone does not prove behavioral equivalence.
 
 | Upstream feature | Codex implementation | Boundary |
 |---|---|---|
-| 56 upstream skills, 2 Codex additions, and 23 playbooks | Native skills, relative resources, shared `CODEX.md` runtime contract | Invocation uses `$skill-name`; routed explicit-only skills are read directly |
+| 57 upstream skills, 2 Codex additions, and 23 playbooks | Native skills, relative resources, shared `CODEX.md` runtime contract | Invocation uses `$skill-name`; routed explicit-only skills are read directly |
 | Engineering principles | All 24 principle skills retained | Applied when the routing workflow calls for them |
 | poteto-agent and Comment Sicko | Bundled persona instructions; optional custom-agent TOML | Named-agent registration is optional, not automatic plugin discovery |
 | Role-based models and panels | Host-validated model/effort preferences; inheritance fallback | Model availability and concurrent capacity depend on the host; panels run in waves |
@@ -52,3 +52,5 @@ The 0.15.25 workflows add `$sharpen` and `$in-your-own-words`, shorter visual `$
 The original's Agent Plugins v1 manifest and Cursor manifest both map to the single native Codex manifest. Its new [Claude Code adapter](plugins/pstack/docs/harness/claude-code.md) is retained as a source reference; the generated Claude tree is not distributed or activated by this marketplace.
 
 The 0.15.28 port adds explicit create/maintain formal-verification skills and an optional setup offer. TLA+ is the default for ordering models; generated-input fallback is reported as empirical evidence. Ketchup retains every pending decision even when the reply grows. Sharpen follows the relaxed upstream prompt-output rule. Claude Code remains a documented source reference.
+
+The 0.15.30 port adds the explicit Statechart skill with its original Node scripts and fixtures. TLC requires Java 11+ and a `TLA2TOOLS` path to tla2tools.jar; PNG output additionally requires Mermaid CLI and its browser runtime. These external tools are not activated by installing the plugin. Sharpen now returns a rewritten prompt without executing the task.

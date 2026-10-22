@@ -1,7 +1,7 @@
 [
   {
     "path": ".cursor-plugin/plugin.json",
-    "blob": "7754f381a8845086604cc3d98f2a696619b4cd12"
+    "blob": "a38e69da5fa5391e1d34dc847f70283635546cca"
   },
   {
     "path": ".gitignore",
@@ -13,7 +13,7 @@
   },
   {
     "path": "README.md",
-    "blob": "8d350cc17cde60942ecac373c8189c38169c77eb"
+    "blob": "7a8939e2b849eba3cd9ae33f756099589e34b229"
   },
   {
     "path": "agents/comment-sicko.md",
@@ -81,7 +81,7 @@
   },
   {
     "path": "docs/guide/02-poteto-mode.md",
-    "blob": "db16b5e95bf505ffaf20863f1f50502e3919caec"
+    "blob": "89c594b3eb4fe53ef4a6b12a93e29dfde0bd337a"
   },
   {
     "path": "docs/guide/03-understand.md",
@@ -97,7 +97,7 @@
   },
   {
     "path": "docs/guide/06-verify-and-ship.md",
-    "blob": "3c7b3c4dd0a256165f308f051b7125b9c5b37b62"
+    "blob": "c432012d22cb1e8ba43e40163e119880518a68d3"
   },
   {
     "path": "docs/guide/07-overnight.md",
@@ -113,7 +113,7 @@
   },
   {
     "path": "docs/guide/10-recipes-and-pitfalls.md",
-    "blob": "fb4743c29011d9668cb1ba35249721a0dbed8443"
+    "blob": "4569129baf6acee770f11f57b94629d82a41c6bd"
   },
   {
     "path": "docs/guide/README.md",
@@ -149,7 +149,7 @@
   },
   {
     "path": "plugin.json",
-    "blob": "333c7394290e75e45109041b67d80c461465a80f"
+    "blob": "4c391850298b5d56040585e64691068c04415699"
   },
   {
     "path": "skills/architect/SKILL.md",
@@ -273,7 +273,7 @@
   },
   {
     "path": "skills/poteto-help/SKILL.md",
-    "blob": "5ce3a74d89e71a4672f5b0ad27a4d47a74177989"
+    "blob": "bf430fcd520e94748f1e1dbf93f6799e803d747a"
   },
   {
     "path": "skills/poteto-help/references/prompting.md",
@@ -281,7 +281,7 @@
   },
   {
     "path": "skills/poteto-help/references/recipes.md",
-    "blob": "c4f60466ca6d022e403042c9458dde68e8a79f92"
+    "blob": "048e0750451aa801a4cf7ed59fa9ed4624c0f1ec"
   },
   {
     "path": "skills/poteto-mode/SKILL.md",
@@ -593,7 +593,7 @@
   },
   {
     "path": "skills/sharpen/SKILL.md",
-    "blob": "c1cfebe409b2e9d20ae96d14d71d8f2d9d360ecb"
+    "blob": "5b4a7b104e709f8cded1726541be42431c334164"
   },
   {
     "path": "skills/show-me-your-work/SKILL.md",
@@ -606,6 +606,54 @@
   {
     "path": "skills/show-me-your-work/scripts/log.sh",
     "blob": "052e53b7e1090579eaec1d3d59f7a1cd2f2e452a"
+  },
+  {
+    "path": "skills/statechart/SKILL.md",
+    "blob": "1693be3b30d5d457e178a0da8da93c6d311b06b3"
+  },
+  {
+    "path": "skills/statechart/scripts/chart-to-tla.mjs",
+    "blob": "7dfa337d2426e1b9f86e727e2602382b6fd2d5d1"
+  },
+  {
+    "path": "skills/statechart/scripts/compare-charts.mjs",
+    "blob": "587125a9ff266e33c6c65490785ed59b969b7bb1"
+  },
+  {
+    "path": "skills/statechart/scripts/lib.mjs",
+    "blob": "cf72d5cd115b95f545a35b08108bf0134e5718fd"
+  },
+  {
+    "path": "skills/statechart/scripts/model/OutputFolder.cfg",
+    "blob": "68fd715a87e70ec30a433d45d1ad468db1672912"
+  },
+  {
+    "path": "skills/statechart/scripts/model/OutputFolder.map.mjs",
+    "blob": "9618338f6620e30d812c35b8ab4df605d4f71259"
+  },
+  {
+    "path": "skills/statechart/scripts/model/OutputFolder.tla",
+    "blob": "7765babcbb44a83ec14b7b8185bf531e71eac5d6"
+  },
+  {
+    "path": "skills/statechart/scripts/statechart.mjs",
+    "blob": "6e2ebfccdafff7900016b5cf2ed5384c84181545"
+  },
+  {
+    "path": "skills/statechart/scripts/test/statechart.test.mjs",
+    "blob": "a90c7e4a3a7993dc787d9963ab7ba7bc3240e1a8"
+  },
+  {
+    "path": "skills/statechart/scripts/test/sync.mmd",
+    "blob": "c780c2e4336925b66e79c2bd107c045c69e54355"
+  },
+  {
+    "path": "skills/statechart/scripts/test/upload.mmd",
+    "blob": "dcfafa73793e4475427a6897466debd40c4e3f8f"
+  },
+  {
+    "path": "skills/statechart/scripts/tlc-to-chart.mjs",
+    "blob": "ccb68fd7b549171afea2d8035f495985a2d859d1"
   },
   {
     "path": "skills/swarm/SKILL.md",
