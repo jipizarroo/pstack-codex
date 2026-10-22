@@ -3,6 +3,14 @@
 These results distinguish real host/service tests from local fixture coverage.
 They do not certify arbitrary production repositories or connected services.
 
+## Observed on 2026-10-22 (America/Santiago), Pstack 0.15.30
+
+- Package preflight passed for 59 skills and all 184 original source counterparts. The 59 `pstack-` display labels are unique; all 212 links in the affected Markdown files resolve. The 11 Statechart support files and fixtures match the pinned original byte for byte.
+- The default Statechart run passed 27 tests and skipped 31 that require TLC. The documented installed-relative `statechart.mjs --help` command passed. Two review rounds resolved an entrypoint path typo and found no remaining material integration or documentation issues.
+- An optional run with temporary Temurin Java 17 and TLC v1.7.4 was stopped after approximately 16 minutes. Its partial report has 52 passed, three failed, one skipped and one cancelled test; the final test did not run. This is not a passing full TLC suite.
+- The three observed failures are in unchanged original fixtures: the killed-Node test tries to kill an already-finished process group (`ESRCH`); the rename-failure fixture uses Linux `LD_PRELOAD`, which does not inject the intended fault on macOS; and the temp-isolation assertion compares `/var` with Java's canonical `/private/var` path. No fixes to these original fixtures or broader portability claims are included in this update.
+- The local model file remains byte-identical. Bundled model defaults, runtime contract, existing production helpers and the original PR-query default are unchanged. Temporary Java/TLC tools were used only for validation; no global JVM was installed. The update does not establish that any application property was formally proved or that real PNG rendering works.
+
 ## Observed on 2026-10-19 (America/Santiago), Codex revision 202610190002
 
 - Code/refactoring, bug-fix, performance, hillclimb and Swarm now default to `gpt-6.1-sol @ medium`. The local override and bundled table agree across all 17 roles; exactly those five assignments changed, preserving the other 12 roles and the user's selection policy.

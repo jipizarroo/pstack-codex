@@ -116,7 +116,7 @@ $interrogate review this pr.
 |---|---|
 | [`$poteto-help`](./skills/poteto-help/SKILL.md) | you want setup help, a skill choice, or a prompt for your task. |
 | [`$in-your-own-words`](./skills/in-your-own-words/SKILL.md) | you want the agent to play back your goal and the problem before it starts. runs only when explicitly invoked. |
-| [`$sharpen`](./skills/sharpen/SKILL.md) | you want a task approached as a top expert would, aimed at your actual goal without deciding your choices for you. |
+| [`$sharpen`](./skills/sharpen/SKILL.md) | you want a prompt made deeper, not bigger, with an expert approach, raw sources, methods and an outside check. returns the rewritten prompt, leaves your choices open and does not execute the task. runs only when explicitly invoked. |
 | [`$correct`](./skills/correct/SKILL.md) | you want repeated agent mistakes prevented through architecture, types, checks, or tests. |
 | [`$benchmark-checklist`](./skills/benchmark-checklist/SKILL.md) | you need to vet a measured performance number before acting on it. |
 | [`$poteto-mode`](./skills/poteto-mode/SKILL.md) | default entry point for any non-trivial task. |
@@ -145,6 +145,7 @@ $interrogate review this pr.
 | [`$maintain-verification-skill`](./skills/maintain-verification-skill/SKILL.md) | your verify skill's feature map has drifted from the app. source wave + one live pass, at most one PR of proven corrections. |
 | [`$create-formal-verification-skill`](./skills/create-formal-verification-skill/SKILL.md) | tests can't reach the case that breaks a race, retry, state machine, parser, or unsafe code. verifies one property with the tool that fits and generates a project-local skill to recheck it on every change. |
 | [`$maintain-formal-verification-skill`](./skills/maintain-formal-verification-skill/SKILL.md) | code your formal verification covers has changed since it was last checked. updates the model, harness, or properties to match the code, reruns, and says whether each failure is drift in the verification or a bug in the code. |
+| [`$statechart`](./skills/statechart/SKILL.md) | someone who owns the behavior needs to see it, not read a spec. draws what the user sees as a mermaid statechart generated from a tla+ model, marks each state works, still wrong, or fixed by your open pr, and draws each bug tlc finds as a numbered path. also turns an agreed chart into a tla+ skeleton, or audits the code against an existing spec. |
 | [`$unslop`](./skills/unslop/SKILL.md) | you're cleaning up writing. removes AI tells. |
 | [`$bro`](./skills/bro/SKILL.md) | you want the last message restated in plain human language, no jargon. |
 | [`$technical-writing`](./skills/technical-writing/SKILL.md) | layered doc standard (Diátaxis + Google developer style + STE + Global English) for docs, RFCs, readmes, PR descriptions, commit messages. |

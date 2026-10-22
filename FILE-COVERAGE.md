@@ -1,6 +1,6 @@
 # Upstream file coverage
 
-Pinned source: `ddf824aff1e55ba14bd666b30bce3fc69962abe6`.
+Pinned source: `eb4db2b55b2b7dec3d9282754cddf0a56bf4ff10`.
 
 Every source file is checked; content adaptation is not a claim of tested runtime equivalence.
 
@@ -47,7 +47,7 @@ Every source file is checked; content adaptation is not a claim of tested runtim
 | `skills/architect/SKILL.md` | `plugins/pstack/skills/architect/SKILL.md` | adapted |
 | `skills/architect/references/design-red-flags.md` | `plugins/pstack/skills/architect/references/design-red-flags.md` | retained verbatim |
 | `skills/architect/references/rationale-template.md` | `plugins/pstack/skills/architect/references/rationale-template.md` | retained verbatim |
-| `skills/architect/references/runner-prompt.md` | `plugins/pstack/skills/architect/references/runner-prompt.md` | retained verbatim |
+| `skills/architect/references/runner-prompt.md` | `plugins/pstack/skills/architect/references/runner-prompt.md` | adapted |
 | `skills/arena/SKILL.md` | `plugins/pstack/skills/arena/SKILL.md` | adapted |
 | `skills/automate-me/SKILL.md` | `plugins/pstack/skills/automate-me/SKILL.md` | adapted |
 | `skills/benchmark-checklist/SKILL.md` | `plugins/pstack/skills/benchmark-checklist/SKILL.md` | adapted |
@@ -158,6 +158,18 @@ Every source file is checked; content adaptation is not a claim of tested runtim
 | `skills/show-me-your-work/SKILL.md` | `plugins/pstack/skills/show-me-your-work/SKILL.md` | adapted |
 | `skills/show-me-your-work/references/decision-log-template.tsv` | `plugins/pstack/skills/show-me-your-work/references/decision-log-template.tsv` | retained verbatim |
 | `skills/show-me-your-work/scripts/log.sh` | `plugins/pstack/skills/show-me-your-work/scripts/log.sh` | retained verbatim |
+| `skills/statechart/SKILL.md` | `plugins/pstack/skills/statechart/SKILL.md` | adapted |
+| `skills/statechart/scripts/chart-to-tla.mjs` | `plugins/pstack/skills/statechart/scripts/chart-to-tla.mjs` | retained verbatim |
+| `skills/statechart/scripts/compare-charts.mjs` | `plugins/pstack/skills/statechart/scripts/compare-charts.mjs` | retained verbatim |
+| `skills/statechart/scripts/lib.mjs` | `plugins/pstack/skills/statechart/scripts/lib.mjs` | retained verbatim |
+| `skills/statechart/scripts/model/OutputFolder.cfg` | `plugins/pstack/skills/statechart/scripts/model/OutputFolder.cfg` | retained verbatim |
+| `skills/statechart/scripts/model/OutputFolder.map.mjs` | `plugins/pstack/skills/statechart/scripts/model/OutputFolder.map.mjs` | retained verbatim |
+| `skills/statechart/scripts/model/OutputFolder.tla` | `plugins/pstack/skills/statechart/scripts/model/OutputFolder.tla` | retained verbatim |
+| `skills/statechart/scripts/statechart.mjs` | `plugins/pstack/skills/statechart/scripts/statechart.mjs` | retained verbatim |
+| `skills/statechart/scripts/test/statechart.test.mjs` | `plugins/pstack/skills/statechart/scripts/test/statechart.test.mjs` | retained verbatim |
+| `skills/statechart/scripts/test/sync.mmd` | `plugins/pstack/skills/statechart/scripts/test/sync.mmd` | retained verbatim |
+| `skills/statechart/scripts/test/upload.mmd` | `plugins/pstack/skills/statechart/scripts/test/upload.mmd` | retained verbatim |
+| `skills/statechart/scripts/tlc-to-chart.mjs` | `plugins/pstack/skills/statechart/scripts/tlc-to-chart.mjs` | retained verbatim |
 | `skills/swarm/SKILL.md` | `plugins/pstack/skills/swarm/SKILL.md` | adapted |
 | `skills/tdd/SKILL.md` | `plugins/pstack/skills/tdd/SKILL.md` | adapted |
 | `skills/teach/SKILL.md` | `plugins/pstack/skills/teach/SKILL.md` | adapted |
