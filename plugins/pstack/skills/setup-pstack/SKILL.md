@@ -59,7 +59,7 @@ reflect judgment, divergent, synthesizer: gpt-6.1-sol @ xhigh
 arena runners: gpt-6-astra @ xhigh, gpt-6.1-sol @ xhigh
 arena cross-judge pool: gpt-6.1-sol @ xhigh
 swarm workers: gpt-6.1-sol @ medium
-architect runners: gpt-6-astra @ xhigh
+architect runners: gpt-6.1-sol @ xhigh
 interrogate reviewers: gpt-6.1-sol @ xhigh
 ```
 

@@ -32,7 +32,7 @@ two steps:
 
 new here? the [pstack guide](./docs/guide/README.md) walks you through a first real task, from setup and prompting through verification and overnight runs. stuck, or unsure which skill fits? ask [`$poteto-help`](./skills/poteto-help/SKILL.md).
 
-that's it. the other skills are situational, and the mode skill uses them as needed. code and swarm workers default to Sol 6.1 at medium reasoning; how, why, tooling, prose, judgment, and routine reviews use Sol 6.1. a concretely difficult task selects Astra 6 instead, one model per invocation. arena runs both Astra 6 and Sol 6.1 candidates; architect uses Astra 6 only, with at least two structurally distinct candidates on that model. [`$setup-pstack`](./skills/setup-pstack/SKILL.md) configures the roles. [The Codex runtime contract](CODEX.md#model-selection) defines selection, effort, and host limitations; extra reviewers are not added for model diversity.
+that's it. the other skills are situational, and the mode skill uses them as needed. code and swarm workers default to Sol 6.1 at medium reasoning; how, why, tooling, prose, judgment, and routine reviews use Sol 6.1. a concretely difficult task selects Astra 6 instead, one model per invocation. arena runs both Astra 6 and Sol 6.1 candidates; architect uses Sol 6.1 at xhigh reasoning, with at least two structurally distinct candidates on that model. [`$setup-pstack`](./skills/setup-pstack/SKILL.md) configures the roles. [The Codex runtime contract](CODEX.md#model-selection) defines selection, effort, and host limitations; extra reviewers are not added for model diversity.
 
 ## usage
 

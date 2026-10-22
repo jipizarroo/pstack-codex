@@ -12,7 +12,7 @@ The two most common design mistakes are taking the agent's first design and poli
 $architect design the import pipeline before writing any code. i care most about how callers use it.
 ```
 
-[`$architect`](../../skills/architect/SKILL.md) grounds itself first, running `$how` over the code the design touches and `$why` when it moves ownership or layers. It uses the Arena comparison process with Architect's own runner pool: Astra 6 only, with at least two structurally distinct candidates on that model. Each sketch starts with the caller's usage, followed by types, signatures, and a module map.
+[`$architect`](../../skills/architect/SKILL.md) grounds itself first, running `$how` over the code the design touches and `$why` when it moves ownership or layers. It uses the Arena comparison process with Architect's own runner pool: Sol 6.1 at xhigh reasoning, with at least two structurally distinct candidates on that model. Each sketch starts with the caller's usage, followed by types, signatures, and a module map.
 
 By default it proceeds straight from the synthesized design into implementation. If you want to see the design first, say so:
 
