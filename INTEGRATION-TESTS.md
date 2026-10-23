@@ -3,6 +3,17 @@
 These results distinguish real host/service tests from local fixture coverage.
 They do not certify arbitrary production repositories or connected services.
 
+## Observed on 2026-10-23 (America/Los_Angeles)
+
+Ported upstream 0.15.32 at `e73df471cd4bd918367e99f3dd9c51bd53ddf5f0` using the pstack-only update procedure. Added Codex entrypoints for `$statechart` and `$ketchup-video`, and reconciled all upstream changes since 0.15.29.
+
+- Package validation covers 60 skills and all 200 upstream files. Documentation checks resolve 258 relative links and name all 36 commands in the guide. Both new skill entrypoints pass skill-creator validation.
+- 28 Node helper tests pass; two optional host tests remain skipped. This includes native and simulated GNU timestamp handling with spaced session paths, exact workspace ownership, and the cached-ref-only audit.
+- All 82 Bun tests and TypeScript checks pass. The initial run hit subprocess/test deadlines under concurrent setup load; the complete suite passed on retry with a 30-second per-test limit.
+- Statechart validation used TLC 1.7.4 (checksum verified), Java 25, and the pinned Pele/resvg renderer. Across the full run and targeted reruns, 140 distinct cases passed. Ten cases require unavailable mise, font, or Linux facilities and remain skipped. The initial run exposed macOS temporary-path aliases in fixture assertions and Linux-only `LD_PRELOAD` tests; fixtures now canonicalize paths and gate the preload tests by platform. All 13 path-related failures passed on rerun.
+- The statechart renderer produced a PNG from the bundled upload chart, and the output was visually inspected.
+- This is source-package and local-helper validation. No fresh Codex installation, model-driven video generation, live forge mutation, or scheduled service delivery was tested. The maintainer/team additions are unchanged.
+
 ## Observed on 2026-10-20 (America/Los_Angeles)
 
 Ported upstream 0.15.29: `$sharpen` now rewrites a prompt without executing the task, with matching help and guide text.

@@ -48,7 +48,9 @@ after installing the Bun helper dependencies below. The bot UI ships a tested
 loopback HTTP-to-Codex bridge, and Benny ships a tested durable polling ledger;
 neither starts automatically on installation.
 
-Helper-script tests require Bun:
+Helper-script tests require Bun and Node 22.15 or later. The statechart suite also exercises TLC/Java and Pele PNG rendering when their dependencies are available; unavailable optional dependencies are reported as skipped tests. Run `node plugins/pstack/skills/statechart/scripts/statechart.mjs --help` for setup, including `TLA2TOOLS` and `JAVA` overrides. Rendering downloads pinned npm packages into the user cache, outside the plugin.
+
+Install the Bun test dependencies:
 
 ```sh
 cd plugins/pstack/skills/poteto-mode/scripts
@@ -76,4 +78,4 @@ The audit fetches upstream Git objects and prints pstack-only changes since the 
 
 ## License and attribution
 
-MIT. Original pstack copyright © 2026 Lauren Tan; original license is retained in [LICENSE](LICENSE) and the plugin. Codex adaptation changes are distributed under the same license. Upstream version: 0.15.29, source commit `190d28736eff128ec94f502a22c7fe0c4b56cd37`.
+MIT. Original pstack copyright © 2026 Lauren Tan; original license is retained in [LICENSE](LICENSE) and the plugin. Codex adaptation changes are distributed under the same license. Upstream version: 0.15.32, source commit `e73df471cd4bd918367e99f3dd9c51bd53ddf5f0`.

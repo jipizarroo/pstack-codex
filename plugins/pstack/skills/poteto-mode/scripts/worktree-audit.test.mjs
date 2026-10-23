@@ -7,12 +7,27 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const audit = fileURLToPath(new URL('./worktree-audit.sh', import.meta.url));
-test('audit preserves spaced paths, scopes session metadata, and holds unpreserved work', () => {
+for (const timestamps of ['native', 'gnu']) test(`audit preserves spaced paths, scopes session metadata, and holds unpreserved work (${timestamps} timestamps)`, () => {
   const fixture = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'pstack audit ')));
   const repo = path.join(fixture, 'main repo');
   const home = path.join(fixture, 'home');
   const bin = path.join(fixture, 'bin');
   fs.mkdirSync(repo); fs.mkdirSync(bin); fs.mkdirSync(home);
+  if (timestamps === 'gnu') {
+    fs.writeFileSync(path.join(bin, 'stat'), `#!${process.execPath}
+const fs = require('node:fs');
+const args = process.argv.slice(2);
+if (args[0] === '-f') { console.log('File system status'); process.exit(0); }
+if (args[0] !== '-c' || args[1] !== '%Y') process.exit(1);
+console.log(Math.floor(fs.statSync(args[2]).mtimeMs / 1000));
+`, {mode:0o755});
+    fs.writeFileSync(path.join(bin, 'date'), `#!${process.execPath}
+const args = process.argv.slice(2);
+if (args[0] === '+%s') console.log(Math.floor(Date.now() / 1000));
+else if (args[0] === '-d' && args[1].startsWith('@')) console.log(new Date(Number(args[1].slice(1)) * 1000).toISOString().slice(0, 10));
+else process.exit(1);
+`, {mode:0o755});
+  }
   const env = {...process.env, HOME:home, PATH:`${bin}:${process.env.PATH}`, GIT_CONFIG_NOSYSTEM:'1'};
   const git = (...args) => execFileSync('git', ['-C',repo,...args], {env,encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim();
   try {

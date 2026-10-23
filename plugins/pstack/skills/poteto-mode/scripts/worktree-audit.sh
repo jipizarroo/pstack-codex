@@ -42,6 +42,13 @@ fi
 # Revalidate the base and candidate before deletion.
 git rev-parse --verify --quiet "$base^{commit}" >/dev/null 2>&1 || { echo "error: base ref not found: $base" >&2; exit 1; }
 
+# Select GNU or BSD timestamp flags once; GNU stat -f can print filesystem data.
+if stat -c %Y / >/dev/null 2>&1; then
+	stat_fmt=(-c '%Y'); fmt_day() { date -d "@$1" '+%Y-%m-%d'; }
+else
+	stat_fmt=(-f '%m'); fmt_day() { date -r "$1" '+%Y-%m-%d'; }
+fi
+
 # PR state by branch, fetched once as [{number, state, head}] with a lowercase
 # state. Origin when its CLI can read this repo's PRs, otherwise gh. Empty when
 # neither can.
@@ -103,11 +110,11 @@ git worktree list --porcelain -z | while IFS= read -r -d '' record; do
 	if [ -d "$transcripts" ]; then
 		while IFS= read -r -d '' transcript; do
 			if head -n 1 "$transcript" | jq -e --arg wt "$wt" '.type == "session_meta" and .payload.cwd == $wt' >/dev/null 2>&1; then
-				stamp=$(stat -f '%m' "$transcript" 2>/dev/null || stat -c '%Y' "$transcript" 2>/dev/null)
+				stamp=$(stat "${stat_fmt[@]}" "$transcript" 2>/dev/null)
 				if [ "$stamp" -gt "$last_ts" ] 2>/dev/null; then last_ts=$stamp; fi
 			fi
 		done < <(rg --files --hidden -0 -g '*.jsonl' "$transcripts" 2>/dev/null)
-		if [ "$last_ts" -gt 0 ]; then last=$(date -r "$last_ts" '+%Y-%m-%d' 2>/dev/null || date -d "@$last_ts" '+%Y-%m-%d' 2>/dev/null); fi
+		if [ "$last_ts" -gt 0 ]; then last=$(fmt_day "$last_ts" 2>/dev/null); fi
 	fi
 	recent=$([ "$last_ts" -gt 0 ] 2>/dev/null && [ $(( (now - last_ts) / 86400 )) -le 4 ] && echo yes || echo no)
 

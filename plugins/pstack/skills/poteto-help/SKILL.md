@@ -67,6 +67,7 @@ The default answer is `$poteto-mode`, which runs most of the others when its ste
 | Understand a change or subsystem, explained plainly | [`$teach`](../teach/SKILL.md) |
 | Catch up on their own recent work on a topic | [`$recall`](../recall/SKILL.md) |
 | Catch up on this chat and pending decisions | [`$ketchup`](../ketchup/SKILL.md) |
+| Catch up like `$ketchup`, in a short silent video of slides, with the waiting calls as text under it | [`$ketchup-video`](../ketchup-video/SKILL.md) |
 | Know what a small diff could break outside itself | [`$blast-radius`](../blast-radius/SKILL.md) |
 | Settle types and module shape before code that crosses a function boundary | [`$architect`](../architect/SKILL.md) |
 | Get several attempts at one brief, merged into the best one | [`$arena`](../arena/SKILL.md) |
@@ -93,6 +94,7 @@ The default answer is `$poteto-mode`, which runs most of the others when its ste
 | Get a prompt rewritten deeper, not bigger, before sending it: what a top professional would add, their raw material and methods, and an outside check. It returns the prompt and doesn't do the task | [`$sharpen`](../sharpen/SKILL.md) |
 | Formally verify a race, invariant, or other property that tests rarely reach | [`$create-formal-verification-skill`](../create-formal-verification-skill/SKILL.md) |
 | Bring a formal verification back in line after the code it covers changed, and learn whether a failure is drift or a bug | [`$maintain-formal-verification-skill`](../maintain-formal-verification-skill/SKILL.md) |
+| Show a PM or designer what the user sees as a chart checked by a model, with each bug drawn as a numbered path, turn an agreed chart into a TLA+ skeleton, or audit the code against its TLA+ spec | [`$statechart`](../statechart/SKILL.md) |
 
 If a skill directory next to this one is missing from the table, read its frontmatter and route by its description. The `principle-*` directories are covered under principles below.
 

@@ -1,13 +1,13 @@
 # Port coverage and runtime boundaries
 
-This is a workflow port, not an emulation of Cursor's runtime. All 172 files in
+This is a workflow port, not an emulation of Cursor's runtime. All 200 files in
 the pinned upstream snapshot have a retained, adapted, or explicitly replaced
 counterpart. Run `python3 scripts/parity.py --report` for the per-file inventory.
 File coverage alone does not prove behavioral equivalence.
 
 | Upstream feature | Codex implementation | Boundary |
 |---|---|---|
-| 56 upstream skills, 2 Codex additions, and 23 playbooks | Native skills, relative resources, shared `CODEX.md` runtime contract | Invocation uses `$skill-name`; routed explicit-only skills are read directly |
+| 58 upstream skills, 2 Codex additions, and 23 playbooks | Native skills, relative resources, shared `CODEX.md` runtime contract | Invocation uses `$skill-name`; routed explicit-only skills are read directly |
 | Engineering principles | All 24 principle skills retained | Applied when the routing workflow calls for them |
 | poteto-agent and Comment Sicko | Bundled persona instructions; optional custom-agent TOML | Named-agent registration is optional, not automatic plugin discovery |
 | Role-based models and panels | Host-validated model/effort preferences; inheritance fallback | Model availability and concurrent capacity depend on the host; panels run in waves |
@@ -50,3 +50,5 @@ The 0.15.17 port adds `$ketchup`, distills prompts and evidence frameworks, and 
 The 0.15.28 port adds `in-your-own-words`, `sharpen`, and the formal verification generator and maintenance skills. It brings upstream's PR review pagination, fenced-plan checks, forge-based stack discovery, and default-branch worktree audits. The audit still reads cached refs only and holds untracked or unpreserved work. Codex's native manifest replaces both upstream manifests, and `CODEX.md` replaces the Claude harness adapter; this repo does not package the separate generated Claude distribution. Effort tuning uses supported Codex fields without fabricating model slugs or speed controls. Custom maintainer/team skills and their resources remain unchanged.
 
 The 0.15.29 port changes `$sharpen` to return a rewritten prompt without executing the task, and updates its guide and help entries. It preserves explicit-only Codex invocation and the runtime contract.
+
+The 0.15.32 port adds `$statechart` (TLA+ models, Mermaid charts, and Pele PNG rendering) and `$ketchup-video` with explicit Codex invocation. Statechart runtime helpers are retained verbatim; its test fixtures canonicalize temporary paths for macOS and gate Linux-only preload tests by platform. The helpers need Node, TLC/Java (or mise), and npm for rendering; video generation requires available frame-rendering and encoding tools. Neither feature installs a host integration. Reflection edits go to repository or personal skills outside the plugin cache. PR stack discovery distinguishes fork heads and prefers active PRs, watcher sleeps respect deadlines, inline-code plan parsing matches delimiter lengths, and the worktree audit selects GNU/BSD timestamp flags while preserving Codex session scoping and cached-ref-only behavior. The swarm numbering was already contiguous in this port; its report wording is updated. The upstream Claude marketplace auto-update note does not apply to the Codex installer.

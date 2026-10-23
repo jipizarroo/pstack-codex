@@ -6,6 +6,7 @@ cd "$repo_root"
 node scripts/check-pstack-docs.mjs
 node --test \
   tests/docs.test.mjs \
+  plugins/pstack/skills/statechart/scripts/test/statechart.test.mjs \
   plugins/pstack/skills/poteto-mode/scripts/check-plan.test.mjs \
   plugins/pstack/skills/poteto-mode/scripts/worktree-audit.test.mjs \
   plugins/pstack/skills/make-bot-ui/scripts/bridge.test.mjs \
