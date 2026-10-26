@@ -1,13 +1,13 @@
 # Port coverage and runtime boundaries
 
-This is a workflow port, not an emulation of Cursor's runtime. All 184 files in
+This is a workflow port, not an emulation of Cursor's runtime. All 200 files in
 the pinned upstream snapshot have a retained, adapted, or explicitly replaced
 counterpart. Run `python3 scripts/parity.py --report` for the per-file inventory.
 File coverage alone does not prove behavioral equivalence.
 
 | Upstream feature | Codex implementation | Boundary |
 |---|---|---|
-| 57 upstream skills, 2 Codex additions, and 23 playbooks | Native skills, relative resources, shared `CODEX.md` runtime contract | Invocation uses `$skill-name`; routed explicit-only skills are read directly |
+| 58 upstream skills, 2 Codex additions, and 23 playbooks | Native skills, relative resources, shared `CODEX.md` runtime contract | Invocation uses `$skill-name`; routed explicit-only skills are read directly |
 | Engineering principles | All 24 principle skills retained | Applied when the routing workflow calls for them |
 | poteto-agent and Comment Sicko | Bundled persona instructions; optional custom-agent TOML | Named-agent registration is optional, not automatic plugin discovery |
 | Role-based models and panels | Host-validated model/effort preferences; inheritance fallback | Model availability and concurrent capacity depend on the host; panels run in waves |
@@ -55,4 +55,4 @@ The original's Agent Plugins v1 manifest and Cursor manifest both map to the sin
 
 The 0.15.28 port adds explicit create/maintain formal-verification skills and an optional setup offer. TLA+ is the default for ordering models; generated-input fallback is reported as empirical evidence. Ketchup retains every pending decision even when the reply grows. Sharpen follows the relaxed upstream prompt-output rule. Claude Code remains a documented source reference.
 
-The 0.15.30 port adds the explicit Statechart skill with its original Node scripts and fixtures. TLC requires Java 11+ and a `TLA2TOOLS` path to tla2tools.jar; PNG output additionally requires Mermaid CLI and its browser runtime. These external tools are not activated by installing the plugin. Sharpen now returns a rewritten prompt without executing the task.
+The 0.15.30 port adds the explicit Statechart skill with its original Node scripts and fixtures. In 0.15.32, TLC and Java are resolved through mise unless `TLA2TOOLS` points to an existing jar; `JAVA` can select Java 11+. PNG output uses pinned Pele/resvg packages installed in a user cache on first render. Video generation uses tools available on the host; if rendering fails, the skill reports that and still returns pending decisions as text. These external tools are not activated by installing the plugin. Sharpen now returns a rewritten prompt without executing the task.

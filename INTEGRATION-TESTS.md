@@ -3,6 +3,14 @@
 These results distinguish real host/service tests from local fixture coverage.
 They do not certify arbitrary production repositories or connected services.
 
+## Observed on 2026-10-26 (America/Santiago), Codex revision 202610260002
+
+- Updated the existing 0.15.32 port through original source `e73df471cd4bd918367e99f3dd9c51bd53ddf5f0`. Package preflight passed for 60 skills and 200 source counterparts; 211 relative links in changed Markdown resolve and all 60 display labels are unique.
+- `bash scripts/test.sh` completed successfully: 89 Node checks passed, 95 were skipped, all 89 Bun checks passed, and strict TypeScript checking passed. Coverage includes fork-aware PR stacks, polling deadlines, Markdown delimiters, GNU/BSD session timestamps, existing orchestration regressions, and Statechart helpers available on this host. Skipped checks require TLC, optional font/platform facilities, or a live Codex host; this is not a passing full TLC integration run.
+- The new multi-backtick regression failed against the old plan validator before the correction was applied. Statechart's documented help command ran, and its upload fixture rendered to a PNG with Pele/resvg; the image was visually inspected.
+- Review identified broken runtime/sibling links when Reflect copies a cached skill. Its instructions now require copying dependencies, rewriting links and plugin-root resolution, and preserving the model/delegation policy. A second independent static review found no remaining material issues.
+- The runtime contract, model-role setup, orchestration playbooks/templates and marketplace are unchanged from `main`. Statechart fixtures adopt canonical temporary paths and gate Linux-only preload injection. This revision was not reinstalled in Codex/T3; no model-driven video, live forge mutation or scheduled delivery was tested.
+
 ## Observed on 2026-10-22 (America/Santiago), Pstack 0.15.30
 
 - Package preflight passed for 59 skills and all 184 original source counterparts. The 59 `pstack-` display labels are unique; all 212 links in the affected Markdown files resolve. The 11 Statechart support files and fixtures match the pinned original byte for byte.

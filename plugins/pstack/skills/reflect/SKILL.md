@@ -49,7 +49,7 @@ Present the synthesizer's full Accepted / Rejected / Backlog output and wait for
 
 File each Backlog item to your team's devex or backlog tracker without waiting. Only the Accepted list waits for approval.
 
-Never edit a skill under `plugins/cache/`. Before approval, show its destination, `.agents/skills/<skill>/` or `~/.codex/skills/<skill>/`. After approval, copy the skill folder there and edit the copy. Never open a PR or push.
+Never edit a skill under `plugins/cache/`. Before approval, show its destination: `.agents/skills/<skill>/` for the repository, or `$CODEX_HOME/skills/<skill>/` (default `~/.codex/skills/<skill>/`) for personal skills. Before copying, identify resources outside the skill folder, including `CODEX.md` and referenced sibling skills. Include their local destinations in the approval request. After approval, copy the skill and its required resources, rewrite their paths for the new layout, and edit the copy. For pstack, also adapt the runtime contract's plugin-root resolution to that layout while keeping its model and delegation rules intact. Verify that required links and commands resolve from the destination without relying on the plugin cache before declaring the copy usable. Never open a PR or push.
 
 Follow each approved row's Routing exactly:
 

@@ -179,7 +179,7 @@ Every source file is checked; content adaptation is not a claim of tested runtim
 | `skills/statechart/scripts/statechart.mjs` | `plugins/pstack/skills/statechart/scripts/statechart.mjs` | retained verbatim |
 | `skills/statechart/scripts/test/band.mmd` | `plugins/pstack/skills/statechart/scripts/test/band.mmd` | retained verbatim |
 | `skills/statechart/scripts/test/regions.mmd` | `plugins/pstack/skills/statechart/scripts/test/regions.mmd` | retained verbatim |
-| `skills/statechart/scripts/test/statechart.test.mjs` | `plugins/pstack/skills/statechart/scripts/test/statechart.test.mjs` | retained verbatim |
+| `skills/statechart/scripts/test/statechart.test.mjs` | `plugins/pstack/skills/statechart/scripts/test/statechart.test.mjs` | adapted |
 | `skills/statechart/scripts/test/sync.mmd` | `plugins/pstack/skills/statechart/scripts/test/sync.mmd` | retained verbatim |
 | `skills/statechart/scripts/test/upload.mmd` | `plugins/pstack/skills/statechart/scripts/test/upload.mmd` | retained verbatim |
 | `skills/statechart/scripts/tlc-to-chart-args.mjs` | `plugins/pstack/skills/statechart/scripts/tlc-to-chart-args.mjs` | retained verbatim |

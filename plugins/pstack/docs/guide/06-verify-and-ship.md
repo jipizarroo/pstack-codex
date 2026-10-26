@@ -117,17 +117,19 @@ The skill also records which code each check covers and the commit where the che
 
 ## Show the behavior as a statechart
 
-A counterexample in model terms convinces you. The PM or designer who owns the behavior needs to see it in their terms. Run:
+A counterexample in model terms convinces you. The person who owns the behavior needs to see it in their terms, whether it is a product flow, protocol, or service. Run:
 
 ```text
 $statechart what the user sees when they edit a note offline
 ```
 
-[`$statechart`](../../skills/statechart/SKILL.md) draws a Mermaid statechart of what the user sees, generated from a TLA+ model, so the picture and the checked model can't drift apart. The reader's rules ("you never see Synced while you're offline") become invariants. Each bug TLC finds is a numbered path in the reader's words, and each state is marked works, still wrong, or fixed by your open PR. Before the hand-off, the agent reproduces each bug path in the real code, so a modeling error doesn't reach the reader as a bug.
+[`$statechart`](../../skills/statechart/SKILL.md) draws how a system moves between states as a Mermaid statechart generated from a TLA+ model. The reader's rules ("you never see Synced while you're offline") become invariants. Each invariant violation is a numbered path in the reader's words to a state that breaks a rule. A broken temporal PROPERTY has no chart path; the hand-off includes its TLC counterexample instead. Before the hand-off, the agent reproduces each bug path in the real code, so a modeling error doesn't reach the reader as a bug.
 
 It also runs the other way. Sketch the behavior as a chart, agree on it with the reader, and the skill writes a TLA+ skeleton from it. TLC checks the agreed chart's rules before any code exists. As guards from the real code go into the spec, each place the code departs from the chart shows up as a difference for the reader to decide.
 
-When the code already has a TLA+ spec, the skill can audit the code against it. The agent models what the code does and checks that model next to the unchanged spec. The chart marks the steps where the two differ, and each rule either one breaks is a numbered path.
+When the code already has a TLA+ spec, the skill can audit the code against it. The agent models what the code does and checks that model next to the unchanged spec. The result explains whether the spec already records each violation and which violations a proposed fix addresses.
+
+PNG output uses Pele and resvg, installed in a user cache on first render. TLC and Java can be supplied explicitly or resolved with mise; read the current Statechart help before running.
 
 ## Open the PR
 

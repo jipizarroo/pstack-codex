@@ -85,7 +85,7 @@ The default answer is `$poteto-mode`, which runs most of the others when its ste
 | Bring a verification skill and its feature map back in line with the app | [`$maintain-verification-skill`](../maintain-verification-skill/SKILL.md) |
 | Formally verify a race, invariant, or other property that tests rarely reach | [`$create-formal-verification-skill`](../create-formal-verification-skill/SKILL.md) |
 | Bring a formal verification back in line after its covered code changed, and learn whether a failure is drift or a bug | [`$maintain-formal-verification-skill`](../maintain-formal-verification-skill/SKILL.md) |
-| Show a PM or designer user-visible behavior and numbered bug paths, turn an agreed chart into a TLA+ skeleton, or audit code against its TLA+ spec | [`$statechart`](../statechart/SKILL.md) |
+| Show how a product flow, protocol, or service moves between states and where invariants break, turn an agreed chart into a TLA+ skeleton, or audit code against its TLA+ spec | [`$statechart`](../statechart/SKILL.md) |
 | Vet a performance number before reporting or acting on it | [`$benchmark-checklist`](../benchmark-checklist/SKILL.md) |
 | Run a large or cross-cutting change, or one to review after stepping away | [`$figure-it-out`](../figure-it-out/SKILL.md) |
 | Keep a decision log during a run, and review it afterward | [`$show-me-your-work`](../show-me-your-work/SKILL.md) |
