@@ -6,8 +6,8 @@ Every source file is checked; content adaptation is not a claim of tested runtim
 
 | Upstream pstack file | Codex repository file | Status |
 |---|---|---|
-| `.cursor-plugin/plugin.json` | `plugins/pstack/.codex-plugin/plugin.json` | replaced (host packaging) |
-| `.gitignore` | `.gitignore` | replaced (host packaging) |
+| `.cursor-plugin/plugin.json` | `plugins/pstack/.codex-plugin/plugin.json` | replaced (host integration) |
+| `.gitignore` | `.gitignore` | replaced (host integration) |
 | `LICENSE` | `plugins/pstack/LICENSE` | retained verbatim |
 | `README.md` | `plugins/pstack/README.md` | adapted |
 | `agents/comment-sicko.md` | `plugins/pstack/agents/comment-sicko.md` | adapted |
@@ -42,12 +42,12 @@ Every source file is checked; content adaptation is not a claim of tested runtim
 | `docs/guide/images/router.jpg` | `plugins/pstack/docs/guide/images/router.jpg` | retained verbatim |
 | `docs/guide/images/understanding.jpg` | `plugins/pstack/docs/guide/images/understanding.jpg` | retained verbatim |
 | `docs/guide/images/verification.jpg` | `plugins/pstack/docs/guide/images/verification.jpg` | retained verbatim |
-| `docs/harness/claude-code.md` | `plugins/pstack/docs/harness/claude-code.md` | adapted |
-| `plugin.json` | `plugins/pstack/.codex-plugin/plugin.json` | replaced (host packaging) |
+| `docs/harness/claude-code.md` | `plugins/pstack/CODEX.md` | replaced (host integration) |
+| `plugin.json` | `plugins/pstack/.codex-plugin/plugin.json` | replaced (host integration) |
 | `skills/architect/SKILL.md` | `plugins/pstack/skills/architect/SKILL.md` | adapted |
 | `skills/architect/references/design-red-flags.md` | `plugins/pstack/skills/architect/references/design-red-flags.md` | retained verbatim |
 | `skills/architect/references/rationale-template.md` | `plugins/pstack/skills/architect/references/rationale-template.md` | retained verbatim |
-| `skills/architect/references/runner-prompt.md` | `plugins/pstack/skills/architect/references/runner-prompt.md` | adapted |
+| `skills/architect/references/runner-prompt.md` | `plugins/pstack/skills/architect/references/runner-prompt.md` | retained verbatim |
 | `skills/arena/SKILL.md` | `plugins/pstack/skills/arena/SKILL.md` | adapted |
 | `skills/automate-me/SKILL.md` | `plugins/pstack/skills/automate-me/SKILL.md` | adapted |
 | `skills/benchmark-checklist/SKILL.md` | `plugins/pstack/skills/benchmark-checklist/SKILL.md` | adapted |
@@ -99,7 +99,7 @@ Every source file is checked; content adaptation is not a claim of tested runtim
 | `skills/poteto-mode/playbooks/runtime-forensics.md` | `plugins/pstack/skills/poteto-mode/playbooks/runtime-forensics.md` | adapted |
 | `skills/poteto-mode/playbooks/session-pickup.md` | `plugins/pstack/skills/poteto-mode/playbooks/session-pickup.md` | adapted |
 | `skills/poteto-mode/playbooks/shipping.md` | `plugins/pstack/skills/poteto-mode/playbooks/shipping.md` | adapted |
-| `skills/poteto-mode/playbooks/trace-forensics.md` | `plugins/pstack/skills/poteto-mode/playbooks/trace-forensics.md` | adapted |
+| `skills/poteto-mode/playbooks/trace-forensics.md` | `plugins/pstack/skills/poteto-mode/playbooks/trace-forensics.md` | retained verbatim |
 | `skills/poteto-mode/playbooks/visual-parity.md` | `plugins/pstack/skills/poteto-mode/playbooks/visual-parity.md` | adapted |
 | `skills/poteto-mode/playbooks/worktree-cleanup.md` | `plugins/pstack/skills/poteto-mode/playbooks/worktree-cleanup.md` | adapted |
 | `skills/poteto-mode/references/bugbot-triage.md` | `plugins/pstack/skills/poteto-mode/references/bugbot-triage.md` | retained verbatim |
@@ -107,19 +107,19 @@ Every source file is checked; content adaptation is not a claim of tested runtim
 | `skills/poteto-mode/scripts/bun.lock` | `plugins/pstack/skills/poteto-mode/scripts/bun.lock` | adapted |
 | `skills/poteto-mode/scripts/check-plan.mjs` | `plugins/pstack/skills/poteto-mode/scripts/check-plan.mjs` | adapted |
 | `skills/poteto-mode/scripts/check-plan.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/check-plan.test.ts` | adapted |
-| `skills/poteto-mode/scripts/orch/orch.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/orch/orch.test.ts` | adapted |
+| `skills/poteto-mode/scripts/orch/orch.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/orch/orch.test.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/orch/orch.ts` | `plugins/pstack/skills/poteto-mode/scripts/orch/orch.ts` | retained verbatim |
-| `skills/poteto-mode/scripts/orch/store.ts` | `plugins/pstack/skills/poteto-mode/scripts/orch/store.ts` | adapted |
+| `skills/poteto-mode/scripts/orch/store.ts` | `plugins/pstack/skills/poteto-mode/scripts/orch/store.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/package.json` | `plugins/pstack/skills/poteto-mode/scripts/package.json` | adapted |
 | `skills/poteto-mode/scripts/watch-pr/cli.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/cli.test.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/watch-pr/cli.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/cli.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/watch-pr/fakes.test-helper.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/fakes.test-helper.ts` | retained verbatim |
-| `skills/poteto-mode/scripts/watch-pr/github.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/github.test.ts` | adapted |
-| `skills/poteto-mode/scripts/watch-pr/github.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/github.ts` | adapted |
-| `skills/poteto-mode/scripts/watch-pr/policy.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/policy.test.ts` | adapted |
+| `skills/poteto-mode/scripts/watch-pr/github.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/github.test.ts` | retained verbatim |
+| `skills/poteto-mode/scripts/watch-pr/github.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/github.ts` | retained verbatim |
+| `skills/poteto-mode/scripts/watch-pr/policy.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/policy.test.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/watch-pr/policy.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/policy.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/watch-pr/render.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/render.ts` | retained verbatim |
-| `skills/poteto-mode/scripts/watch-pr/tsconfig.json` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/tsconfig.json` | adapted |
+| `skills/poteto-mode/scripts/watch-pr/tsconfig.json` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/tsconfig.json` | retained verbatim |
 | `skills/poteto-mode/scripts/watch-pr/types.compile.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/types.compile.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/watch-pr/types.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/types.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/watch-pr/watch-pr` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/watch-pr` | retained verbatim |

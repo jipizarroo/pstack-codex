@@ -20,7 +20,7 @@ ${rule}
 ### PR mechanics
 ### Verdict and merge
 ### Boot recipe
-durable program objective; installed pstack plugin; hourly audit tick; status message
+durable program objective, installed pstack plugin, hourly audit tick, status message
 
 ## PR 1
 **Depends on.** None.

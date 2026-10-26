@@ -3,51 +3,35 @@
 These results distinguish real host/service tests from local fixture coverage.
 They do not certify arbitrary production repositories or connected services.
 
-## Observed on 2026-10-26 (America/Santiago), Codex revision 202610260002
+## Observed on 2026-10-23 (America/Los_Angeles)
 
-- Updated the existing 0.15.32 port through original source `e73df471cd4bd918367e99f3dd9c51bd53ddf5f0`. Package preflight passed for 60 skills and 200 source counterparts; 211 relative links in changed Markdown resolve and all 60 display labels are unique.
-- `bash scripts/test.sh` completed successfully: 89 Node checks passed, 95 were skipped, all 89 Bun checks passed, and strict TypeScript checking passed. Coverage includes fork-aware PR stacks, polling deadlines, Markdown delimiters, GNU/BSD session timestamps, existing orchestration regressions, and Statechart helpers available on this host. Skipped checks require TLC, optional font/platform facilities, or a live Codex host; this is not a passing full TLC integration run.
-- The new multi-backtick regression failed against the old plan validator before the correction was applied. Statechart's documented help command ran, and its upload fixture rendered to a PNG with Pele/resvg; the image was visually inspected.
-- Review identified broken runtime/sibling links when Reflect copies a cached skill. Its instructions now require copying dependencies, rewriting links and plugin-root resolution, and preserving the model/delegation policy. A second independent static review found no remaining material issues.
-- The runtime contract, model-role setup, orchestration playbooks/templates and marketplace are unchanged from `main`. Statechart fixtures adopt canonical temporary paths and gate Linux-only preload injection. This revision was not reinstalled in Codex/T3; no model-driven video, live forge mutation or scheduled delivery was tested.
+Ported upstream 0.15.32 at `e73df471cd4bd918367e99f3dd9c51bd53ddf5f0` using the pstack-only update procedure. Added Codex entrypoints for `$statechart` and `$ketchup-video`, and reconciled all upstream changes since 0.15.29.
 
-## Observed on 2026-10-22 (America/Santiago), Pstack 0.15.30
+- Package validation covers 60 skills and all 200 upstream files. Documentation checks resolve 258 relative links and name all 36 commands in the guide. Both new skill entrypoints pass skill-creator validation.
+- 28 Node helper tests pass; two optional host tests remain skipped. This includes native and simulated GNU timestamp handling with spaced session paths, exact workspace ownership, and the cached-ref-only audit.
+- All 82 Bun tests and TypeScript checks pass. The initial run hit subprocess/test deadlines under concurrent setup load; the complete suite passed on retry with a 30-second per-test limit.
+- Statechart validation used TLC 1.7.4 (checksum verified), Java 25, and the pinned Pele/resvg renderer. Across the full run and targeted reruns, 140 distinct cases passed. Ten cases require unavailable mise, font, or Linux facilities and remain skipped. The initial run exposed macOS temporary-path aliases in fixture assertions and Linux-only `LD_PRELOAD` tests; fixtures now canonicalize paths and gate the preload tests by platform. All 13 path-related failures passed on rerun.
+- The statechart renderer produced a PNG from the bundled upload chart, and the output was visually inspected.
+- This is source-package and local-helper validation. No fresh Codex installation, model-driven video generation, live forge mutation, or scheduled service delivery was tested. The maintainer/team additions are unchanged.
 
-- Package preflight passed for 59 skills and all 184 original source counterparts. The 59 `pstack-` display labels are unique; all 212 links in the affected Markdown files resolve. The 11 Statechart support files and fixtures match the pinned original byte for byte.
-- The default Statechart run passed 27 tests and skipped 31 that require TLC. The documented installed-relative `statechart.mjs --help` command passed. Two review rounds resolved an entrypoint path typo and found no remaining material integration or documentation issues.
-- An optional run with temporary Temurin Java 17 and TLC v1.7.4 was stopped after approximately 16 minutes. Its partial report has 52 passed, three failed, one skipped and one cancelled test; the final test did not run. This is not a passing full TLC suite.
-- The three observed failures are in unchanged original fixtures: the killed-Node test tries to kill an already-finished process group (`ESRCH`); the rename-failure fixture uses Linux `LD_PRELOAD`, which does not inject the intended fault on macOS; and the temp-isolation assertion compares `/var` with Java's canonical `/private/var` path. No fixes to these original fixtures or broader portability claims are included in this update.
-- The local model file remains byte-identical. Bundled model defaults, runtime contract, existing production helpers and the original PR-query default are unchanged. Temporary Java/TLC tools were used only for validation; no global JVM was installed. The update does not establish that any application property was formally proved or that real PNG rendering works.
+## Observed on 2026-10-20 (America/Los_Angeles)
 
-## Observed on 2026-10-19 (America/Santiago), Codex revision 202610190002
+Ported upstream 0.15.29: `$sharpen` now rewrites a prompt without executing the task, with matching help and guide text.
 
-- Code/refactoring, bug-fix, performance, hillclimb and Swarm now default to `gpt-6.1-sol @ medium`. The local override and bundled table agree across all 17 roles; exactly those five assignments changed, preserving the other 12 roles and the user's selection policy.
-- Package preflight passed for 58 skills and 172 source counterparts. Skill frontmatter is unchanged. Active defaults, guides and templates contain no remaining Luna references.
-- All seven existing plan-validator checks passed with the updated shipped template, including an alternative worker model, inheritance and rejection of an unfilled worker placeholder. Production helpers were not changed and their other suites were not repeated.
-- Static review checked fallback without overrides, Swarm overrides, mixed efforts on a setup rerun and a single-role change. These checks do not establish task quality or cost relative to Grok, Luna or other reasoning settings.
+- Package validation passed for 58 skills and all 172 upstream files; documentation checks passed.
+- 27 Node tests passed, with two optional host tests skipped. All 68 Bun tests and TypeScript checks passed. Three Bun tests timed out at the default five seconds on the first run; the complete Bun suite passed with a 30-second per-test limit.
+- The quality delta reported no regressions. The graph test gate identified only documentation headings without test links; documentation checks cover those links, not model behavior.
+- This run did not validate model-driven prompt rewriting in a fresh Codex task or live external integrations.
 
-## Observed on 2026-10-19 (America/Santiago), Pstack 0.15.28
+## Observed on 2026-10-19 (America/Los_Angeles)
 
-- Structural validation found 58 skills and counterparts for all 172 reviewed source files. Skill IDs, unique `pstack-` labels, explicit invocation metadata and relative links passed their checks.
-- A fresh read-only Codex session on Sol 6.1 evaluated seven routing scenarios from the bundled defaults, ignoring local overrides. It selected one Sol reviewer for routine work and one Astra reviewer for a concrete concurrency problem, kept both Astra/Sol Arena candidates, used Astra for both Architect alternatives, kept Reflect's existing lenses on Sol, omitted model/effort for effective-role inheritance, and honored an explicit per-task Sol choice.
-- This is a bounded instruction-interpretation smoke check. It did not launch real panels or generate work on Astra/Luna, and it does not establish universal model-selection reliability.
-- The local model file remained byte-identical, and all configured role assignments match the bundled defaults. Helpers and their PR-query default are unchanged, so their earlier Bun/Node suites were not repeated for this Markdown/metadata update.
-- The new formal-verification workflows were validated as packaged skills. No application property was formally proved and no verifier or external integration was activated during this update.
-- Independent review caught that a sync-commit diff omits uncommitted covered code. Maintenance now blocks affected checks before running or updating them, including staged, unstaged, untracked and moved code; it leaves the user's changes and the sync commit intact. Architect's runner prompt also permits distinct designs on the same assigned model.
+Ported upstream 0.15.28 at `d457567` into the Codex source checkout.
 
-## Observed on 2026-10-17 (America/Santiago), Codex revision 202610170003
-
-- Restored the original Pstack PR-query default by removing our explicit 1000-row override and its row-count guard. The query function matches the pinned source byte for byte; the separate unique-open-PR correction is retained.
-- The 75 Bun helper tests and strict TypeScript checks passed. Package validation found 56 skills and 170 source counterparts. Four checks that required the removed override were retired; the gh/Origin tests for reused branches and multiple active PRs remain.
-- This follow-up accepts the original CLI query behavior; it does not claim complete traversal beyond the CLI's default result window.
-
-## Observed on 2026-10-17 (America/Santiago), Codex revision 202610170002
-
-- Imported original helper regressions before production changes: they exposed failures in Markdown fences, orchestration frontiers, review-thread pagination, Code Review Gate handling, and audit base selection.
-- The final helper suite passed 79 Bun tests and strict TypeScript checking for both PR-watcher and orchestration code. The combined suite passed 31 Node fixture checks; two optional native-host checks were skipped.
-- Added a pagination regression beyond the imported source cases: a continuation page without a valid cursor fails closed instead of silently omitting later review threads. A failed second page remains a read error.
-- Independent review exposed frontier truncation and reused-branch ambiguity. Regression fixtures for both gh and Origin now cover an open descendant after 30 historical PRs, preservation of the ledger at the 1000-row query boundary, the unique active PR on a reused branch, and rejection of multiple active PRs.
-- Kept Commander 15 and the Codex dependency lock, scoped transcript ownership, WIP protection, and audit reads without fetching. These are local/fixture checks, not production PR monitoring or a live Claude Code integration test.
+- Package checks found 58 skills and mapped all 172 upstream files. The docs checker resolved 254 relative links and found all 34 commands in the guide. Its fixture rejects missing links, unknown skills, and undocumented model defaults.
+- 27 Node fixture tests and 68 Bun tests passed; two optional host tests stayed skipped. The watcher, orchestration helpers, and fenced-plan tests passed TypeScript checks.
+- Worktree audit fixtures cover `origin/HEAD`, an explicit base, the `origin/master` fallback, an invalid base, and the no-fetch guarantee, alongside the existing untracked-work and session-ownership checks.
+- All nine custom maintainer/team files matched their pre-port hashes. Model preferences outside the plugin were not edited.
+- This validates the source package and local helpers. It does not test live forge mutations, scheduled delivery, or model-driven execution of the new formal verification workflows. No plugin installation or external-service mutation was part of this source update.
 
 ## Observed on 2026-10-11 (America/Los_Angeles)
 
@@ -82,9 +66,9 @@ or persistent test server was created. The paused scheduler fixture was removed.
 Install Bun and Python 3.11+, install the helper dependencies with
 `bun install --frozen-lockfile` in `plugins/pstack/skills/poteto-mode/scripts`, then
 run `bash scripts/test.sh`. `PSTACK_PYTHON` can select a non-default Python.
-The initial 2026-10-17 revision (202610170002) passed 110 helper and fixture checks. Two additional opt-in host
+The combined suite passed 73 local/fixture checks. Two additional opt-in host
 checks (live persona/scoped instructions and native sandbox enforcement) passed
-in the earlier host run, not during this update. Tests under `tests/runtime` document the opt-in live Codex test; it consumes
+separately. Tests under `tests/runtime` document the opt-in live Codex test; it consumes
 account usage and does not run as part of an ordinary fixture-only pass.
 
 Do not package `node_modules` into a plugin release or commit runtime state.

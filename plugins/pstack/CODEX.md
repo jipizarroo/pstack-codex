@@ -2,9 +2,39 @@
 
 Read this file before using a pstack workflow. Resolve the plugin root from the absolute path of the loaded skill: `skills/<name>/SKILL.md` is two directories below it. Resolve bundled files relative to that root, never relative to the target repository. No plugin-root environment variable is supplied automatically.
 
+## Fork orchestration policy
+
+This file is the fork's only workflow customization. Its orchestration rules take precedence over conflicting defaults, example model tables, model-family diversity requirements, and isolation instructions in skills, prompts, playbooks, templates, and guides. Explicit user instructions and valid user role overrides remain authoritative.
+
+Use the defaults below when a role is absent from `~/.codex/pstack-models.md`, including when `setup-pstack` creates that file. On a setup rerun, preserve each configured model and effort unless the user explicitly requests a budget or assignment change. Do not replace these defaults with the setup skill's example table.
+
+| Role | Default assignment |
+|---|---|
+| feature, refactoring | gpt-6.1-sol @ medium |
+| bug-fix | gpt-6.1-sol @ medium |
+| perf-issue | gpt-6.1-sol @ medium |
+| hillclimb | gpt-6.1-sol @ medium |
+| judgment and prose | gpt-6.1-sol @ xhigh |
+| hardest tasks | gpt-6-astra @ xhigh |
+| how explorer | gpt-6.1-sol @ xhigh |
+| how explainer | gpt-6.1-sol @ xhigh |
+| why investigators | gpt-6.1-sol @ xhigh |
+| why synthesizer | gpt-6.1-sol @ xhigh |
+| reflect tooling | gpt-6.1-sol @ xhigh |
+| reflect judgment, divergent, synthesizer | gpt-6.1-sol @ xhigh |
+| arena runners | gpt-6-astra @ xhigh, gpt-6.1-sol @ xhigh |
+| arena cross-judge pool | gpt-6.1-sol @ xhigh |
+| swarm workers | gpt-6.1-sol @ medium |
+| architect runners | gpt-6.1-sol @ xhigh |
+| interrogate reviewers | gpt-6.1-sol @ xhigh |
+
+Architect still produces at least two structurally distinct candidates using its assigned model; the candidates do not require different model families. Arena keeps both configured runner entries. Conditional judgment/review selection follows the policy below.
+
+Use fresh child contexts (`fork_turns: "none"`) with minimal explicit briefs and no nested delegation. Never create a worktree without explicit user authorization. Use separate file ownership or serialize writes when sharing a checkout. Ask for permission before computer use.
+
 ## Delegation and models
 
-Read `~/.codex/pstack-models.md` before delegating. Each entry is `model @ effort`; split those into the host's separate model and reasoning fields. A missing role uses its skill default. `auto` and `inherit-parent` omit both overrides. Validate against the active host's tool schema. Unavailable model choices must be reported; use inheritance as the explicit fallback rather than fabricate a model.
+Read `~/.codex/pstack-models.md` before delegating. Each entry is `model @ effort`; split those into the host's separate model and reasoning fields. A missing role uses the fork default table above, not a conflicting skill default. `auto` and `inherit-parent` omit both overrides. Validate against the active host's tool schema. Unavailable model choices must be reported; use inheritance as the explicit fallback rather than fabricate a model.
 
 Availability is specific to the execution tool: a model shown in a picker or another harness is not necessarily accepted by `spawn_agent`. Use only the model and effort values exposed by the tool that will run the child. Another harness requires an explicitly available delegation tool; changing a model string does not select that harness.
 
@@ -18,7 +48,7 @@ This conditional selection takes precedence over preserving the original model f
 
 Code and Swarm default to Sol 6.1 at medium reasoning. How, Why and tooling default to Sol 6.1. Arena runners default to Astra 6 plus Sol 6.1 and run both. Architect runners default to Sol 6.1 at xhigh reasoning; multiple structural candidates can use that same model. Other roles retain their configured families and list entries.
 
-Use the exposed collaboration tools to spawn, message, follow up, and wait. Spawns are asynchronous. Do not pass Cursor parameters such as environment, cloud_base_branch, readonly, or run_in_background. With a model override, use a fresh or bounded context fork if the host requires it. Pass an absolute instruction-file path and a bounded task. Panels larger than available capacity run in waves; preserve every requested panel entry. Give concurrent writers separate file ownership. Serialize overlapping edits or use an isolated checkout only when authorized, passing its exact working directory and branch. A Codex child does not automatically get a cloud VM or isolated checkout.
+Use the exposed collaboration tools to spawn, message, follow up, and wait. Spawns are asynchronous. Do not pass Cursor parameters such as environment, cloud_base_branch, readonly, or run_in_background. Use `fork_turns: "none"` for every child, including when applying model overrides. Pass an absolute instruction-file path and a bounded task. Panels larger than available capacity run in waves; preserve every requested panel entry. Give concurrent writers separate file ownership. Serialize overlapping edits or use an isolated checkout only when authorized, passing its exact working directory and branch. A Codex child does not automatically get a cloud VM or isolated checkout.
 
 When `fork_turns: "all"` forbids model or effort overrides, use `fork_turns: "none"` with the configured overrides and put the required context and findings in the task prompt. This is a context constraint, not an unavailable model; do not silently inherit the parent model to retain full history.
 

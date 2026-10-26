@@ -38,12 +38,11 @@ if [ -z "$base" ]; then
 	echo "warn: no -b given; MERGED checks against $base" >&2
 fi
 
-# Cached refs only: an audit must not fetch or change repository state.
-# Staleness makes the audit conservative. Revalidate before deletion.
+# Cached refs only: this audit must not fetch or change repository state.
+# Revalidate the base and candidate before deletion.
 git rev-parse --verify --quiet "$base^{commit}" >/dev/null 2>&1 || { echo "error: base ref not found: $base" >&2; exit 1; }
 
-# GNU coreutils (Linux, Homebrew gnubin) reads `stat -f` as file system status
-# and `date -r` as a file, so pick the stat and date flags once.
+# Select GNU or BSD timestamp flags once; GNU stat -f can print filesystem data.
 if stat -c %Y / >/dev/null 2>&1; then
 	stat_fmt=(-c '%Y'); fmt_day() { date -d "@$1" '+%Y-%m-%d'; }
 else

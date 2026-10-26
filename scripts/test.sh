@@ -3,7 +3,9 @@ set -euo pipefail
 repo_root=$(CDPATH='' cd -- "$(dirname -- "$0")/.." && pwd)
 cd "$repo_root"
 "$repo_root/scripts/validate.sh"
+node scripts/check-pstack-docs.mjs
 node --test \
+  tests/docs.test.mjs \
   plugins/pstack/skills/statechart/scripts/test/statechart.test.mjs \
   plugins/pstack/skills/poteto-mode/scripts/check-plan.test.mjs \
   plugins/pstack/skills/poteto-mode/scripts/worktree-audit.test.mjs \

@@ -16,8 +16,8 @@ Track Frame, Fan out, Cross-judge, Pick, Graft, and Verify before launching.
 Every candidate gets the same prompt, so the prompt is the contract.
 
 1. State the artifact each candidate is producing.
-2. Derive the rubric. State what success looks like for *this* task, then turn it into 3-6 concrete gradeable criteria. The rubric is the picker's tool in Phase D. Candidates only see the task.
-3. Pick the runners. Use `arena runners` from `~/.codex/pstack-models.md` when present. Otherwise default to one each on `gpt-6-astra @ xhigh` and `gpt-6.1-sol @ xhigh`; run both. Spawn more when the arena covers multiple design directions. Same model N times when the work is generation-bound rather than judgment-sensitive. Architect supplies its own runner assignment, Sol 6.1 at xhigh reasoning by default, for every structural candidate. Choose each subagent's reasoning effort and any supported speed setting for the job, per the Subagents section of the **poteto-mode** skill.
+2. Derive the rubric. Derive 3-6 concrete gradeable criteria for success. The rubric is the picker's tool in Phase D. Candidates only see the task.
+3. Pick the runners. Use `arena runners` from `~/.codex/pstack-models.md` when present. Otherwise default to one each on `gpt-6-astra @ xhigh` and `gpt-6-luna @ xhigh`. Spawn more when the arena covers multiple design directions. Same model N times when the work is generation-bound rather than judgment-sensitive. Pick reasoning effort for the job under the Subagents section of **poteto-mode**, using only the active execution tool’s supported values.
 4. Assign output paths. Each candidate writes to its own location (a git worktree where possible, otherwise `/tmp/arena-<slug>/candidate-<n>/`), per the **separate-before-serializing-shared-state** principle skill.
 
 ## Phase B: Fan out
@@ -28,7 +28,7 @@ If a candidate produces no output, proceed with N-1 and note the dropout.
 
 ## Phase C: Cross-judge
 
-After all Phase B candidates complete, select one judge through `CODEX.md`'s conditional policy: `arena cross-judge pool`, default `gpt-6.1-sol @ xhigh`, or `hardest tasks`, default `gpt-6-astra @ xhigh`, for concretely difficult judgment. Keep the selected assignment's effort. Use that one model even when the parent uses the same family; do not add diversity reviewers. Spawn one read-only judge subagent. It sees the rubric and the candidates by path label, scores each criterion, and recommends a base with rationale. It runs in parallel with the parent's reading in Phase D, not with the candidates themselves. Don't spawn the judge while candidates are still writing.
+After all Phase B candidates complete, choose one model from the `arena cross-judge pool` in `~/.codex/pstack-models.md` when present. Otherwise use `gpt-6-astra @ xhigh` and `gpt-6-luna @ xhigh`. Prefer a different configured model family from the parent's when the host exposes one; report when the panel lacks family diversity. Spawn one read-only judge subagent on that model. It sees the rubric and the candidates by path label, scores each criterion, and recommends a base with rationale. It runs in parallel with the parent's reading in Phase D, not with the candidates themselves. Don't spawn the judge while candidates are still writing.
 
 ## Phase D: Pick a base
 

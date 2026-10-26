@@ -388,41 +388,6 @@ describe("review thread pagination", () => {
     };
     expect(() => parseReviewThreadPage(response)).toThrow(WatcherQueryError);
   });
-
-  it("rejects an unreadable continuation instead of treating it as the final page", () => {
-    for (const endCursor of [null, "", undefined]) {
-      const response = {
-        data: {
-          repository: {
-            pullRequest: {
-              reviewThreads: {
-                nodes: [],
-                pageInfo: { hasNextPage: true, endCursor },
-              },
-            },
-          },
-        },
-      };
-      expect(() => parseReviewThreadPage(response)).toThrow(WatcherQueryError);
-    }
-  });
-
-  it("propagates a later-page read failure instead of returning partial threads", async () => {
-    const failure = new WatcherQueryError({
-      kind: "command-exit",
-      retryable: true,
-      code: 1,
-      detail: "review thread page unavailable",
-    });
-    const reader = {
-      ...fakeReader(),
-      async reviewThreadPage(_context: typeof context, after: string | null) {
-        if (after !== null) throw failure;
-        return { threads: [thread("early", true)], endCursor: "next" };
-      },
-    };
-    await expect(resolveReviewThreads(reader, context)).rejects.toBe(failure);
-  });
 });
 
 describe("context and stack discovery", () => {

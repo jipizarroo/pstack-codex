@@ -2,10 +2,6 @@
 
 A Codex-native adaptation of [Lauren Tan's pstack](https://github.com/cursor/plugins/tree/main/pstack), preserving its workflows, playbooks, principles, and agent personas while adapting host-specific execution to Codex. This is an independent port, not an official Cursor or OpenAI plugin.
 
-This fork tracks [the original Cursor pstack](https://github.com/cursor/plugins/tree/main/pstack) directly, maintains its Codex adapters and model-role defaults, and labels every skill `pstack-…` in the skill picker. [ScriptedAlchemy's Codex port](https://github.com/ScriptedAlchemy/pstack-codex) remains a reference for Codex-specific fixes. Type `$pstack` to browse them.
-
-Code and Swarm use Sol 6.1 at medium reasoning. How, Why, tooling and ordinary judgment/review use Sol 6.1. Difficult judgment/review selects the `hardest tasks` assignment, Astra 6 by default, with one model per task and no added diversity reviewers. Arena candidates use Astra plus Sol; Architect candidates use Sol 6.1 at xhigh reasoning. See [model selection](plugins/pstack/CODEX.md#model-selection) and [`setup-pstack`](plugins/pstack/skills/setup-pstack/SKILL.md) for the full role table and overrides.
-
 The plugin lives in `plugins/pstack`; `.agents/plugins/marketplace.json` makes this repository a native Codex marketplace. Read the [runtime contract](plugins/pstack/CODEX.md), [port coverage and runtime boundaries](PARITY.md), and [per-file source coverage](FILE-COVERAGE.md). Tool availability depends on the Codex host, permissions, and connected integrations. No credentials are bundled.
 
 ## Install
@@ -18,7 +14,7 @@ executable when running the installer (for example,
 Homebrew installation).
 
 ```sh
-git clone https://github.com/jipizarroo/pstack-codex.git
+git clone https://github.com/ScriptedAlchemy/pstack-codex.git
 cd pstack-codex
 ./scripts/install.sh
 ```
@@ -30,7 +26,7 @@ Use `$automate-maintainer sokra, alex for owner/repo` to draft conventions from 
 Alternatively, install the published marketplace without cloning:
 
 ```sh
-codex plugin marketplace add jipizarroo/pstack-codex
+codex plugin marketplace add ScriptedAlchemy/pstack-codex
 codex plugin add pstack@pstack-codex
 ```
 
@@ -42,7 +38,9 @@ Optional named custom agents are provided in `plugins/pstack/codex-agents`. Revi
 ./scripts/validate.sh
 ```
 
-The portable validator checks the marketplace, manifest, all skill entry points, searchable `pstack-` labels, invocation policies, relative runtime links, agent TOML, and every file in the pinned upstream inventory. Labels live in each skill's `agents/openai.yaml`, so reinstalling preserves them. Run `python3 scripts/parity.py --report` for a per-file retained/adapted/replaced report. Runtime-dependent integrations still need an authenticated end-to-end test in the target host; structural checks do not prove external-service delivery.
+The documentation checker in `scripts/test.sh` also checks skill names, relative links, anchors, and model defaults against the shipped tree.
+
+The portable validator checks the marketplace, manifest, all skill entry points, invocation policies, relative runtime links, agent TOML, and every file in the pinned upstream inventory. Run `python3 scripts/parity.py --report` for a per-file retained/adapted/replaced report. Runtime-dependent integrations still need an authenticated end-to-end test in the target host; structural checks do not prove external-service delivery.
 
 The [integration test report](INTEGRATION-TESTS.md) separates live host/service
 proof from fixture coverage. Run `bash scripts/test.sh` for the combined suite
@@ -50,7 +48,9 @@ after installing the Bun helper dependencies below. The bot UI ships a tested
 loopback HTTP-to-Codex bridge, and Benny ships a tested durable polling ledger;
 neither starts automatically on installation.
 
-Helper-script tests require Bun:
+Helper-script tests require Bun and Node 22.15 or later. The statechart suite also exercises TLC/Java and Pele PNG rendering when their dependencies are available; unavailable optional dependencies are reported as skipped tests. Run `node plugins/pstack/skills/statechart/scripts/statechart.mjs --help` for setup, including `TLA2TOOLS` and `JAVA` overrides. Rendering downloads pinned npm packages into the user cache, outside the plugin.
+
+Install the Bun test dependencies:
 
 ```sh
 cd plugins/pstack/skills/poteto-mode/scripts
@@ -74,7 +74,7 @@ git remote add upstream https://github.com/cursor/plugins.git # once, if absent
 ./scripts/check-upstream.sh
 ```
 
-The audit fetches upstream Git objects and prints pstack-only changes since the pinned source. It never replaces translated files or advances the pin. See [UPDATING.md](UPDATING.md) for the review-and-port procedure. `origin` is this fork, `scripted` is ScriptedAlchemy's Codex port, and `upstream` remains the original repository. Add the Codex port with `git remote add scripted https://github.com/ScriptedAlchemy/pstack-codex.git` and synchronize it before porting newer original workflows.
+The audit fetches upstream Git objects and prints pstack-only changes since the pinned source. It never replaces translated files or advances the pin. See [UPDATING.md](UPDATING.md) for the review-and-port procedure. `origin` is this port; `upstream` remains the original repository.
 
 ## License and attribution
 

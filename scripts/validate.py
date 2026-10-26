@@ -52,8 +52,9 @@ for skill in skills:
     check("../../CODEX.md" in content and (skill.parent / "../../CODEX.md").is_file(), f"Missing runtime contract: {skill}")
     frontmatter = content.split("---", 2)[1] if content.startswith("---") else ""
     check(not re.search(r"^(mode|reminder|disable-model-invocation):", frontmatter, re.M), f"Cursor frontmatter: {skill}")
+    name = re.search(r"^name: (.+)$", frontmatter, re.M)
+    check(name is not None and name[1] == skill.parent.name, f"Skill name must match its folder: {skill}")
     metadata = skill.parent / "agents/openai.yaml"
-    check(metadata.is_file() and re.search(r'(?m)^\s*display_name:\s*[\'"]?pstack-[a-z0-9-]+[\'"]?\s*$', metadata.read_text()), f"Missing pstack display label: {skill}")
     if skill.parent.name != "setup-pstack":
         check(metadata.is_file() and "allow_implicit_invocation: false" in metadata.read_text(), f"Missing explicit invocation policy: {skill}")
 for agent in (PLUGIN / "codex-agents").glob("*.toml"):

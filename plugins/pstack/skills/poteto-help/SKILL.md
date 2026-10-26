@@ -12,7 +12,7 @@ Answer the user's question about pstack, hand them a prompt they can send, and l
 
 A message that asks for work, such as "use pstack to fix this bug", is not a help question. Read [`poteto-mode`](../poteto-mode/SKILL.md), do the work under it, and retain any user instruction to apply it throughout this task in durable notes.
 
-This file maps questions to the skills and guide pages that hold the answers. Those files own the details. Read the file you route to before you quote it, and trust it when it disagrees with this map. The links here point into the installed plugin, which the user may not be able to open, so give the user the file's public copy: `https://github.com/jipizarroo/pstack-codex/blob/main/plugins/pstack/` followed by its path.
+This file maps questions to the skills and guide pages that hold the answers. Those files own the details. Read the file you route to before you quote it, and trust it when it disagrees with this map. The links here point into the installed plugin, which the user may not be able to open, so give the user the file's public copy: `https://github.com/ScriptedAlchemy/pstack-codex/blob/main/plugins/pstack/` followed by its path.
 
 ## Find out what they need
 
@@ -28,7 +28,7 @@ Check the state that changes the answer, and mention it only when it does:
 
 - No `~/.codex/pstack-models.md` means `$setup-pstack` hasn't run for this user, so every role uses its default model.
 - No `verify-*` skill or other app harness in the project means agents have no scripted way to drive the app. Mention `$create-verification-skill` when the question is about proving a change works.
-- No formal verification skill in the project means no property has a recorded formal check. Mention `$create-formal-verification-skill` when the question is about a race, an invariant, or another case tests rarely hit. When one exists and its covered code changed after its recorded sync commit, mention `$maintain-formal-verification-skill` if the question touches that code.
+- No formal verification skill in the project means no property is checked past what tests reach. Mention `$create-formal-verification-skill` when the question is about a race, an invariant, or another case tests rarely hit. When one exists and the code it covers changed after the commit it records as last in sync, mention `$maintain-formal-verification-skill` if the question touches that code.
 
 When the model rule is missing and it matters, ask whether the user wants to pick a model for each role and a reasoning budget now. It matters when the user is new, the question is about setup or cost, or the answer depends on which models run. Ask at most once per chat. If the need is also unclear, ask both questions together. Offer two choices:
 
@@ -37,8 +37,8 @@ When the model rule is missing and it matters, ask whether the user wants to pic
 
 ## Get set up
 
-1. Install with `codex plugin marketplace add jipizarroo/pstack-codex`, then `codex plugin add pstack@pstack-codex`. Start a new Codex task.
-2. Run [`$setup-pstack`](../setup-pstack/SKILL.md). It asks for a reasoning budget, maps a model to each role, and writes `~/.codex/pstack-models.md`. Delegated roles read that file. Then it offers once each to generate a verification skill and a formal verification skill for the project, unless the project already has one.
+1. Install with `codex plugin marketplace add ScriptedAlchemy/pstack-codex`, then `codex plugin add pstack@pstack-codex`. Start a new Codex task.
+2. Run [`$setup-pstack`](../setup-pstack/SKILL.md). It asks for a reasoning budget, maps a model to each role, and writes `~/.codex/pstack-models.md`. Delegated roles read that file. It then offers to generate an app verification skill and a formal verification skill when the project lacks them.
 3. Start a real task with `$poteto-mode`, a goal, and a check that can pass or fail.
 
 Installing changes nothing until the user invokes a skill. Only `$setup-pstack` loads from the user's words. The [README](../../README.md) and [guide page 1](../../docs/guide/01-setup.md) have the details. Offer to word their first prompt with them, per [`references/prompting.md`](references/prompting.md).
@@ -62,19 +62,17 @@ The default answer is `$poteto-mode`, which runs most of the others when its ste
 | The user wants to | Skill |
 |---|---|
 | Do any non-trivial task with rigor | [`$poteto-mode`](../poteto-mode/SKILL.md) |
-| Check that the agent understood their goal and the problem before it starts | [`$in-your-own-words`](../in-your-own-words/SKILL.md) |
-| Get a prompt rewritten deeper, not bigger, before sending it: what a top professional would add, their raw material and methods, and an outside check. It returns the prompt and doesn't do the task | [`$sharpen`](../sharpen/SKILL.md) |
 | Know how code works now, or where new code should live | [`$how`](../how/SKILL.md) |
 | Know why code is shaped this way, or where a number came from | [`$why`](../why/SKILL.md) |
 | Understand a change or subsystem, explained plainly | [`$teach`](../teach/SKILL.md) |
 | Catch up on their own recent work on a topic | [`$recall`](../recall/SKILL.md) |
-| Catch up on what changed in this chat since their last message, in plain words and small visuals, with every item waiting on them listed and decidable from the reply alone | [`$ketchup`](../ketchup/SKILL.md) |
+| Catch up on this chat and pending decisions | [`$ketchup`](../ketchup/SKILL.md) |
 | Catch up like `$ketchup`, in a short silent video of slides, with the waiting calls as text under it | [`$ketchup-video`](../ketchup-video/SKILL.md) |
 | Know what a small diff could break outside itself | [`$blast-radius`](../blast-radius/SKILL.md) |
 | Settle types and module shape before code that crosses a function boundary | [`$architect`](../architect/SKILL.md) |
 | Get several attempts at one brief, merged into the best one | [`$arena`](../arena/SKILL.md) |
 | Run parallel checks over slices, or race workers, through Codex subagents | [`$swarm`](../swarm/SKILL.md) |
-| Have an independent reviewer try to break a diff | [`$interrogate`](../interrogate/SKILL.md) |
+| Have several models review a diff and try to break it | [`$interrogate`](../interrogate/SKILL.md) |
 | Fix a bug test-first when a cheap local test exists | [`$tdd`](../tdd/SKILL.md) |
 | Apply TypeScript rules to `.ts` or `.tsx` work | [`$typescript-best-practices`](../typescript-best-practices/SKILL.md) |
 | Strip comments before review, using a reviewer that didn't write them | [`$no-comments`](../no-comments/SKILL.md) |
@@ -83,9 +81,6 @@ The default answer is `$poteto-mode`, which runs most of the others when its ste
 | Hear the last reply again in plain words | [`$bro`](../bro/SKILL.md) |
 | Give agents a scripted way to drive the app and prove behavior | [`$create-verification-skill`](../create-verification-skill/SKILL.md) |
 | Bring a verification skill and its feature map back in line with the app | [`$maintain-verification-skill`](../maintain-verification-skill/SKILL.md) |
-| Formally verify a race, invariant, or other property that tests rarely reach | [`$create-formal-verification-skill`](../create-formal-verification-skill/SKILL.md) |
-| Bring a formal verification back in line after its covered code changed, and learn whether a failure is drift or a bug | [`$maintain-formal-verification-skill`](../maintain-formal-verification-skill/SKILL.md) |
-| Show how a product flow, protocol, or service moves between states and where invariants break, turn an agreed chart into a TLA+ skeleton, or audit code against its TLA+ spec | [`$statechart`](../statechart/SKILL.md) |
 | Vet a performance number before reporting or acting on it | [`$benchmark-checklist`](../benchmark-checklist/SKILL.md) |
 | Run a large or cross-cutting change, or one to review after stepping away | [`$figure-it-out`](../figure-it-out/SKILL.md) |
 | Keep a decision log during a run, and review it afterward | [`$show-me-your-work`](../show-me-your-work/SKILL.md) |
@@ -95,6 +90,11 @@ The default answer is `$poteto-mode`, which runs most of the others when its ste
 | Stop agents from repeating the same mistakes in this repo | [`$correct`](../correct/SKILL.md) |
 | Build a page over an existing Codex endpoint or the bundled loopback bridge | [`$make-bot-ui`](../make-bot-ui/SKILL.md) |
 | Find their way around pstack | `$poteto-help` |
+| Check that the agent understood their goal and the problem before it starts | [`$in-your-own-words`](../in-your-own-words/SKILL.md) |
+| Get a prompt rewritten deeper, not bigger, before sending it: what a top professional would add, their raw material and methods, and an outside check. It returns the prompt and doesn't do the task | [`$sharpen`](../sharpen/SKILL.md) |
+| Formally verify a race, invariant, or other property that tests rarely reach | [`$create-formal-verification-skill`](../create-formal-verification-skill/SKILL.md) |
+| Bring a formal verification back in line after the code it covers changed, and learn whether a failure is drift or a bug | [`$maintain-formal-verification-skill`](../maintain-formal-verification-skill/SKILL.md) |
+| Show a PM or designer what the user sees as a chart checked by a model, with each bug drawn as a numbered path, turn an agreed chart into a TLA+ skeleton, or audit the code against its TLA+ spec | [`$statechart`](../statechart/SKILL.md) |
 
 If a skill directory next to this one is missing from the table, read its frontmatter and route by its description. The `principle-*` directories are covered under principles below.
 
@@ -139,7 +139,7 @@ Principles are one-rule skills that `$poteto-mode` reads and cites in its replie
 | A new model choice had no effect | Check `~/.codex/pstack-models.md` and the active host model schema before the next delegation. |
 | Runs cost more than expected | See the cost paragraph under Get set up. |
 | A skill didn't load on its own | Only `$setup-pstack` loads from the user's words. The others load when the user types them or when `$poteto-mode` runs them, and it doesn't run every skill. |
-| Parallel agents overwrote each other | Give concurrent writers separate file ownership, serialize overlapping edits, or use an isolated checkout when authorized. Codex subagents share the host workspace. |
+| Parallel agents overwrote each other | Give each agent its own worktree, or run them run sequentially. Codex subagents share the host workspace. |
 | An overnight run moved but finished nothing | A heartbeat or bounded monitor needs a check that can pass or fail, not a duration. See [guide page 7](../../docs/guide/07-overnight.md). |
 | The reply claims success from a green build | Ask for the real command, flow, stored value, or profile. That's the prove-it-works principle. |
 

@@ -9,9 +9,7 @@ Before following this workflow, read [the Codex runtime contract](../../CODEX.md
 
 Mine the current conversation for durable learnings, then route them into skill edits.
 
-Resolve the named role line in `~/.codex/pstack-models.md` before each spawn, following `CODEX.md`: missing lines use the default, `auto` and `inherit-parent` omit both overrides, and unavailable choices are reported with inheritance as the explicit fallback. Split `model @ effort` into separate host fields. Choose each subagent's reasoning effort and any supported speed setting for the job, per the Subagents section of the **poteto-mode** skill.
-
-For the judgment, divergent and synthesizer role, apply `CODEX.md`'s conditional selection: one Sol 6.1 assignment for ordinary work, or the `hardest tasks` assignment for concretely difficult work. Keep its configured effort. The existing lenses remain separate tasks; do not duplicate a lens across Sol and Astra for diversity.
+Resolve the named role line in `~/.codex/pstack-models.md` before each spawn, following `CODEX.md`: missing lines use the default, `auto` and `inherit-parent` omit both overrides, and unavailable choices are reported with inheritance as the explicit fallback. Split `model @ effort` into separate host fields.
 
 ## When to invoke
 
@@ -25,19 +23,19 @@ If the active path cannot be established, pass a tight digest of this conversati
 
 ## 2. Spawn three reviewers in parallel
 
-Three asynchronous `spawn_agent` calls in capacity-bounded waves using the `default` agent, the named role line and default on each, and normal write-capable mode. Reviewers need MCP access for context lookups referenced in the transcript. Subagents inherit the parent's available MCP tools.
+Three asynchronous `spawn_agent` calls in capacity-bounded waves using the `default` agent, the named role line and default on each, and normal write-capable mode. Reviewers need MCP access for context lookups referenced in the transcript. Subagents inherit the parent's available MCP tools. Pick reasoning effort for the job under the Subagents section of **poteto-mode**, using only the active execution tool’s supported values.
 
 | Lens | `model` | Prompt template |
 |---|---|---|
-| Judgment | `reflect judgment, divergent, synthesizer` (default `gpt-6.1-sol @ xhigh`) | `references/judgment-reviewer.md` |
+| Judgment | `reflect judgment, divergent, synthesizer` (default `gpt-6-astra @ xhigh`) | `references/judgment-reviewer.md` |
 | Tooling | `reflect tooling` (default `gpt-6.1-sol @ xhigh`) | `references/tooling-reviewer.md` |
-| Divergent | `reflect judgment, divergent, synthesizer` (default `gpt-6.1-sol @ xhigh`) | `references/divergent-reviewer.md` |
+| Divergent | `reflect judgment, divergent, synthesizer` (default `gpt-6-astra @ xhigh`) | `references/divergent-reviewer.md` |
 
 Pass each template verbatim, substituting the transcript path or digest where marked. Reviewers return findings in their final response.
 
 ## 3. Synthesize
 
-One `spawn_agent` call using the `default` agent and `reflect judgment, divergent, synthesizer` line (default `gpt-6.1-sol @ xhigh`) in normal write-capable mode, with the same conditional selection described above. The synthesizer spot-verifies citations and may need inherited MCP tools. Use `references/synthesizer.md` verbatim, with each reviewer's full output inlined where marked. The synthesizer returns a structured Accepted / Rejected / Backlog list.
+One `spawn_agent` call using the `default` agent and `reflect judgment, divergent, synthesizer` line (default `gpt-6-astra @ xhigh`) in normal write-capable mode. The synthesizer spot-verifies citations and may need inherited MCP tools. Use `references/synthesizer.md` verbatim, with each reviewer's full output inlined where marked. The synthesizer returns a structured Accepted / Rejected / Backlog list.
 
 ## 4. Structural enforcement check
 
@@ -49,7 +47,7 @@ Present the synthesizer's full Accepted / Rejected / Backlog output and wait for
 
 File each Backlog item to your team's devex or backlog tracker without waiting. Only the Accepted list waits for approval.
 
-Never edit a skill under `plugins/cache/`. Before approval, show its destination: `.agents/skills/<skill>/` for the repository, or `$CODEX_HOME/skills/<skill>/` (default `~/.codex/skills/<skill>/`) for personal skills. Before copying, identify resources outside the skill folder, including `CODEX.md` and referenced sibling skills. Include their local destinations in the approval request. After approval, copy the skill and its required resources, rewrite their paths for the new layout, and edit the copy. For pstack, also adapt the runtime contract's plugin-root resolution to that layout while keeping its model and delegation rules intact. Verify that required links and commands resolve from the destination without relying on the plugin cache before declaring the copy usable. Never open a PR or push.
+Never edit a skill under `plugins/cache/`. Before approval, show its destination: `.agents/skills/<skill>/` for the repository, or `$CODEX_HOME/skills/<skill>/` (default `~/.codex/skills/<skill>/`) for personal skills. After approval, copy the skill folder there and edit the copy. Never open a PR or push.
 
 Follow each approved row's Routing exactly:
 

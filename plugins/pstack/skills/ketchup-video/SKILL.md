@@ -3,7 +3,7 @@ name: ketchup-video
 description: "Catch the user up like $ketchup, with a short silent video of slides for what happened and the waiting calls as text under it. Use for $ketchup-video."
 ---
 
-Before following this workflow, read [the Codex runtime contract](../../CODEX.md). It defines plugin paths, model configuration, delegation, and persistence.
+Before following this workflow, read [the Codex runtime contract](../../CODEX.md).
 
 # Ketchup video
 

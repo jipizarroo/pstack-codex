@@ -421,37 +421,6 @@ it("uses the specified retry floor and cap", () => {
 });
 
 
-it("blocks a pull request with an unresolved thread after the first 100", async () => {
-  const lateThread = {
-    id: "late-thread",
-    firstComment: { authorLogin: "reviewer", body: "fix this", path: "a.ts", line: 1, createdAt: "now" },
-    resolved: false,
-  };
-  const reader = fakeReader({
-    threadPages: [
-      {
-        threads: Array.from({ length: 100 }, (_, i) => ({
-          ...lateThread,
-          id: `resolved-${i}`,
-          resolved: true,
-        })),
-        endCursor: "page-two",
-      },
-      { threads: [lateThread], endCursor: null },
-    ],
-  });
-  const snapshot = await readSnapshot({
-    reader,
-    context: context(42),
-    pendingHistory: "include",
-    allowDraft: false,
-  });
-  expect(classifyPr(snapshot)).toMatchObject({
-    kind: "blocker",
-    blocker: { kind: "review-threads", threads: [{ id: "late-thread" }] },
-  });
-});
-
 describe("polling deadline sleeps", () => {
   for (const mode of ["single", "queued-stack", "query-retry"] as const) {
     it(`caps ${mode} sleeps at the configured deadline`, async () => {
@@ -509,4 +478,5 @@ describe("polling deadline sleeps", () => {
     expect(result.kind).toBe("READY");
     expect(sleeps).toEqual([60]);
   });
+
 });

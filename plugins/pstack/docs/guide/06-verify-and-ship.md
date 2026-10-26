@@ -107,7 +107,7 @@ $create-formal-verification-skill
 $create-formal-verification-skill the job lease and retry logic. a job must never run twice at once.
 ```
 
-The question picks the tool. Whether events can happen in a bad order suits a model checker over a small model of the design, and TLA+ is the default for that in any language. Whether the code behaves for every input suits a verifier that runs on the code. If no verifier runs on your language, the agent says so and tests the real code with generated inputs, not a hand-written model of the function. That fallback supplies empirical evidence, not a formal proof. A property that must hold at every size can need a proof. The agent tells you which tool it chose and why.
+The question picks the tool. Whether events can happen in a bad order suits a model checker over a small model of the design, and TLA+ is the default for that in any language. Whether the code behaves for every input suits a verifier that runs on the code. If no verifier runs on your language, the agent says so and tests the real code with generated inputs, not a hand-written model of the function. A property that must hold at every size can need a proof. The agent tells you which tool it chose and why.
 
 It verifies one property and shows that property failing on a broken variant of the code, because a check you've never seen fail proves nothing. When the current code already breaks the property, you get the counterexample as a short sequence of steps in your code's terms. The property stays as stated, so the finding stays a finding. Product code doesn't change unless you ask.
 
@@ -117,19 +117,17 @@ The skill also records which code each check covers and the commit where the che
 
 ## Show the behavior as a statechart
 
-A counterexample in model terms convinces you. The person who owns the behavior needs to see it in their terms, whether it is a product flow, protocol, or service. Run:
+A counterexample in model terms convinces you. The PM or designer who owns the behavior needs to see it in their terms. Run:
 
 ```text
 $statechart what the user sees when they edit a note offline
 ```
 
-[`$statechart`](../../skills/statechart/SKILL.md) draws how a system moves between states as a Mermaid statechart generated from a TLA+ model. The reader's rules ("you never see Synced while you're offline") become invariants. Each invariant violation is a numbered path in the reader's words to a state that breaks a rule. A broken temporal PROPERTY has no chart path; the hand-off includes its TLC counterexample instead. Before the hand-off, the agent reproduces each bug path in the real code, so a modeling error doesn't reach the reader as a bug.
+[`$statechart`](../../skills/statechart/SKILL.md) draws a Mermaid statechart of what the user sees, generated from a TLA+ model, so the picture and the checked model can't drift apart. The reader's rules ("you never see Synced while you're offline") become invariants. Each bug TLC finds is a numbered path in the reader's words, and each state is marked works, still wrong, or fixed by your open PR. Before the hand-off, the agent reproduces each bug path in the real code, so a modeling error doesn't reach the reader as a bug.
 
 It also runs the other way. Sketch the behavior as a chart, agree on it with the reader, and the skill writes a TLA+ skeleton from it. TLC checks the agreed chart's rules before any code exists. As guards from the real code go into the spec, each place the code departs from the chart shows up as a difference for the reader to decide.
 
-When the code already has a TLA+ spec, the skill can audit the code against it. The agent models what the code does and checks that model next to the unchanged spec. The result explains whether the spec already records each violation and which violations a proposed fix addresses.
-
-PNG output uses Pele and resvg, installed in a user cache on first render. TLC and Java can be supplied explicitly or resolved with mise; read the current Statechart help before running.
+When the code already has a TLA+ spec, the skill can audit the code against it. The agent models what the code does and checks that model next to the unchanged spec. The chart marks the steps where the two differ, and each rule either one breaks is a numbered path.
 
 ## Open the PR
 
@@ -137,7 +135,7 @@ PNG output uses Pele and resvg, installed in a user cache on first render. TLC a
 $poteto-mode open the pr. small ordered commits, evidence in the description.
 ```
 
-The [Opening a PR playbook](../../skills/poteto-mode/playbooks/opening-a-pr.md) works from the current branch or an authorized isolated checkout, rebases the work into small ordered commits, cleans the diff, unslops the prose, and returns the PR link. Five narrow PRs beat one fat one, and stacked follow-ups beat a growing branch.
+The [Opening a PR playbook](../../skills/poteto-mode/playbooks/opening-a-pr.md) works from a worktree, rebases the work into small ordered commits, cleans the diff, unslops the prose, and returns the PR link. Five narrow PRs beat one fat one, and stacked follow-ups beat a growing branch.
 
 ## Drive the PR to merge-ready with Babysit
 

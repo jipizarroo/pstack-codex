@@ -102,9 +102,9 @@ $poteto-mode new task. figure out why the cache entry survives logout. don't cha
 
 "new task" tells `$poteto-mode` to re-match rather than continue the prior playbook. "don't change any code yet" pins this one to Investigation. Without those two phrases, a mode mid-Feature tends to treat your question as the next feature step.
 
-## Give parallel writers separate scopes
+## Give parallel writers their own worktrees
 
-Codex subagents share the host workspace. Give concurrent writers separate file ownership and serialize overlapping edits. Use a separate checkout or worktree only when authorized, and give the agent its exact directory. Also isolate ports and build output where the project requires it. Spawning alone does not create an isolated machine.
+Codex subagents share the host workspace. Create a separate branch and worktree for each concurrent writer, and give it the exact directory. Also isolate ports and build output where the project requires it. Spawning alone does not create an isolated machine.
 
 Ask for a worktree up front:
 
@@ -112,7 +112,7 @@ Ask for a worktree up front:
 $poteto-mode new task. branch off <base> in a fresh worktree, then port the parser change there.
 ```
 
-Separate scopes keep agents from overwriting one another. An explicitly requested worktree also isolates the checkout, at a cost in disk and machine resources. The [Opening a PR playbook](../../skills/poteto-mode/playbooks/opening-a-pr.md) uses the current checkout unless an isolated one is authorized.
+Each task in its own branch and worktree means no agent stomps another's files. Worktrees cost disk and machine resources, so a laptop runs only a handful at once. The [Opening a PR playbook](../../skills/poteto-mode/playbooks/opening-a-pr.md) already works from a worktree for code changes, so mostly you only say this when a specific base or location matters.
 
 Worktrees accumulate. When disk gets tight, ask:
 

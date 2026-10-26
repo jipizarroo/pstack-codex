@@ -1,5 +1,4 @@
 interface:
-  display_name: "pstack-statechart"
-  short_description: "Approach your task with expert framing and judgment."
+  display_name: "statechart"
 policy:
   allow_implicit_invocation: false
