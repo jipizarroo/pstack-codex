@@ -3,9 +3,7 @@ name: sharpen
 description: "Make a task deeper, not bigger, then rewrite the prompt. Use for $sharpen."
 ---
 
-Before following this workflow, read [the Codex runtime contract](../../CODEX.md). It defines plugin paths, model configuration, delegation, and persistence.
-
-# Sharpen
+Before following this workflow, read [the Codex runtime contract](../../CODEX.md).
 
 I want a deeper version of this task, not a bigger one. Before rewriting it, do four things:
 
@@ -17,5 +15,3 @@ I want a deeper version of this task, not a bigger one. Before rewriting it, do 
 Then rewrite my prompt to ask for exactly that.
 
 Leave choices that are mine to make open instead of deciding them.
-
-Return the rewritten prompt; do not execute the task it describes.

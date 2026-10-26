@@ -158,6 +158,8 @@ $ketchup
 
 [`$ketchup`](../../skills/ketchup/SKILL.md) tells you in plain words what changed since your last message, then lists each call waiting on you with its pick, evidence, and risk. It changes nothing while it reports.
 
+To watch the catch-up instead, run [`$ketchup-video`](../../skills/ketchup-video/SKILL.md). It shows what happened in a short silent video of slides, and lists the calls waiting on you as text under it.
+
 ## The pitfalls
 
 - **Enumerating skills in the prompt.** "use $how then $architect then $arena" reorders steps the playbook already sequences. State the goal and constraints. Name a skill only to override a default.
@@ -165,7 +167,7 @@ $ketchup
 - **Leading with your theory of the cause.** The agent searches wherever you pointed. Ask it to restate the problem first, then share your hunch.
 - **Taking the first design.** One attempt locks in the first shape the model thought of. Ask for prototypes or `$architect` and pick from evidence.
 - **Polishing an abstract plan.** Adversarial review of a plan with no code behind it invents risks that will never happen. Settle the open questions with prototypes, then review what got built.
-- **Parallel writers with overlapping scopes.** They can overwrite each other. Assign separate file ownership, serialize overlapping edits, or use an isolated checkout when authorized.
+- **Parallel agents in one worktree.** They overwrite each other and nobody can tell which agent changed what. Create an isolated worktree and branch per writer, and pass its exact directory.
 - **Looping before you trust the loop.** A loop that can't verify its own work only makes unchecked work faster. Get the verification skill working first.
 - **Trusting an unvetted number.** A warm cache or a skipped code path can fake a speedup. Run `$benchmark-checklist` before the number goes anywhere.
 - **Correcting the same mistake by hand.** A correction in chat helps one run. `$correct` fixes the repo so no later run repeats it.

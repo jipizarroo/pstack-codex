@@ -1,17 +1,17 @@
 # Port coverage and runtime boundaries
 
-This is a workflow port, not an emulation of Cursor's runtime. All 184 files in
+This is a workflow port, not an emulation of Cursor's runtime. All 200 files in
 the pinned upstream snapshot have a retained, adapted, or explicitly replaced
 counterpart. Run `python3 scripts/parity.py --report` for the per-file inventory.
 File coverage alone does not prove behavioral equivalence.
 
 | Upstream feature | Codex implementation | Boundary |
 |---|---|---|
-| 57 upstream skills, 2 Codex additions, and 23 playbooks | Native skills, relative resources, shared `CODEX.md` runtime contract | Invocation uses `$skill-name`; routed explicit-only skills are read directly |
+| 58 upstream skills, 2 Codex additions, and 23 playbooks | Native skills, relative resources, shared `CODEX.md` runtime contract | Invocation uses `$skill-name`; routed explicit-only skills are read directly |
 | Engineering principles | All 24 principle skills retained | Applied when the routing workflow calls for them |
 | poteto-agent and Comment Sicko | Bundled persona instructions; optional custom-agent TOML | Named-agent registration is optional, not automatic plugin discovery |
 | Role-based models and panels | Host-validated model/effort preferences; inheritance fallback | Model availability and concurrent capacity depend on the host; panels run in waves |
-| Parallel workers | Bounded Codex subagents with separate file ownership; authorized isolated checkouts where needed | No automatic cloud VM, branch isolation, or durable worker ID |
+| Parallel workers | Explicit worktrees and bounded Codex subagents | No automatic cloud VM, branch isolation, or durable worker ID |
 | Sticky mode/reminders | Standing task instruction; optional scoped `AGENTS.md` for cross-task persistence | Opt-in per repository, not a Cursor UI-mode switch; see [method](plugins/pstack/docs/standing-mode.md) |
 | Long-running goals and loops | Explicitly requested goals, supported heartbeat/project automations, durable ledgers | Requires scheduler availability; detached sleepers are not persistence |
 | PR watching, orchestration, decision logs | Retained executable helpers with Codex paths and safety fixes | Authenticated GitHub and target repository permissions are required |
@@ -45,12 +45,10 @@ equivalent-looking commands.
 
 Codex additions: `automate-maintainer` restores the generator from [ScriptedAlchemy/plugins PR #1](https://github.com/ScriptedAlchemy/plugins/pull/1) and supports named groups. `automate-team` discovers active core contributors before invoking that workflow. These additions do not change the pinned upstream inventory.
 
-This fork's defaults map ordinary judgment/review, How, Why and tooling to `gpt-6.1-sol`, and code/Swarm to `gpt-6.1-sol @ medium`. The conditional roles in `CODEX.md` select the `hardest tasks` assignment, default `gpt-6-astra @ xhigh`, only for concretely difficult work. Each selects one model and keeps that assignment's effort; no extra reviewer is added for family diversity. Arena candidates run Astra plus Sol, while Architect uses Astra for its structural alternatives. Explicit user choices, effective-role inheritance aliases, execution-tool validation and reported fallback still apply. The maintainer/team additions use concise entrypoints with linked scope, mining, synthesis, roster, and held-out evaluation procedures.
+The 0.15.17 port adds `$ketchup`, distills prompts and evidence frameworks, and uses two-entry default panels at `xhigh`. Codex defaults map judgment to `gpt-6-astra`, fast code to `gpt-6-luna`, and exploration/tooling to `gpt-6.1-sol`. Host validation and inheritance fallback still apply; configured panel lists and model overrides are preserved. These Codex variants do not provide upstream's cross-provider model diversity. The maintainer/team additions use concise entrypoints with linked scope, mining, synthesis, roster, and held-out evaluation procedures.
 
-The 0.15.25 workflows add `$sharpen` and `$in-your-own-words`, shorter visual `$ketchup` briefs, per-job effort policy, and updated verification and autopilot guidance. Model efforts use separate supported execution-tool fields; speed requires an actual exposed field, never a fabricated model suffix. Helper updates include review-thread pagination, Markdown fence parsing, orchestration frontier fixes, and configurable audit bases. Audit reads cached refs without fetching and retains Codex session scoping and preservation checks.
+The 0.15.28 port adds `in-your-own-words`, `sharpen`, and the formal verification generator and maintenance skills. It brings upstream's PR review pagination, fenced-plan checks, forge-based stack discovery, and default-branch worktree audits. The audit still reads cached refs only and holds untracked or unpreserved work. Codex's native manifest replaces both upstream manifests, and `CODEX.md` replaces the Claude harness adapter; this repo does not package the separate generated Claude distribution. Effort tuning uses supported Codex fields without fabricating model slugs or speed controls. Custom maintainer/team skills and their resources remain unchanged.
 
-The original's Agent Plugins v1 manifest and Cursor manifest both map to the single native Codex manifest. Its new [Claude Code adapter](plugins/pstack/docs/harness/claude-code.md) is retained as a source reference; the generated Claude tree is not distributed or activated by this marketplace.
+The 0.15.29 port changes `$sharpen` to return a rewritten prompt without executing the task, and updates its guide and help entries. It preserves explicit-only Codex invocation and the runtime contract.
 
-The 0.15.28 port adds explicit create/maintain formal-verification skills and an optional setup offer. TLA+ is the default for ordering models; generated-input fallback is reported as empirical evidence. Ketchup retains every pending decision even when the reply grows. Sharpen follows the relaxed upstream prompt-output rule. Claude Code remains a documented source reference.
-
-The 0.15.30 port adds the explicit Statechart skill with its original Node scripts and fixtures. TLC requires Java 11+ and a `TLA2TOOLS` path to tla2tools.jar; PNG output additionally requires Mermaid CLI and its browser runtime. These external tools are not activated by installing the plugin. Sharpen now returns a rewritten prompt without executing the task.
+The 0.15.32 port adds `$statechart` (TLA+ models, Mermaid charts, and Pele PNG rendering) and `$ketchup-video` with explicit Codex invocation. Statechart runtime helpers are retained verbatim; its test fixtures canonicalize temporary paths for macOS and gate Linux-only preload tests by platform. The helpers need Node, TLC/Java (or mise), and npm for rendering; video generation requires available frame-rendering and encoding tools. Neither feature installs a host integration. Reflection edits go to repository or personal skills outside the plugin cache. PR stack discovery distinguishes fork heads and prefers active PRs, watcher sleeps respect deadlines, inline-code plan parsing matches delimiter lengths, and the worktree audit selects GNU/BSD timestamp flags while preserving Codex session scoping and cached-ref-only behavior. The swarm numbering was already contiguous in this port; its report wording is updated. The upstream Claude marketplace auto-update note does not apply to the Codex installer.

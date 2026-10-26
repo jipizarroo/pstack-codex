@@ -10,8 +10,9 @@ PLUGIN = ROOT / "plugins/pstack"
 inventory = json.loads((ROOT / "upstream-inventory.json").read_text())
 replacements = {
     ".cursor-plugin/plugin.json": PLUGIN / ".codex-plugin/plugin.json",
-    "plugin.json": PLUGIN / ".codex-plugin/plugin.json",
     ".gitignore": ROOT / ".gitignore",
+    "plugin.json": PLUGIN / ".codex-plugin/plugin.json",
+    "docs/harness/claude-code.md": PLUGIN / "CODEX.md",
 }
 rows = []
 missing = []
@@ -22,7 +23,7 @@ for item in inventory:
         missing.append(source)
         status = "MISSING"
     elif source in replacements:
-        status = "replaced (host packaging)"
+        status = "replaced (host integration)"
     else:
         data = target.read_bytes()
         blob = hashlib.sha1(b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()

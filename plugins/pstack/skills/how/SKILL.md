@@ -11,7 +11,7 @@ Explore the codebase to answer "how does X work?" questions. Produce architectur
 
 Resolve the named role line in `~/.codex/pstack-models.md` before each spawn, following `CODEX.md`: missing lines use the default, `auto` and `inherit-parent` omit both overrides, and unavailable choices are reported with inheritance as the explicit fallback. Split `model @ effort` into separate host fields.
 
-Explorers use `how explorer` (default `gpt-6.1-sol @ xhigh`); every explainer uses `how explainer` (default `gpt-6.1-sol @ xhigh`). Forbid writes and mutating commands in their prompts. Run parallel explorers in waves when host capacity is smaller than the panel. Choose each subagent's reasoning effort and any supported speed setting for the job, per the Subagents section of the **poteto-mode** skill.
+Explorers use `how explorer` (default `gpt-6.1-sol @ xhigh`); every explainer uses `how explainer` (default `gpt-6-astra @ xhigh`). Forbid writes and mutating commands in their prompts. Run parallel explorers in waves when host capacity is smaller than the panel. Pick reasoning effort for the job under the Subagents section of **poteto-mode**, using only the active execution tool’s supported values.
 
 ## 1. Assess complexity
 

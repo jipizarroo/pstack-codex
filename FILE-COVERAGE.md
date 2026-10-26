@@ -1,13 +1,13 @@
 # Upstream file coverage
 
-Pinned source: `eb4db2b55b2b7dec3d9282754cddf0a56bf4ff10`.
+Pinned source: `e73df471cd4bd918367e99f3dd9c51bd53ddf5f0`.
 
 Every source file is checked; content adaptation is not a claim of tested runtime equivalence.
 
 | Upstream pstack file | Codex repository file | Status |
 |---|---|---|
-| `.cursor-plugin/plugin.json` | `plugins/pstack/.codex-plugin/plugin.json` | replaced (host packaging) |
-| `.gitignore` | `.gitignore` | replaced (host packaging) |
+| `.cursor-plugin/plugin.json` | `plugins/pstack/.codex-plugin/plugin.json` | replaced (host integration) |
+| `.gitignore` | `.gitignore` | replaced (host integration) |
 | `LICENSE` | `plugins/pstack/LICENSE` | retained verbatim |
 | `README.md` | `plugins/pstack/README.md` | adapted |
 | `agents/comment-sicko.md` | `plugins/pstack/agents/comment-sicko.md` | adapted |
@@ -42,12 +42,12 @@ Every source file is checked; content adaptation is not a claim of tested runtim
 | `docs/guide/images/router.jpg` | `plugins/pstack/docs/guide/images/router.jpg` | retained verbatim |
 | `docs/guide/images/understanding.jpg` | `plugins/pstack/docs/guide/images/understanding.jpg` | retained verbatim |
 | `docs/guide/images/verification.jpg` | `plugins/pstack/docs/guide/images/verification.jpg` | retained verbatim |
-| `docs/harness/claude-code.md` | `plugins/pstack/docs/harness/claude-code.md` | adapted |
-| `plugin.json` | `plugins/pstack/.codex-plugin/plugin.json` | replaced (host packaging) |
+| `docs/harness/claude-code.md` | `plugins/pstack/CODEX.md` | replaced (host integration) |
+| `plugin.json` | `plugins/pstack/.codex-plugin/plugin.json` | replaced (host integration) |
 | `skills/architect/SKILL.md` | `plugins/pstack/skills/architect/SKILL.md` | adapted |
 | `skills/architect/references/design-red-flags.md` | `plugins/pstack/skills/architect/references/design-red-flags.md` | retained verbatim |
 | `skills/architect/references/rationale-template.md` | `plugins/pstack/skills/architect/references/rationale-template.md` | retained verbatim |
-| `skills/architect/references/runner-prompt.md` | `plugins/pstack/skills/architect/references/runner-prompt.md` | adapted |
+| `skills/architect/references/runner-prompt.md` | `plugins/pstack/skills/architect/references/runner-prompt.md` | retained verbatim |
 | `skills/arena/SKILL.md` | `plugins/pstack/skills/arena/SKILL.md` | adapted |
 | `skills/automate-me/SKILL.md` | `plugins/pstack/skills/automate-me/SKILL.md` | adapted |
 | `skills/benchmark-checklist/SKILL.md` | `plugins/pstack/skills/benchmark-checklist/SKILL.md` | adapted |
@@ -69,6 +69,7 @@ Every source file is checked; content adaptation is not a claim of tested runtim
 | `skills/interrogate/references/lead-judgment.md` | `plugins/pstack/skills/interrogate/references/lead-judgment.md` | retained verbatim |
 | `skills/interrogate/references/reviewer-prompt.md` | `plugins/pstack/skills/interrogate/references/reviewer-prompt.md` | retained verbatim |
 | `skills/interrogate/references/rubric.md` | `plugins/pstack/skills/interrogate/references/rubric.md` | retained verbatim |
+| `skills/ketchup-video/SKILL.md` | `plugins/pstack/skills/ketchup-video/SKILL.md` | adapted |
 | `skills/ketchup/SKILL.md` | `plugins/pstack/skills/ketchup/SKILL.md` | adapted |
 | `skills/maintain-formal-verification-skill/SKILL.md` | `plugins/pstack/skills/maintain-formal-verification-skill/SKILL.md` | adapted |
 | `skills/maintain-verification-skill/SKILL.md` | `plugins/pstack/skills/maintain-verification-skill/SKILL.md` | adapted |
@@ -98,7 +99,7 @@ Every source file is checked; content adaptation is not a claim of tested runtim
 | `skills/poteto-mode/playbooks/runtime-forensics.md` | `plugins/pstack/skills/poteto-mode/playbooks/runtime-forensics.md` | adapted |
 | `skills/poteto-mode/playbooks/session-pickup.md` | `plugins/pstack/skills/poteto-mode/playbooks/session-pickup.md` | adapted |
 | `skills/poteto-mode/playbooks/shipping.md` | `plugins/pstack/skills/poteto-mode/playbooks/shipping.md` | adapted |
-| `skills/poteto-mode/playbooks/trace-forensics.md` | `plugins/pstack/skills/poteto-mode/playbooks/trace-forensics.md` | adapted |
+| `skills/poteto-mode/playbooks/trace-forensics.md` | `plugins/pstack/skills/poteto-mode/playbooks/trace-forensics.md` | retained verbatim |
 | `skills/poteto-mode/playbooks/visual-parity.md` | `plugins/pstack/skills/poteto-mode/playbooks/visual-parity.md` | adapted |
 | `skills/poteto-mode/playbooks/worktree-cleanup.md` | `plugins/pstack/skills/poteto-mode/playbooks/worktree-cleanup.md` | adapted |
 | `skills/poteto-mode/references/bugbot-triage.md` | `plugins/pstack/skills/poteto-mode/references/bugbot-triage.md` | retained verbatim |
@@ -106,19 +107,19 @@ Every source file is checked; content adaptation is not a claim of tested runtim
 | `skills/poteto-mode/scripts/bun.lock` | `plugins/pstack/skills/poteto-mode/scripts/bun.lock` | adapted |
 | `skills/poteto-mode/scripts/check-plan.mjs` | `plugins/pstack/skills/poteto-mode/scripts/check-plan.mjs` | adapted |
 | `skills/poteto-mode/scripts/check-plan.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/check-plan.test.ts` | adapted |
-| `skills/poteto-mode/scripts/orch/orch.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/orch/orch.test.ts` | adapted |
+| `skills/poteto-mode/scripts/orch/orch.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/orch/orch.test.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/orch/orch.ts` | `plugins/pstack/skills/poteto-mode/scripts/orch/orch.ts` | retained verbatim |
-| `skills/poteto-mode/scripts/orch/store.ts` | `plugins/pstack/skills/poteto-mode/scripts/orch/store.ts` | adapted |
+| `skills/poteto-mode/scripts/orch/store.ts` | `plugins/pstack/skills/poteto-mode/scripts/orch/store.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/package.json` | `plugins/pstack/skills/poteto-mode/scripts/package.json` | adapted |
 | `skills/poteto-mode/scripts/watch-pr/cli.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/cli.test.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/watch-pr/cli.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/cli.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/watch-pr/fakes.test-helper.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/fakes.test-helper.ts` | retained verbatim |
-| `skills/poteto-mode/scripts/watch-pr/github.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/github.test.ts` | adapted |
-| `skills/poteto-mode/scripts/watch-pr/github.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/github.ts` | adapted |
-| `skills/poteto-mode/scripts/watch-pr/policy.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/policy.test.ts` | adapted |
+| `skills/poteto-mode/scripts/watch-pr/github.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/github.test.ts` | retained verbatim |
+| `skills/poteto-mode/scripts/watch-pr/github.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/github.ts` | retained verbatim |
+| `skills/poteto-mode/scripts/watch-pr/policy.test.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/policy.test.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/watch-pr/policy.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/policy.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/watch-pr/render.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/render.ts` | retained verbatim |
-| `skills/poteto-mode/scripts/watch-pr/tsconfig.json` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/tsconfig.json` | adapted |
+| `skills/poteto-mode/scripts/watch-pr/tsconfig.json` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/tsconfig.json` | retained verbatim |
 | `skills/poteto-mode/scripts/watch-pr/types.compile.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/types.compile.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/watch-pr/types.ts` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/types.ts` | retained verbatim |
 | `skills/poteto-mode/scripts/watch-pr/watch-pr` | `plugins/pstack/skills/poteto-mode/scripts/watch-pr/watch-pr` | retained verbatim |
@@ -159,17 +160,32 @@ Every source file is checked; content adaptation is not a claim of tested runtim
 | `skills/show-me-your-work/references/decision-log-template.tsv` | `plugins/pstack/skills/show-me-your-work/references/decision-log-template.tsv` | retained verbatim |
 | `skills/show-me-your-work/scripts/log.sh` | `plugins/pstack/skills/show-me-your-work/scripts/log.sh` | retained verbatim |
 | `skills/statechart/SKILL.md` | `plugins/pstack/skills/statechart/SKILL.md` | adapted |
+| `skills/statechart/scripts/bug-states.mjs` | `plugins/pstack/skills/statechart/scripts/bug-states.mjs` | retained verbatim |
+| `skills/statechart/scripts/chart-edges.mjs` | `plugins/pstack/skills/statechart/scripts/chart-edges.mjs` | retained verbatim |
+| `skills/statechart/scripts/chart-parts.mjs` | `plugins/pstack/skills/statechart/scripts/chart-parts.mjs` | retained verbatim |
 | `skills/statechart/scripts/chart-to-tla.mjs` | `plugins/pstack/skills/statechart/scripts/chart-to-tla.mjs` | retained verbatim |
 | `skills/statechart/scripts/compare-charts.mjs` | `plugins/pstack/skills/statechart/scripts/compare-charts.mjs` | retained verbatim |
 | `skills/statechart/scripts/lib.mjs` | `plugins/pstack/skills/statechart/scripts/lib.mjs` | retained verbatim |
-| `skills/statechart/scripts/model/OutputFolder.cfg` | `plugins/pstack/skills/statechart/scripts/model/OutputFolder.cfg` | retained verbatim |
-| `skills/statechart/scripts/model/OutputFolder.map.mjs` | `plugins/pstack/skills/statechart/scripts/model/OutputFolder.map.mjs` | retained verbatim |
-| `skills/statechart/scripts/model/OutputFolder.tla` | `plugins/pstack/skills/statechart/scripts/model/OutputFolder.tla` | retained verbatim |
+| `skills/statechart/scripts/map-view.mjs` | `plugins/pstack/skills/statechart/scripts/map-view.mjs` | retained verbatim |
+| `skills/statechart/scripts/property-loop.mjs` | `plugins/pstack/skills/statechart/scripts/property-loop.mjs` | retained verbatim |
+| `skills/statechart/scripts/read-check.mjs` | `plugins/pstack/skills/statechart/scripts/read-check.mjs` | retained verbatim |
+| `skills/statechart/scripts/regions-chart.mjs` | `plugins/pstack/skills/statechart/scripts/regions-chart.mjs` | retained verbatim |
+| `skills/statechart/scripts/render.mjs` | `plugins/pstack/skills/statechart/scripts/render.mjs` | retained verbatim |
+| `skills/statechart/scripts/rule-book.mjs` | `plugins/pstack/skills/statechart/scripts/rule-book.mjs` | retained verbatim |
+| `skills/statechart/scripts/second-replay.mjs` | `plugins/pstack/skills/statechart/scripts/second-replay.mjs` | retained verbatim |
+| `skills/statechart/scripts/snapshot.mjs` | `plugins/pstack/skills/statechart/scripts/snapshot.mjs` | retained verbatim |
+| `skills/statechart/scripts/spec-text.mjs` | `plugins/pstack/skills/statechart/scripts/spec-text.mjs` | retained verbatim |
+| `skills/statechart/scripts/statechart-help.mjs` | `plugins/pstack/skills/statechart/scripts/statechart-help.mjs` | retained verbatim |
 | `skills/statechart/scripts/statechart.mjs` | `plugins/pstack/skills/statechart/scripts/statechart.mjs` | retained verbatim |
-| `skills/statechart/scripts/test/statechart.test.mjs` | `plugins/pstack/skills/statechart/scripts/test/statechart.test.mjs` | retained verbatim |
+| `skills/statechart/scripts/test/band.mmd` | `plugins/pstack/skills/statechart/scripts/test/band.mmd` | retained verbatim |
+| `skills/statechart/scripts/test/regions.mmd` | `plugins/pstack/skills/statechart/scripts/test/regions.mmd` | retained verbatim |
+| `skills/statechart/scripts/test/statechart.test.mjs` | `plugins/pstack/skills/statechart/scripts/test/statechart.test.mjs` | adapted |
 | `skills/statechart/scripts/test/sync.mmd` | `plugins/pstack/skills/statechart/scripts/test/sync.mmd` | retained verbatim |
 | `skills/statechart/scripts/test/upload.mmd` | `plugins/pstack/skills/statechart/scripts/test/upload.mmd` | retained verbatim |
+| `skills/statechart/scripts/tlc-to-chart-args.mjs` | `plugins/pstack/skills/statechart/scripts/tlc-to-chart-args.mjs` | retained verbatim |
 | `skills/statechart/scripts/tlc-to-chart.mjs` | `plugins/pstack/skills/statechart/scripts/tlc-to-chart.mjs` | retained verbatim |
+| `skills/statechart/scripts/tlc-tools.mjs` | `plugins/pstack/skills/statechart/scripts/tlc-tools.mjs` | retained verbatim |
+| `skills/statechart/scripts/ways-in.mjs` | `plugins/pstack/skills/statechart/scripts/ways-in.mjs` | retained verbatim |
 | `skills/swarm/SKILL.md` | `plugins/pstack/skills/swarm/SKILL.md` | adapted |
 | `skills/tdd/SKILL.md` | `plugins/pstack/skills/tdd/SKILL.md` | adapted |
 | `skills/teach/SKILL.md` | `plugins/pstack/skills/teach/SKILL.md` | adapted |

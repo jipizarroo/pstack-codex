@@ -9,7 +9,7 @@ Before following this workflow, read [the Codex runtime contract](../../CODEX.md
 
 Investigate the motivation and intent behind code. The companion `how` skill answers what the code does and how it works. `why` answers what forces led to its shape.
 
-Resolve the named role line in `~/.codex/pstack-models.md` before each spawn, following `CODEX.md`: missing lines use the default, `auto` and `inherit-parent` omit both overrides, and unavailable choices are reported with inheritance as the explicit fallback. Split `model @ effort` into separate host fields. Choose each subagent's reasoning effort and any supported speed setting for the job, per the Subagents section of the **poteto-mode** skill.
+Resolve the named role line in `~/.codex/pstack-models.md` before each spawn, following `CODEX.md`: missing lines use the default, `auto` and `inherit-parent` omit both overrides, and unavailable choices are reported with inheritance as the explicit fallback. Split `model @ effort` into separate host fields. Pick reasoning effort for the job under the Subagents section of **poteto-mode**, using only the active execution tool’s supported values.
 
 Use Codex collaboration tools within available capacity. Forbid writes and mutating tools in every investigator and synthesizer prompt. MCP availability follows the active host permissions; do not pass Cursor readonly or agent-mode parameters.
 
@@ -85,7 +85,7 @@ If your scope assessment suggests a single-commit trivial target where the PR de
 Spawn one synthesizer subagent:
 
 - use the default agent only if the current spawn schema exposes an agent selector
-- `model`: the `why synthesizer` line (default `gpt-6.1-sol @ xhigh`)
+- `model`: the `why synthesizer` line (default `gpt-6-astra @ xhigh`)
 - Read-only investigation: forbid writes and mutating tools in the prompt. MCP access follows the host permissions; do not pass a readonly parameter.
 
 The synthesizer gets:

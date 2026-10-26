@@ -1113,8 +1113,10 @@ function branchPullRequest({
   repo: string;
 }): ForgePullRequest {
   const rows = listPullRequests({ filter: "--head", branch, forge, repo });
-  const open = rows.filter((item) => item.state === "OPEN");
-  const candidates = open.length > 0 ? open : rows;
+  // A branch may have closed or merged historical PRs after stack surgery.
+  // Prefer its sole active PR, but retain historical anchors when none is open.
+  const active = rows.filter((row) => row.state === "OPEN");
+  const candidates = active.length > 0 ? active : rows;
   const row = candidates[0];
   if (row === undefined) {
     throw new UserError(
@@ -1123,7 +1125,7 @@ function branchPullRequest({
   }
   if (candidates.length > 1) {
     throw new UserError(
-      `branch ${branch} has multiple ${open.length > 0 ? "open" : "historical"} pull requests (${candidates.map((item) => `#${item.pr}`).join(", ")}); cannot resolve the chain unambiguously`
+      `branch ${branch} has multiple pull requests (${candidates.map((item) => `#${item.pr}`).join(", ")}); close the stale ones first`
     );
   }
   return row;

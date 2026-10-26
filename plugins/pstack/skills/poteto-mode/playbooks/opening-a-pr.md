@@ -1,5 +1,7 @@
 ### Opening a PR
 
+Pick reasoning effort for the job under the Subagents section of **poteto-mode**, using only the active execution tool’s supported values.
+
 Invoked at the end of every other playbook.
 
 **Worktree.** Inspect the current branch and dirty state first. Codex subagents share the host workspace; spawning does not create isolation. Give each concurrent writer an explicitly created worktree and distinct branch at the intended base, and pass the exact absolute directory in its brief. Preserve unrelated edits in place. If the task needs current uncommitted changes, keep one writer in that checkout or copy only the authorized patch into an isolated worktree after inspecting it. Do not reset, discard, stash, or rewrite user work merely to obtain a clean tree. Reconcile tangled state from evidence, and ask when preserving it conflicts with the requested change.
@@ -25,7 +27,7 @@ After the sections, attach videos or screenshots when they prove a claim. Full S
 
 **Built-in PR tool.** Prefer a host-provided PR tool for the create, edit, retarget, or ready operations it actually supports. Read its schema and preserve any host tracking it supplies. Use the resolved forge for unsupported operations. After creating a PR through either path, attach it to the current Codex task through the host artifact tool when available.
 
-**Size and stacks.** Prefer narrow, independently landable PRs. A stack is a base-branch chain: the root targets trunk, and each child rebases onto its parent's exact tip and targets that branch. As a parent merges, move its child onto trunk per `playbooks/shipping.md` step 4. Use the built-in PR tool for supported creation and retargeting operations, otherwise the resolved forge (`origin pr create --status open --base <parent-branch>` or `gh pr create --base <parent-branch>`). Branch from trunk for independent work. Rebase on trunk before substantial stack work.
+**Size and stacks.** Prefer narrow, independently landable PRs. A stack is a base-branch chain: the root targets trunk, and each child rebases onto its parent's exact tip and targets that branch. Use the built-in PR tool for supported creation and retargeting operations, otherwise the resolved forge (`origin pr create --status open --base <parent-branch>` or `gh pr create --base <parent-branch>`). Branch from trunk for independent work. Rebase on trunk before substantial stack work.
 
 **Readiness.** Unless the user requests a draft, open the PR ready. With Origin, pass `--status open`; with `gh`, omit `--draft`. Other PR tools must be checked against their actual schemas, not assumed to accept a draft flag. If an unintentionally drafted PR needs to become ready, use the selected forge's ready operation. Re-read the PR before referring to its status.
 

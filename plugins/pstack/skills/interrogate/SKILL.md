@@ -1,13 +1,13 @@
 ---
 name: interrogate
-description: "Use for \"interrogate\", \"adversarial review\", \"multi-model review\", \"challenge this\", \"stress test this code\", \"find blind spots\", or \"tear this apart\". A reviewer selected by task difficulty challenges changes adversarially."
+description: "Use for \"interrogate\", \"adversarial review\", \"multi-model review\", \"challenge this\", \"stress test this code\", \"find blind spots\", or \"tear this apart\". Multiple LLM reviewers challenge changes from independent angles."
 ---
 
 Before following this workflow, read [the Codex runtime contract](../../CODEX.md). It defines plugin paths, model configuration, delegation, and persistence.
 
 # Interrogate
 
-Use one reviewer assignment to adversarially review code changes, selected by the conditional model policy in `CODEX.md`. Routine review uses Sol 6.1; genuinely difficult review uses `hardest tasks`, Astra 6 by default. Do not add reviewers for model diversity. The deliverable is a synthesized verdict. Do NOT auto-apply changes.
+Spawn one reviewer per configured model to adversarially review code changes. The adversarial signal comes from model diversity, not assigned personas. The deliverable is a synthesized verdict. Do NOT auto-apply changes.
 
 ## Step 1, Scope
 
@@ -25,15 +25,15 @@ Before spawning reviewers, state the intent in one clear paragraph from the user
 
 ## Step 3, Spawn Reviewers
 
-Select one effective assignment through `CODEX.md`: `interrogate reviewers`, default `gpt-6.1-sol @ xhigh`, or `hardest tasks`, default `gpt-6-astra @ xhigh`, when the actual work justifies that difficulty. Launch one reviewer on the selected model through Codex collaboration tools. Do not run both assignments or add a reviewer because the coordinator uses the same family.
+Launch one reviewer per configured `interrogate reviewers` entry, labeled Reviewer A, B, and so on. Without a configured line, use `gpt-6-astra @ xhigh` and `gpt-6-luna @ xhigh`. Run asynchronously in capacity-bounded waves through Codex collaboration tools.
 
 Forbid writes and mutating commands in every reviewer prompt. Resolve model and effort through `CODEX.md`; aliases omit both overrides, and unavailable choices use the reported inheritance fallback. Offer a configuration repair in the report without blocking the review.
 
-Read `references/reviewer-prompt.md` and fill the template with the stated intent, diff or files, `references/rubric.md`, and `references/code-quality-review.md`. Keep the selected role's configured effort; use only a speed setting supported by the execution tool, per `CODEX.md`.
+Read `references/reviewer-prompt.md` and fill the same template for every reviewer with the stated intent, diff or files, `references/rubric.md`, and `references/code-quality-review.md`. Pick reasoning effort for the job under the Subagents section of **poteto-mode**, using only the active execution tool’s supported values.
 
 ## Step 4, Synthesize
 
-Read the reviewer's findings, merge duplicate descriptions of the same issue, and check the evidence against the stated intent. Do not discount a finding because only one model reviewed the change. If the user explicitly requested additional reviews, retain their provenance and note agreements or disagreements.
+As results come back, build a unified picture. Parse every reviewer's findings. Merge findings that describe the same issue differently, and note which models raised each one. Findings two or more models raised independently are the highest signal. Read a lone model's finding, but weight it accordingly. Note disagreements. If one model flags something and another explicitly says the opposite, that is context for the verdict.
 
 ## Step 5, Lead Judgment
 
