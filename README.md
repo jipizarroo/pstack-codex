@@ -2,7 +2,7 @@
 
 A Codex-native adaptation of [Lauren Tan's pstack](https://github.com/cursor/plugins/tree/main/pstack), preserving its workflows, playbooks, principles, and agent personas while adapting host-specific execution to Codex. This is an independent port, not an official Cursor or OpenAI plugin.
 
-This fork tracks [ScriptedAlchemy's Codex port](https://github.com/ScriptedAlchemy/pstack-codex), maintains its own model-role defaults, and labels every skill `pstack-…` in the skill picker. Type `$pstack` to browse them.
+This fork tracks [the original Cursor pstack](https://github.com/cursor/plugins/tree/main/pstack) directly, maintains its Codex adapters and model-role defaults, and labels every skill `pstack-…` in the skill picker. [ScriptedAlchemy's Codex port](https://github.com/ScriptedAlchemy/pstack-codex) remains a reference for Codex-specific fixes. Type `$pstack` to browse them.
 
 Code and Swarm use Sol 6.1 at medium reasoning. How, Why, tooling and ordinary judgment/review use Sol 6.1. Difficult judgment/review selects the `hardest tasks` assignment, Astra 6 by default, with one model per task and no added diversity reviewers. Arena candidates use Astra plus Sol; Architect candidates use Sol 6.1 at xhigh reasoning. See [model selection](plugins/pstack/CODEX.md#model-selection) and [`setup-pstack`](plugins/pstack/skills/setup-pstack/SKILL.md) for the full role table and overrides.
 

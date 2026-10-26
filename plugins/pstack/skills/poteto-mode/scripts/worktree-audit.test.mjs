@@ -7,7 +7,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const audit = fileURLToPath(new URL('./worktree-audit.sh', import.meta.url));
-test('audit preserves spaced paths, scopes session metadata, and holds unpreserved work', () => {
+for (const tools of ['native', 'GNU']) {
+test(`audit preserves spaced paths, scopes session metadata, and holds unpreserved work with ${tools} tools`, () => {
   const fixture = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'pstack audit ')));
   const repo = path.join(fixture, 'main repo');
   const home = path.join(fixture, 'home');
@@ -16,6 +17,24 @@ test('audit preserves spaced paths, scopes session metadata, and holds unpreserv
   const env = {...process.env, HOME:home, PATH:`${bin}:${process.env.PATH}`, GIT_CONFIG_NOSYSTEM:'1'};
   const git = (...args) => execFileSync('git', ['-C',repo,...args], {env,encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim();
   try {
+    if (tools === 'GNU') {
+      fs.writeFileSync(path.join(bin, 'stat'), `#!/usr/bin/env node
+const fs = require('node:fs');
+if (process.argv[2] !== '-c' || process.argv[3] !== '%Y') {
+  console.log('File system status is not a timestamp');
+  process.exit(1);
+}
+console.log(Math.floor(fs.statSync(process.argv[4]).mtimeMs / 1000));
+`, { mode: 0o755 });
+      fs.writeFileSync(path.join(bin, 'date'), `#!/usr/bin/env node
+if (process.argv[2] === '+%s') {
+  console.log(Math.floor(Date.now() / 1000));
+  process.exit(0);
+}
+if (process.argv[2] !== '-d' || !process.argv[3].startsWith('@')) process.exit(1);
+console.log(new Date(Number(process.argv[3].slice(1)) * 1000).toISOString().slice(0, 10));
+`, { mode: 0o755 });
+    }
     git('init','-b','main'); git('config','user.name','Fixture'); git('config','user.email','fixture@example.invalid');
     git('commit','--allow-empty','-m','base'); git('update-ref','refs/remotes/origin/main','HEAD');
     const paths = {};
@@ -35,12 +54,14 @@ test('audit preserves spaced paths, scopes session metadata, and holds unpreserv
     assert.equal(rows.size,5);
     assert.equal(rows.get(paths.safe)[7],'safe');
     assert.equal(rows.get(paths.recent)[7],'verify-recent-chat');
+    assert.match(rows.get(paths.recent)[6], /^\d{4}-\d{2}-\d{2}$/u);
     assert.equal(rows.get(paths.quoted)[7],'safe');
     assert.equal(rows.get(paths.closed)[7],'review');
     assert.equal(rows.get(paths.scratch)[7],'hold-wip');
     assert.equal(fs.readFileSync(path.join(paths.scratch,'precious.txt'),'utf8'),'user work');
   } finally { fs.rmSync(fixture,{recursive:true,force:true}); }
 });
+}
 
 
 function withBaseFixture(operation) {
