@@ -48,19 +48,21 @@ after installing the Bun helper dependencies below. The bot UI ships a tested
 loopback HTTP-to-Codex bridge, and Benny ships a tested durable polling ledger;
 neither starts automatically on installation.
 
-Helper-script tests require Bun and Node 22.15 or later. The statechart suite also exercises TLC/Java and Pele PNG rendering when their dependencies are available; unavailable optional dependencies are reported as skipped tests. Run `node plugins/pstack/skills/statechart/scripts/statechart.mjs --help` for setup, including `TLA2TOOLS` and `JAVA` overrides. Rendering downloads pinned npm packages into the user cache, outside the plugin.
+Helper-script tests require Bun and Node 22.18+ (or Node 23.6+). Statechart runs TypeScript directly with Node, Bun 1.1.5+, or Deno 2.0+. Run `plugins/pstack/skills/statechart/scripts/statechart SPEC.tla --out <new-folder>` to check a model. Invoking the launcher without arguments prints usage and exits 2. Set `TLA2TOOLS` and `JAVA` to run the optional TLC/Java tests; without them those tests are reported as skipped. Rendering tests install pinned Pele/Mermaid packages into the user cache, outside the plugin.
 
 Install the Bun test dependencies:
 
 ```sh
 cd plugins/pstack/skills/poteto-mode/scripts
 bun install --frozen-lockfile
-bun test orch watch-pr check-plan.test.ts
+bun test watch-pr check-plan.test.ts
 bun run typecheck
 node --test check-plan.test.mjs worktree-audit.test.mjs
 ```
 
 Before reinstalling a modified local plugin, use Codex's `plugin-creator` skill cachebuster/reinstall flow; then run `./scripts/install.sh` and start a new task. Keep the published version updated when shipping changes so existing installations do not reuse stale caches.
+
+Statechart tests also need `fast-check@4.5.3`. Run `bun install` in `plugins/pstack/skills/statechart/scripts` before running `bash scripts/test.sh` from the repository root.
 
 Move test-only `node_modules` outside the plugin directory before installation;
 the installer refuses to package it. Remove temporary test dependencies after validation; do not commit or distribute them.
@@ -78,4 +80,4 @@ The audit fetches upstream Git objects and prints pstack-only changes since the 
 
 ## License and attribution
 
-MIT. Original pstack copyright © 2026 Lauren Tan; original license is retained in [LICENSE](LICENSE) and the plugin. Codex adaptation changes are distributed under the same license. Upstream version: 0.15.32, source commit `e73df471cd4bd918367e99f3dd9c51bd53ddf5f0`.
+MIT. Original pstack copyright © 2026 Lauren Tan; original license is retained in [LICENSE](LICENSE) and the plugin. Codex adaptation changes are distributed under the same license. Upstream version: 0.15.36, source commit `1ba91fc25c0977741dd0e267849e6234b037ed0a`.

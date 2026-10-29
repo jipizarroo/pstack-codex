@@ -1,6 +1,6 @@
 # Port coverage and runtime boundaries
 
-This is a workflow port, not an emulation of Cursor's runtime. All 200 files in
+This is a workflow port, not an emulation of Cursor's runtime. All 573 files in
 the pinned upstream snapshot have a retained, adapted, or explicitly replaced
 counterpart. Run `python3 scripts/parity.py --report` for the per-file inventory.
 File coverage alone does not prove behavioral equivalence.
@@ -14,7 +14,7 @@ File coverage alone does not prove behavioral equivalence.
 | Parallel workers | Explicit worktrees and bounded Codex subagents | No automatic cloud VM, branch isolation, or durable worker ID |
 | Sticky mode/reminders | Standing task instruction; optional scoped `AGENTS.md` for cross-task persistence | Opt-in per repository, not a Cursor UI-mode switch; see [method](plugins/pstack/docs/standing-mode.md) |
 | Long-running goals and loops | Explicitly requested goals, supported heartbeat/project automations, durable ledgers | Requires scheduler availability; detached sleepers are not persistence |
-| PR watching, orchestration, decision logs | Retained executable helpers with Codex paths and safety fixes | Authenticated GitHub and target repository permissions are required |
+| PR watching, orchestration, decision logs | Retained PR-watcher helpers; native agent coordination with explicit durable notes | Host subscriptions/tracker/store are optional; no cloud VM, nested delegation or durable worker ID is assumed |
 | Transcript recall/worktree audit | Workspace-matched Codex session metadata | Unrelated session content is not searched to infer ownership |
 | Browser/UI verification | Available Codex browser/computer-use skills and project harnesses | Requires the relevant tool on the execution host |
 | MCP evidence gathering | Discover and use connected apps/MCP tools | Upstream bundles no MCP server or lifecycle hook; none is fabricated |
@@ -52,3 +52,7 @@ The 0.15.28 port adds `in-your-own-words`, `sharpen`, and the formal verificatio
 The 0.15.29 port changes `$sharpen` to return a rewritten prompt without executing the task, and updates its guide and help entries. It preserves explicit-only Codex invocation and the runtime contract.
 
 The 0.15.32 port adds `$statechart` (TLA+ models, Mermaid charts, and Pele PNG rendering) and `$ketchup-video` with explicit Codex invocation. Statechart runtime helpers are retained verbatim; its test fixtures canonicalize temporary paths for macOS and gate Linux-only preload tests by platform. The helpers need Node, TLC/Java (or mise), and npm for rendering; video generation requires available frame-rendering and encoding tools. Neither feature installs a host integration. Reflection edits go to repository or personal skills outside the plugin cache. PR stack discovery distinguishes fork heads and prefers active PRs, watcher sleeps respect deadlines, inline-code plan parsing matches delimiter lengths, and the worktree audit selects GNU/BSD timestamp flags while preserving Codex session scoping and cached-ref-only behavior. The swarm numbering was already contiguous in this port; its report wording is updated. The upstream Claude marketplace auto-update note does not apply to the Codex installer.
+
+The 0.15.36 port replaces Statechart with upstream's TypeScript compiler and behavioral corpus. The launcher uses Node 22.18+ (Node 23 requires 23.6+), Bun 1.1.5+, or Deno 2.0+; TLC and Java remain external dependencies. It checks models and emits charts and shortest bug paths. Chart-to-TLA+ generation, fixed-state comparisons and code-against-spec auditing are no longer provided. Rendering uses the separate Pele guide. The qualified-action trace fix and macOS SIGKILL test fix are included.
+
+Interrogate now retains only failures the lead reproduces, with scratch repros outside the target checkout. Arena incorporates rejected-assignment handling and an explicit skipped-judge outcome while retaining CODEX.md's model policy, including its precedence over upstream cross-family requirements. Autopilot-stack is Autopilot-full without merging and stacks only dependent PRs. Video summaries gain subtitles and measured hold times. Orchestrate removes the orch CLI and uses native host tools plus explicit durable notes. The root dispatches all workers and verifiers with fresh minimal contexts; children never delegate. Worktrees still require authorization. Tracker/store and PR event integrations are used only when exposed by the host; no integration is activated by installation.

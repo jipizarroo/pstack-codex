@@ -3,6 +3,19 @@
 These results distinguish real host/service tests from local fixture coverage.
 They do not certify arbitrary production repositories or connected services.
 
+## Observed on 2026-10-29 (America/Santiago)
+
+Ported Cursor pstack 0.15.36 at `1ba91fc25c0977741dd0e267849e6234b037ed0a` directly under UPDATING.md, preserving the fork's CODEX.md orchestration policy.
+
+- Package preflight passes for 60 skills and all 573 upstream files. Documentation validation resolves 258 relative links and names all 36 commands; the negative documentation fixtures pass.
+- `bash scripts/test.sh` passes: 28 port/helper tests with 2 optional host tests skipped; 267 Statechart tests with 67 live TLC tests skipped; 61 Bun plan/watcher tests; strict watcher TypeScript checks. Statechart replay tests compare charts and reports against committed TLC output. Its renderer tests check Pele output, Mermaid parsing and generated labels.
+- An additional strict Statechart TypeScript check passes with TypeScript 7.0.2 and Node type declarations. It required contextual typing of shared result fields and void-returning async test callbacks. These changes do not alter compiler behavior.
+- The original symlink launcher fixture failed on macOS due to `/var` versus `/private/var` temporary-path aliases. Canonicalizing that fixture directory fixed the existing test; the targeted test and complete suite pass.
+- A fresh read-only review checked source parity and Codex/T3 instructions. Its concrete help-text regressions and invalid README help command were corrected and documentation validation was rerun.
+- Installed and enabled `0.15.36+codex.202610290001` using the repository installer after moving test dependencies outside the plugin. The existing Git marketplace registration was replaced through the supported CLI with this local checkout; no configuration was edited manually. Cached plugin files match the source byte-for-byte, with no extra files or node_modules. The user's pstack-models.md SHA-256 is unchanged.
+- The opt-in installed-plugin test passed in two independent ephemeral read-only Codex sessions. The first loaded the installed personas/runtime instructions, identified the sample's narrating comment and selected Investigation for a read-only question. The second read the scoped marker independently; both left fixture files unchanged.
+- No Java runtime or mise is available, so actual TLC execution was not tested. The full corpus uses upstream's recorded TLC output. Live integration and installation evidence is recorded separately below; no live forge mutation, service delivery or model-driven video generation is certified by these fixture checks.
+
 ## Observed on 2026-10-23 (America/Los_Angeles)
 
 Ported upstream 0.15.32 at `e73df471cd4bd918367e99f3dd9c51bd53ddf5f0` using the pstack-only update procedure. Added Codex entrypoints for `$statechart` and `$ketchup-video`, and reconciled all upstream changes since 0.15.29.
