@@ -28,7 +28,7 @@ Apply the selected effort to every real model, including panel entries. Preserve
 
 ## 3. Confirm role assignments
 
-Show every role, model, and reasoning effort. Allow `inherit-parent` or `auto` for any role. Panel roles are ordered lists; one subagent runs per list entry. List length controls panel size. Keep a user's existing override unless it is unavailable.
+Show every role, model, and reasoning effort. Allow `inherit-parent` or `auto` for any role. Panel roles are ordered lists; one subagent runs per list entry. List length controls panel size. `arena cross-judge pool` is an ordered list from which Arena selects one judge under CODEX.md, rather than spawning a judge per entry. Its aliases and family policy follow CODEX.md. Preserve configured model and effort values unless the user requests a change; report unavailable assignments rather than silently rewriting them.
 
 If the user asks to repair unavailable assignments, choose replacements from the execution tool's available models using their advertised strengths and the role's purpose. Preserve valid assignments, the budget, and panel order and size; report each replacement. That request authorizes updating the file without another confirmation. Otherwise ask about unavailable choices before writing.
 
