@@ -23,9 +23,9 @@ Run:
 $setup-pstack
 ```
 
-[`$setup-pstack`](../../skills/setup-pstack/SKILL.md) reads the models exposed by the current Codex host, asks for a reasoning budget, shows each role, and writes `~/.codex/pstack-models.md`.
+[`$setup-pstack`](../../skills/setup-pstack/SKILL.md) reads the models exposed by the execution tools, shows each role, and writes `~/.codex/pstack-models.md` after validation. If a required route is unavailable, it reports the affected roles and leaves any existing file intact.
 
-Defaults use `xhigh`, matching the `large` budget. `unlimited` raises each real model to its highest host-supported effort, up to `max`; `medium` and `small` choose `high` and `medium`. Unsupported tiers use the highest supported effort at or below the target. Existing model choices and inheritance aliases stay intact.
+Defaults are a cross-provider preset with mixed per-role efforts: most roles use `claude-opus-5-5 @ high` through T3 Code, `hardest tasks` and the arena judge use `gpt-6-astra @ xhigh`, and arena runners pair `gpt-6.1-sol @ xhigh` with Opus. Standalone Codex has no route to the Claude roles and reports them rather than silently substituting a model. Pick a uniform budget only if you want one: `unlimited` raises each real model to its highest host-supported effort, up to `max`; `large`, `medium` and `small` choose `xhigh`, `high` and `medium`. A rerun keeps configured efforts by default, including custom mixed efforts. Unsupported choices need resolution before writing; setup never lowers effort or replaces a model without authorization. Existing model choices and inheritance aliases stay intact.
 
 You only override what you care about. A role with no line in the rule keeps the skill's default. To restore a default, delete that role's line. A rerun of `$setup-pstack` preserves configured role values, including lists and inheritance aliases, unless you choose a replacement. An existing file can pin earlier defaults; delete the corresponding role lines to adopt the current Codex defaults. Setup drops retired role lines and reports them before writing.
 

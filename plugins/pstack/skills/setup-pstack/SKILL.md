@@ -1,30 +1,30 @@
 ---
 name: setup-pstack
-description: Configure the Codex models and reasoning efforts pstack uses for delegation roles. Use for setup-pstack, pstack model configuration, or changing pstack's budget.
+description: Configure the models and reasoning efforts pstack uses for delegation roles, including Claude roles routed through T3 Code. Use for setup-pstack, pstack model configuration, or changing pstack's budget.
 ---
 
 Before following this workflow, read [the Codex runtime contract](../../CODEX.md). It defines plugin paths, model configuration, delegation, and persistence.
 
 # Setup pstack for Codex
 
-Write `~/.codex/pstack-models.md`, the override file every delegating pstack skill reads before it spawns subagents. Missing roles keep the defaults below. This file is configuration for pstack, not a Codex model-provider configuration file.
+Write `~/.codex/pstack-models.md`, the override file every delegating pstack skill reads before it spawns subagents. Missing roles keep the fork defaults in CODEX.md, shown in step 4. This file is configuration for pstack, not a Codex model-provider configuration file.
 
 ## 1. Load current state
 
-Read the existing override file when present, preserving its budget and configured role values. Otherwise start from the defaults in step 4. Drop retired roles absent from step 4 (for example `how critics`) and list each dropped line when showing the proposed configuration. Determine which Codex models the current host exposes from the current tool metadata or official local model picker. Never invent a model slug. `inherit-parent` and `auto` are always valid and both mean to omit the model override.
+Read the existing override file when present, preserving every configured role value. Otherwise start from the defaults in step 4. Drop retired roles absent from step 4 (for example `how critics`) and list each dropped line when showing the proposed configuration. Never invent a model slug. `inherit-parent` and `auto` are always valid and both mean to omit the model override.
 
-For roles executed through `spawn_agent`, its model and effort choices are authoritative. A picker entry or a model available through another harness does not establish that it can be spawned here. Follow `CODEX.md` when an explicit model requires a fresh context fork.
+Validate each role against the tool that will run it, as routed in CODEX.md. Codex roles use the model and effort choices of `spawn_agent`, or of T3's `delegate_task` when routed there. Claude roles are valid only where `orchestrator_capabilities` lists the model and effort under `claudeAgent`. A picker entry or a model available through another harness does not establish that it can run here. If routes or capabilities are missing, report the affected roles together and stop before writing. Leave any existing file intact until the route becomes available or the user authorizes a repair.
 
 ## 2. Choose a budget
 
-Use the available user-input tool, or ask one concise question. Preserve the current budget on a rerun unless the user changes it. With no configuration, `large` matches the skill defaults. Offer:
+With no configuration, use the per-role efforts in step 4. On a rerun, keep the current model and effort assignments by default, including custom mixed efforts. The `# budget:` line is a label, never an instruction to rewrite efforts; label nonuniform efforts `mixed (per-role)`. If the user requests a uniform budget, offer:
 
 - `unlimited — max reasoning`: each model's highest host-supported effort, up to `max`.
 - `large — xhigh reasoning`: `xhigh`.
 - `medium — high reasoning`: `high`.
 - `small — medium reasoning`: `medium`.
 
-Apply the selected effort to every real model, including panel entries. Preserve existing model choices, list order, and inheritance aliases; aliases keep both overrides unset. Model and effort are separate fields in Codex. Use the highest supported effort at or below the requested target. If none is available, mark the role as needing a choice. Never change the model to satisfy a budget.
+Apply an explicitly selected uniform effort to every real model, including panel entries. Preserve existing model choices, list order, and inheritance aliases; aliases keep both overrides unset. Model and effort are separate fields. For `unlimited`, select the highest supported effort up to `max`. For the other budgets, if any model cannot support the requested effort, report it and resolve that choice before writing. Do not lower the effort or change the model without the user's authorization.
 
 ## 3. Confirm role assignments
 
@@ -39,27 +39,28 @@ Overwrite `~/.codex/pstack-models.md` atomically so reruns are idempotent. Use t
 ```text
 # pstack model configuration for Codex. Delete a role line to use its skill default.
 # `inherit-parent` or `auto` omits explicit model and reasoning overrides.
-# budget: large (xhigh)
-feature, refactoring: gpt-6-luna @ xhigh
-bug-fix: gpt-6-luna @ xhigh
-perf-issue: gpt-6-luna @ xhigh
-hillclimb: gpt-6-luna @ xhigh
-judgment and prose: gpt-6-astra @ xhigh
+# budget: mixed (per-role)
+# Use `delegate_task` with `claudeAgent` for Opus 5.5, preserving each role’s configured effort.
+feature, refactoring: claude-opus-5-5 @ high
+bug-fix: claude-opus-5-5 @ high
+perf-issue: claude-opus-5-5 @ high
+hillclimb: claude-opus-5-5 @ high
+judgment and prose: claude-opus-5-5 @ high
 hardest tasks: gpt-6-astra @ xhigh
-how explorer: gpt-6.1-sol @ xhigh
-how explainer: gpt-6-astra @ xhigh
-why investigators: gpt-6.1-sol @ xhigh
-why synthesizer: gpt-6-astra @ xhigh
-reflect tooling: gpt-6.1-sol @ xhigh
-reflect judgment, divergent, synthesizer: gpt-6-astra @ xhigh
-arena runners: gpt-6-astra @ xhigh, gpt-6-luna @ xhigh
-arena cross-judge pool: gpt-6-astra @ xhigh, gpt-6-luna @ xhigh
-swarm workers: gpt-6-luna @ xhigh
-architect runners: gpt-6-astra @ xhigh, gpt-6-luna @ xhigh
-interrogate reviewers: gpt-6-astra @ xhigh, gpt-6-luna @ xhigh
+how explorer: claude-opus-5-5 @ high
+how explainer: claude-opus-5-5 @ high
+why investigators: claude-opus-5-5 @ high
+why synthesizer: claude-opus-5-5 @ high
+reflect tooling: claude-opus-5-5 @ high
+reflect judgment, divergent, synthesizer: claude-opus-5-5 @ high
+arena runners: gpt-6.1-sol @ xhigh, claude-opus-5-5 @ high
+arena cross-judge pool: gpt-6-astra @ xhigh
+swarm workers: claude-opus-5-5 @ high
+architect runners: claude-opus-5-5 @ high
+interrogate reviewers: claude-opus-5-5 @ high
 ```
 
-Apply the budget to the separate effort values before writing. Validate every real model and its effort against the execution tool's available choices. Resolve unavailable assignments as described in step 3; do not write a slug the tool cannot accept.
+Keep the `delegate_task` comment line whenever any role uses a Claude model. Apply only an explicitly selected uniform budget to the effort values before writing. Validate every real model and its effort against the execution tool's available choices. Resolve unavailable assignments as described in step 3; do not write a slug the tool cannot accept.
 
 ## 5. Install or refresh custom agents
 
@@ -71,6 +72,6 @@ Report the chosen budget, overrides, config path, and installed agent files. Re-
 
 Optionally offer `$create-verification-skill` when the repository has no real-surface test harness. Also offer `$create-formal-verification-skill` once when the project has no formal verification skill: it checks a key property with a model checker, proof, or code-level verifier under explicit bounds. If the user declines either offer, move on.
 
-If the user wants poteto-mode to persist across tasks in this repository, use the
-optional [scoped AGENTS.md method](../../docs/standing-mode.md). Do not alter
-project instructions unless that persistence was requested.
+If the user wants poteto-mode to persist across tasks, use the optional
+[AGENTS.md method](../../docs/standing-mode.md) at the scope they choose. Do not
+alter instructions unless that persistence was requested.

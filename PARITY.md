@@ -10,9 +10,9 @@ File coverage alone does not prove behavioral equivalence.
 | 58 upstream skills, 2 Codex additions, and 23 playbooks | Native skills, relative resources, shared `CODEX.md` runtime contract | Invocation uses `$skill-name`; routed explicit-only skills are read directly |
 | Engineering principles | All 24 principle skills retained | Applied when the routing workflow calls for them |
 | poteto-agent and Comment Sicko | Bundled persona instructions; optional custom-agent TOML | Named-agent registration is optional, not automatic plugin discovery |
-| Role-based models and panels | Host-validated model/effort preferences; inheritance fallback | Model availability and concurrent capacity depend on the host; panels run in waves |
+| Role-based models and panels | Host-validated model/effort preferences; default cross-provider preset routes Claude roles through T3 Code's `delegate_task` | Claude roles need T3 Code; standalone Codex stops those delegations and reports the missing route. Fallbacks require explicit user authorization; panels run in waves |
 | Parallel workers | Explicit worktrees and bounded Codex subagents | No automatic cloud VM, branch isolation, or durable worker ID |
-| Sticky mode/reminders | Standing task instruction; optional scoped `AGENTS.md` for cross-task persistence | Opt-in per repository, not a Cursor UI-mode switch; see [method](plugins/pstack/docs/standing-mode.md) |
+| Sticky mode/reminders | Standing task instruction; optional scoped `AGENTS.md` for cross-task persistence | Opt-in at the scope the user chooses, not a Cursor UI-mode switch; see [method](plugins/pstack/docs/standing-mode.md) |
 | Long-running goals and loops | Explicitly requested goals, supported heartbeat/project automations, durable ledgers | Requires scheduler availability; detached sleepers are not persistence |
 | PR watching, orchestration, decision logs | Retained PR-watcher helpers; native agent coordination with explicit durable notes | Host subscriptions/tracker/store are optional; no cloud VM, nested delegation or durable worker ID is assumed |
 | Transcript recall/worktree audit | Workspace-matched Codex session metadata | Unrelated session content is not searched to infer ownership |

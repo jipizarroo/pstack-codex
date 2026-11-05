@@ -20,6 +20,16 @@ scope and permissions; this instruction does not authorize unrelated changes,
 external publishing, production mutations, or unsolicited background services.
 ```
 
+A one-line rule also works when the user wants it shorter:
+
+```markdown
+Always use pstack's poteto-mode for engineering work unless told otherwise.
+```
+
+Put it in a repository or nested `AGENTS.md` for that scope, or in the user's
+personal `AGENTS.md` only when they ask for it across all repositories. Add it
+yourself only when asked; otherwise show the line and let the user place it.
+
 This is a real Codex instruction mechanism, not a global plugin switch or a
 guarantee that a model will always obey. No hook trust bypass is needed. Plugin
 installation does not silently alter `AGENTS.md` or enable this in other projects.

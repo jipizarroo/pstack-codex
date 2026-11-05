@@ -8,7 +8,7 @@ there's a growing sense that ai writes too much slop code. i agree. i don't want
 
 **pstack gives you fearless parallelism.** when you can go deep on one agent and trust it to write good, verifiable code, you can truly parallelize with confidence. start multiple agents up with `poteto-mode` and trust that they'll apply rigorous engineering principles to their work.
 
-**codex gives you the best of all worlds.** pstack routes independent work through Codex subagents and can assign different models and reasoning efforts by role.
+**codex gives you the best of all worlds.** pstack routes independent work through Codex subagents, or through T3 Code delegates for Claude models, and can assign different models and reasoning efforts by role.
 
 fork it. improve it. make it yours. PRs are welcome!
 
@@ -30,7 +30,7 @@ two steps:
 
 new here? the [pstack guide](./docs/guide/README.md) walks you through a first real task, from setup and prompting through verification and overnight runs. stuck, or unsure which skill fits? ask [`$poteto-help`](./skills/poteto-help/SKILL.md).
 
-that's it. the other skills are situational; the mode skill uses them as needed. out of the box, fast code goes to gpt-6-luna, exploration to gpt-6.1-sol, tooling review to gpt-6.1-sol, and the hardest judgment to gpt-6-astra. [`$setup-pstack`](./skills/setup-pstack/SKILL.md) changes any role.
+that's it. the other skills are situational; the mode skill uses them as needed. out of the box, a Codex coordinator hands most roles to claude-opus-5-5 at high effort through T3 Code, the hardest judgment and the arena judge to gpt-6-astra at xhigh, and pairs gpt-6.1-sol with Opus as arena runners. standalone Codex can't run the Claude roles and says so. [`$setup-pstack`](./skills/setup-pstack/SKILL.md) changes any role.
 
 ## usage
 
