@@ -20,10 +20,10 @@ scope and permissions; this instruction does not authorize unrelated changes,
 external publishing, production mutations, or unsolicited background services.
 ```
 
-A one-line rule also works when the user wants it shorter:
+A shorter rule also works when the user wants it:
 
 ```markdown
-Always use pstack's poteto-mode for engineering work unless told otherwise.
+Always use pstack's poteto-mode for engineering work unless told otherwise. It does not authorize unrelated changes, external publishing, production mutations, or unsolicited background services.
 ```
 
 Put it in a repository or nested `AGENTS.md` for that scope, or in the user's

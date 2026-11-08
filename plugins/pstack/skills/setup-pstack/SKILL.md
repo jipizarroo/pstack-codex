@@ -17,7 +17,7 @@ Validate each role against the tool that will run it, as routed in CODEX.md. Cod
 
 ## 2. Choose a budget
 
-With no configuration, use the per-role efforts in step 4. On a rerun, keep the current model and effort assignments by default, including custom mixed efforts. The `# budget:` line is a label, never an instruction to rewrite efforts; label nonuniform efforts `mixed (per-role)`. If the user requests a uniform budget, offer:
+Use the available user-input tool, or ask one concise question. Name the current budget when the file records one. Offer `keep current — per-role efforts` first, as the default: it keeps every configured model and effort, including custom mixed efforts, or the per-role efforts in step 4 when there is no configuration. The `# budget:` line is a label, never an instruction to rewrite efforts; label nonuniform efforts `mixed (per-role)`. Also offer:
 
 - `unlimited — max reasoning`: each model's highest host-supported effort, up to `max`.
 - `large — xhigh reasoning`: `xhigh`.
@@ -28,7 +28,7 @@ Apply an explicitly selected uniform effort to every real model, including panel
 
 ## 3. Confirm role assignments
 
-Show every role, model, and reasoning effort. Allow `inherit-parent` or `auto` for any role. Panel roles are ordered lists; one subagent runs per list entry. List length controls panel size. `arena cross-judge pool` is an ordered list from which Arena selects one judge under CODEX.md, rather than spawning a judge per entry. Its aliases and family policy follow CODEX.md. Preserve configured model and effort values unless the user requests a change; report unavailable assignments rather than silently rewriting them.
+Show every role, model, and reasoning effort. Allow `inherit-parent` or `auto` for any role. Panel roles are ordered lists; one subagent runs per list entry. List length controls panel size. `arena cross-judge pool` is also a list, but Arena runs one judge: it tries values in list order, so order it by preference. An `inherit-parent` or `auto` value never judges. Preserve configured model and effort values unless the user requests a change; report unavailable assignments rather than silently rewriting them.
 
 If the user asks to repair unavailable assignments, choose replacements from the execution tool's available models using their advertised strengths and the role's purpose. Preserve valid assignments, the budget, and panel order and size; report each replacement. That request authorizes updating the file without another confirmation. Otherwise ask about unavailable choices before writing.
 

@@ -74,7 +74,7 @@ The default answer is `$poteto-mode`, which runs most of the others when its ste
 | Settle types and module shape before code that crosses a function boundary | [`$architect`](../architect/SKILL.md) |
 | Get several attempts at one brief, merged into the best one | [`$arena`](../arena/SKILL.md) |
 | Run parallel checks over slices, or race workers, through Codex subagents | [`$swarm`](../swarm/SKILL.md) |
-| Have adversaries try to break a diff, retaining only findings a run proves | [`$interrogate`](../interrogate/SKILL.md) |
+| Have several models review a diff and try to break it | [`$interrogate`](../interrogate/SKILL.md) |
 | Fix a bug test-first when a cheap local test exists | [`$tdd`](../tdd/SKILL.md) |
 | Apply TypeScript rules to `.ts` or `.tsx` work | [`$typescript-best-practices`](../typescript-best-practices/SKILL.md) |
 | Strip comments before review, using a reviewer that didn't write them | [`$no-comments`](../no-comments/SKILL.md) |

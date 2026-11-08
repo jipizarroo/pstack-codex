@@ -17,8 +17,8 @@ Every candidate gets the same prompt, so the prompt is the contract.
 
 1. State the artifact each candidate is producing.
 2. Derive the rubric. Derive 3-6 concrete gradeable criteria for success. The rubric is the picker's tool in Phase D. Candidates only see the task.
-3. Pick the runners. Resolve `arena runners` through `~/.codex/pstack-models.md` and the fork defaults in CODEX.md. Aliases omit model and effort overrides. If the active tool rejects an assignment, follow CODEX.md and report the limitation. Never retry a rejected assignment or invent a model slug. If an unavailable seat cannot use an authorized fallback, drop it and report it. Restore the configured candidate count with an available assignment only when user choices allow that fallback. Spawn more candidates when the task covers multiple design directions; the same model can generate structurally distinct candidates.
-4. Assign output paths. Give each candidate a separate directory, such as `/tmp/arena-<slug>/candidate-<n>/`. A git worktree requires explicit user authorization. Separate file ownership or serialize writes when candidates share a checkout, per the **separate-before-serializing-shared-state** principle skill.
+3. Pick the runners. Use `arena runners` from `~/.codex/pstack-models.md` when present. Otherwise use its default in CODEX.md. An `auto` or `inherit-parent` entry in this line means the parent model, so omit the overrides for it. If the spawn rejects a configured entry, drop that seat and say so. Replacing it on another model, another effort, or the parent model follows CODEX.md and needs the user's authorization. Spawn more when the arena covers multiple design directions. Same model N times when the work is generation-bound rather than judgment-sensitive. Pick reasoning effort for the job under the Subagents section of **poteto-mode**, using only the active execution tool’s supported values.
+4. Assign output paths. Each candidate writes to its own location (a git worktree where possible, otherwise `/tmp/arena-<slug>/candidate-<n>/`), per the **separate-before-serializing-shared-state** principle skill.
 
 ## Phase B: Fan out
 
@@ -28,7 +28,7 @@ If a candidate produces no output, proceed with N-1 and note the dropout.
 
 ## Phase C: Cross-judge
 
-After all Phase B candidates complete, resolve one judge from `arena cross-judge pool` under CODEX.md, including its conditional selection policy. The fork's configured role overrides upstream's different-family requirement; aliases still omit both overrides. Spawn one read-only judge with a fresh context and no nested delegation. It sees the rubric and the candidates by path label, scores each criterion, and recommends a base with rationale. It runs in parallel with the parent's reading in Phase D, not with the candidates. If no authorized judge assignment can run, skip the judge, pick the base alone in Phase D, and report the limitation.
+After all Phase B candidates complete, choose one model from the `arena cross-judge pool` in `~/.codex/pstack-models.md` when present. Otherwise use its default in CODEX.md. Spawn one read-only judge subagent. Try the pool's entries in pool order; the judge may share the parent's model family. An `auto` or `inherit-parent` entry is the parent model, so it never judges. If the spawn rejects an entry, say so and move to the next entry. If no entry runs, skip the judge, pick the base alone in Phase D, and say so. The judge sees the rubric and the candidates by path label, scores each criterion, and recommends a base with rationale. It runs in parallel with the parent's reading in Phase D, not with the candidates themselves. Don't spawn the judge while candidates are still writing.
 
 ## Phase D: Pick a base
 
