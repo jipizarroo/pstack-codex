@@ -27,7 +27,7 @@ if [[ -z "${JAVA:-}" ]]; then
 fi
 if [[ ! -d "$sc/node_modules" ]]; then
   if command -v bun >/dev/null; then
-    (cd "$sc" && bun install)
+    (cd "$sc" && bun install --no-save)
   elif command -v npm >/dev/null; then
     (cd "$sc" && npm install --no-save)
   fi
