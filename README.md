@@ -19,7 +19,7 @@ cd pstack-codex
 ./scripts/install.sh
 ```
 
-The script validates the package, registers this checkout as the `pstack-codex` marketplace, and installs `pstack@pstack-codex`. It does not edit your Codex configuration by hand or overwrite personal agent definitions. Start a new Codex task after installation and invoke `$setup-pstack`. Most pstack skills are intentionally explicit-only; invoke them with `$<skill-name>`, such as `$interrogate`. Ask to use `$poteto-mode` as a standing instruction for the current task when you want the orchestration workflow. Repository-local skills belong under `.agents/skills`, not `.codex/skills`.
+The script validates the package, registers this checkout as the `pstack-codex` marketplace, and installs `pstack@pstack-codex`. It does not edit your Codex configuration by hand or overwrite personal agent definitions. Start a new Codex task after installation and invoke `$setup-pstack`. The default role preset is cross-provider: Codex coordinates, and most roles run on Claude Opus 5.5 through T3 Code's `delegate_task`. Standalone Codex reports those roles as having no supported route; `$setup-pstack` can reassign them. Most pstack skills are intentionally explicit-only; invoke them with `$<skill-name>`, such as `$interrogate`. Ask to use `$poteto-mode` as a standing instruction for the current task when you want the orchestration workflow. Repository-local skills belong under `.agents/skills`, not `.codex/skills`.
 
 Use `$automate-maintainer sokra, alex for owner/repo` to draft conventions from named GitHub users. Use `$automate-team owner/repo` to discover active core contributors and mine their code, reviews, and design discussions into a team mode. Both workflows keep evidence and ownership explicit; they create skills without posting or acting as the people studied.
 
@@ -48,7 +48,7 @@ after installing the Bun helper dependencies below. The bot UI ships a tested
 loopback HTTP-to-Codex bridge, and Benny ships a tested durable polling ledger;
 neither starts automatically on installation.
 
-Helper-script tests require Bun and Node 22.18+ (or Node 23.6+). Statechart runs TypeScript directly with Node, Bun 1.1.5+, or Deno 2.0+. Run `plugins/pstack/skills/statechart/scripts/statechart SPEC.tla --out <new-folder>` to check a model. Invoking the launcher without arguments prints usage and exits 2. Set `TLA2TOOLS` and `JAVA` to run the optional TLC/Java tests; without them those tests are reported as skipped. Rendering tests install pinned Pele/Mermaid packages into the user cache, outside the plugin.
+Helper-script tests require Bun and Node 22.18+ (or Node 23.6+). The Statechart launcher runs TypeScript directly with Node, Bun 1.1.5+, or Deno 2.0+; its test suite runs only under Node. Run `plugins/pstack/skills/statechart/scripts/statechart SPEC.tla --out <new-folder>` to check a model. Invoking the launcher without arguments prints usage and exits 2. Set `TLA2TOOLS` and `JAVA` to run the optional TLC/Java tests; without them those tests are reported as skipped. Rendering tests install pinned Pele/Mermaid packages into the user cache, outside the plugin.
 
 Install the Bun test dependencies:
 
@@ -62,7 +62,7 @@ node --test check-plan.test.mjs worktree-audit.test.mjs
 
 Before reinstalling a modified local plugin, use Codex's `plugin-creator` skill cachebuster/reinstall flow; then run `./scripts/install.sh` and start a new task. Keep the published version updated when shipping changes so existing installations do not reuse stale caches.
 
-Statechart tests also need `fast-check@4.5.3`. Run `bun install` in `plugins/pstack/skills/statechart/scripts` before running `bash scripts/test.sh` from the repository root.
+`bash scripts/test.sh` installs Statechart's test dependency (`fast-check@4.5.3`) in `plugins/pstack/skills/statechart/scripts` when it is missing, runs the suite with a canonical temporary directory, and skips it on unsupported runtimes. It finds TLC through mise and Java through `java_home` when they are installed.
 
 Move test-only `node_modules` outside the plugin directory before installation;
 the installer refuses to package it. Remove temporary test dependencies after validation; do not commit or distribute them.

@@ -178,7 +178,7 @@ Every source file is checked; content adaptation is not a claim of tested runtim
 | `skills/statechart/scripts/passes/region-check.ts` | `plugins/pstack/skills/statechart/scripts/passes/region-check.ts` | retained verbatim |
 | `skills/statechart/scripts/passes/regions.ts` | `plugins/pstack/skills/statechart/scripts/passes/regions.ts` | retained verbatim |
 | `skills/statechart/scripts/pipeline.ts` | `plugins/pstack/skills/statechart/scripts/pipeline.ts` | retained verbatim |
-| `skills/statechart/scripts/run.ts` | `plugins/pstack/skills/statechart/scripts/run.ts` | adapted |
+| `skills/statechart/scripts/run.ts` | `plugins/pstack/skills/statechart/scripts/run.ts` | retained verbatim |
 | `skills/statechart/scripts/statechart` | `plugins/pstack/skills/statechart/scripts/statechart` | retained verbatim |
 | `skills/statechart/scripts/statechart.ts` | `plugins/pstack/skills/statechart/scripts/statechart.ts` | retained verbatim |
 | `skills/statechart/scripts/test/ConfigOracle.java` | `plugins/pstack/skills/statechart/scripts/test/ConfigOracle.java` | retained verbatim |
@@ -186,7 +186,7 @@ Every source file is checked; content adaptation is not a claim of tested runtim
 | `skills/statechart/scripts/test/charts/Braces.mmd` | `plugins/pstack/skills/statechart/scripts/test/charts/Braces.mmd` | retained verbatim |
 | `skills/statechart/scripts/test/charts/Escapes.mmd` | `plugins/pstack/skills/statechart/scripts/test/charts/Escapes.mmd` | retained verbatim |
 | `skills/statechart/scripts/test/charts/Phases.mmd` | `plugins/pstack/skills/statechart/scripts/test/charts/Phases.mmd` | retained verbatim |
-| `skills/statechart/scripts/test/cli.test.ts` | `plugins/pstack/skills/statechart/scripts/test/cli.test.ts` | adapted |
+| `skills/statechart/scripts/test/cli.test.ts` | `plugins/pstack/skills/statechart/scripts/test/cli.test.ts` | retained verbatim |
 | `skills/statechart/scripts/test/config-fuzz.test.ts` | `plugins/pstack/skills/statechart/scripts/test/config-fuzz.test.ts` | retained verbatim |
 | `skills/statechart/scripts/test/corpus.test.ts` | `plugins/pstack/skills/statechart/scripts/test/corpus.test.ts` | retained verbatim |
 | `skills/statechart/scripts/test/corpus/Counter/ChartRun.out` | `plugins/pstack/skills/statechart/scripts/test/corpus/Counter/ChartRun.out` | retained verbatim |

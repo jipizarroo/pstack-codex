@@ -3,6 +3,19 @@
 These results distinguish real host/service tests from local fixture coverage.
 They do not certify arbitrary production repositories or connected services.
 
+## Observed on 2026-11-08 (America/Santiago)
+
+Realigned the skills with upstream `1ba91fc25c0977741dd0e267849e6234b037ed0a` and the ScriptedAlchemy port `5241f6880f13ce7b4956d293050ce6064efaf5ac`, keeping manual per-role model selection and T3 Code routing in CODEX.md.
+
+- Package preflight passes for 60 skills and all 573 upstream files. Documentation validation resolves 258 relative links and names all 36 commands.
+- `bash scripts/test.sh` passes on macOS with Node 24.19.0 and Bun 1.3.6: 28 port/helper tests with 2 optional host tests skipped; 267 Statechart tests with 67 live TLC tests skipped (no Java runtime); 61 Bun plan/watcher tests; strict watcher TypeScript check.
+- `scripts/test.sh` is ScriptedAlchemy's runner without its Bun and Deno Statechart test fallbacks: review found Bun's runner failing the CLI fixtures, and Deno's was never run. Statechart's `run.ts` and `cli.test.ts` are verbatim upstream. Run directly with macOS's default `TMPDIR`, the verbatim symlink launcher test fails (`/var` versus `/private/var`); under the runner's canonical `TMPDIR` it passes. Upstream's `cli.test.ts` fails a strict `tsc` (5.9.3) check on two async test callbacks; no gate in this repository or upstream runs that check.
+- The worktree audit test needs a `rg` executable on `PATH`. On a host where `rg` exists only as a shell function, both session-scoping cases fail identically on this tree, the previous PR head and ScriptedAlchemy's tree.
+- The runner installs Statechart's test dependency inside the plugin when missing. With plain `bun install` it also wrote an untracked `bun.lock`; it now uses `bun install --no-save`. Rerun at that change with a real `rg` executable on `PATH`, `bash scripts/test.sh` passed with the counts above and left only the ignored `node_modules` directories, removed after validation. Nothing was installed into Codex.
+- Runner branch selection was checked by running the runner's Statechart block with logging stand-ins for `node`, `bun`, `deno` and `npm`. Node 22.18.0, 22.99.0, 23.6.0 and 24.19.0 run the suite under Node. Node 22.17.9, 23.0.0, 23.5.9 and 18 (with Bun and Deno on `PATH`), a failing version probe and missing devDependencies print the skip message. `bun test` and `deno test` are never invoked. `bash -n scripts/test.sh` passes.
+- Statechart's `cli.test.ts` passes under Node 24.19.0 with a canonical `TMPDIR`, run from a copy outside the checkout: 126 tests.
+- Interrogate's T3 snapshot protocol was exercised as a local fixture, not through T3 Code. In a temporary repository with a tracked modification, a deletion, a binary change, a mode change, a rename with spaces, a staged new file and untracked text and executable binary files, the parent captured the base SHA, `git diff --binary`, copies of untracked files and a manifest. A `git worktree` at the base applied them; 14 checks passed. The result matched the source working tree's content and modes, and gitignored files stayed out. A divergent base where the patch still applies passed the manifest, so the base check is what blocks it; a conflicting base failed `git apply`; a tampered copy, a lost executable bit and a missing snapshot each blocked. Worktree creation by `delegate_task` and snapshot delivery to a real T3 child were not run.
+
 ## Observed on 2026-10-29 (America/Santiago)
 
 Ported Cursor pstack 0.15.36 at `1ba91fc25c0977741dd0e267849e6234b037ed0a` directly under UPDATING.md, preserving the fork's CODEX.md orchestration policy.

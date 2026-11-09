@@ -113,7 +113,7 @@ const launcherTools = () => {
 };
 
 const linkedLauncher = () => {
-  const links = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), "statechart-links-")));
+  const links = fs.mkdtempSync(path.join(os.tmpdir(), "statechart-links-"));
   const [first, second] = [path.join(links, "a"), path.join(links, "b")];
   fs.mkdirSync(first);
   fs.mkdirSync(second);
@@ -427,8 +427,8 @@ for (const signal of ["SIGINT", "SIGTERM"] satisfies NodeJS.Signals[]) {
   test(
     `${signal} while the view draws the chart stops the command, and it writes nothing`,
     { timeout: 60_000 },
-    async () => {
-      await signalWhile(signal, (fakes) => {
+    () =>
+      signalWhile(signal, (fakes) => {
         const drawing = path.join(fakes, "drawing");
         const dir = copyCase("Login", (d) =>
           fs.writeFileSync(
@@ -444,15 +444,14 @@ for (const signal of ["SIGINT", "SIGTERM"] satisfies NodeJS.Signals[]) {
           ),
         );
         return { dir, reached: () => fs.existsSync(drawing) };
-      });
-    },
+      }),
   );
 
   test(
     `${signal} while the command writes its files stops it, and it writes nothing`,
     { timeout: 60_000 },
-    async () => {
-      await signalWhile(signal, () => ({
+    () =>
+      signalWhile(signal, () => ({
         dir: gridCase(150),
         reached: (parent) => {
           for (const f of fs.readdirSync(parent, { recursive: true, encoding: "utf8" }))
@@ -463,8 +462,7 @@ for (const signal of ["SIGINT", "SIGTERM"] satisfies NodeJS.Signals[]) {
               return true;
           return false;
         },
-      }));
-    },
+      })),
   );
 }
 

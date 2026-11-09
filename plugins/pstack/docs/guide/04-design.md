@@ -28,7 +28,7 @@ The design isn't sacred once code starts. If implementation shows the same worka
 $arena take my prompt to the arena verbatim. i want to compare their proposals with yours.
 ```
 
-[`$arena`](../../skills/arena/SKILL.md) is the general tool underneath. N subagents attempt the same design or code brief in parallel, each writing to its own worktree or directory. A read-only judge selected under the fork's CODEX.md model policy scores every candidate against a rubric. When no authorized judge assignment can run, the coordinator skips the judge and picks the base itself. The coordinator reads each candidate end to end, picks a base, grafts in the best ideas from the losers, and verifies the result.
+[`$arena`](../../skills/arena/SKILL.md) is the general tool underneath. N subagents attempt the same design or code brief in parallel, each writing to its own worktree or directory. A read-only judge from the `arena cross-judge pool` scores every candidate against a rubric. When no judge in the pool can run, the coordinator skips the judge and picks the base itself. The coordinator reads each candidate end to end, picks a base, grafts in the best ideas from the losers, and verifies the result.
 
 ```mermaid
 flowchart LR
